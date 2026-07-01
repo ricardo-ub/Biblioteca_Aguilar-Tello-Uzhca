@@ -26,21 +26,143 @@ public class ListaUsuariosView extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 394, Short.MAX_VALUE)
+        jPanel16 = new javax.swing.JPanel();
+        jPanel17 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jSeparator1 = new javax.swing.JSeparator();
+        btnListaUsu = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        btnEliminarUsu = new javax.swing.JButton();
+
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
+        setTitle("Gestionar Usuarios");
+
+        jPanel16.setBackground(new java.awt.Color(29, 30, 32));
+        jPanel16.setLayout(new java.awt.GridBagLayout());
+
+        jPanel17.setBackground(new java.awt.Color(29, 30, 32));
+
+        jScrollPane1.setBackground(new java.awt.Color(29, 30, 32));
+        jScrollPane1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jScrollPane1.setForeground(new java.awt.Color(235, 235, 235));
+        jScrollPane1.setViewportView(jTable1);
+
+        jTable1.setBackground(new java.awt.Color(29, 30, 32));
+        jTable1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jTable1.setForeground(new java.awt.Color(235, 235, 235));
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jTable1.setGridColor(new java.awt.Color(80, 80, 80));
+        jTable1.setSelectionBackground(new java.awt.Color(33, 150, 243));
+        jScrollPane1.setViewportView(jTable1);
+
+        jSeparator1.setBackground(new java.awt.Color(85, 85, 85));
+
+        btnListaUsu.setBackground(new java.awt.Color(33, 150, 243));
+        btnListaUsu.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnListaUsu.setForeground(new java.awt.Color(235, 235, 235));
+        btnListaUsu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/biblioteca/images/controlar (2).png"))); // NOI18N
+        btnListaUsu.setText("Listar");
+        btnListaUsu.setBorderPainted(false);
+        btnListaUsu.setFocusPainted(false);
+        btnListaUsu.setIconTextGap(10);
+        btnListaUsu.addActionListener(this::btnListaUsuActionPerformed);
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(74, 144, 226));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/biblioteca/images/documento (1).png"))); // NOI18N
+        jLabel1.setText("Gestión de Usuarios");
+        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+        jLabel1.setIconTextGap(8);
+
+        btnEliminarUsu.setBackground(new java.awt.Color(80, 80, 80));
+        btnEliminarUsu.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnEliminarUsu.setForeground(new java.awt.Color(235, 235, 235));
+        btnEliminarUsu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/biblioteca/images/deshacer.png"))); // NOI18N
+        btnEliminarUsu.setText("Eliminar");
+        btnEliminarUsu.setBorderPainted(false);
+        btnEliminarUsu.setFocusPainted(false);
+        btnEliminarUsu.setIconTextGap(8);
+        btnEliminarUsu.addActionListener(this::btnEliminarUsuActionPerformed);
+
+        javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
+        jPanel17.setLayout(jPanel17Layout);
+        jPanel17Layout.setHorizontalGroup(
+            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel17Layout.createSequentialGroup()
+                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel17Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnEliminarUsu)
+                            .addComponent(btnListaUsu)))
+                    .addGroup(jPanel17Layout.createSequentialGroup()
+                        .addGap(108, 108, 108)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel17Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(174, 174, 174))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 274, Short.MAX_VALUE)
+        jPanel17Layout.setVerticalGroup(
+            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel17Layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel17Layout.createSequentialGroup()
+                        .addGap(89, 89, 89)
+                        .addComponent(btnListaUsu)
+                        .addGap(30, 30, 30)
+                        .addComponent(btnEliminarUsu))
+                    .addGroup(jPanel17Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(88, 88, 88))
         );
+
+        jPanel16.add(jPanel17, new java.awt.GridBagConstraints());
+
+        getContentPane().add(jPanel16, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnListaUsuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListaUsuActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnListaUsuActionPerformed
+
+    private void btnEliminarUsuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarUsuActionPerformed
+        dispose();
+    }//GEN-LAST:event_btnEliminarUsuActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnEliminarUsu;
+    private javax.swing.JButton btnListaUsu;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel16;
+    private javax.swing.JPanel jPanel17;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

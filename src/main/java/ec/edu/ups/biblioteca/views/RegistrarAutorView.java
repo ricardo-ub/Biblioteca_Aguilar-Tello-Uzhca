@@ -25,22 +25,135 @@ public class RegistrarAutorView extends javax.swing.JInternalFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 394, Short.MAX_VALUE)
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jSeparator1 = new javax.swing.JSeparator();
+        btnAceptar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        txtNombre = new javax.swing.JTextField();
+        btnCancelar = new javax.swing.JButton();
+        lblNombre = new javax.swing.JLabel();
+
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
+        setTitle("Registrar Autor");
+
+        jPanel1.setBackground(new java.awt.Color(29, 30, 32));
+        jPanel1.setLayout(new java.awt.GridBagLayout());
+
+        jPanel2.setBackground(new java.awt.Color(29, 30, 32));
+
+        jSeparator1.setBackground(new java.awt.Color(85, 85, 85));
+
+        btnAceptar.setBackground(new java.awt.Color(33, 150, 243));
+        btnAceptar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnAceptar.setForeground(new java.awt.Color(235, 235, 235));
+        btnAceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/biblioteca/images/controlar (2).png"))); // NOI18N
+        btnAceptar.setText("Aceptar");
+        btnAceptar.setBorderPainted(false);
+        btnAceptar.setFocusPainted(false);
+        btnAceptar.setIconTextGap(10);
+        btnAceptar.addActionListener(this::btnAceptarActionPerformed);
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(74, 144, 226));
+        jLabel1.setText("Registrar Autor");
+        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        txtNombre.setBackground(new java.awt.Color(60, 60, 60));
+        txtNombre.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtNombre.setForeground(new java.awt.Color(235, 235, 235));
+        txtNombre.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(80, 80, 80)));
+
+        btnCancelar.setBackground(new java.awt.Color(80, 80, 80));
+        btnCancelar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnCancelar.setForeground(new java.awt.Color(235, 235, 235));
+        btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/biblioteca/images/deshacer.png"))); // NOI18N
+        btnCancelar.setText("Cancelar");
+        btnCancelar.setBorderPainted(false);
+        btnCancelar.setFocusPainted(false);
+        btnCancelar.setIconTextGap(8);
+        btnCancelar.addActionListener(this::btnCancelarActionPerformed);
+
+        lblNombre.setBackground(java.awt.Color.white);
+        lblNombre.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblNombre.setForeground(new java.awt.Color(235, 235, 235));
+        lblNombre.setText("Nombre:");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(87, 87, 87)
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(btnAceptar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnCancelar))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(lblNombre)
+                                .addGap(60, 60, 60)
+                                .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 274, Short.MAX_VALUE)
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(4, 4, 4)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblNombre))
+                .addGap(91, 91, 91)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAceptar)
+                    .addComponent(btnCancelar))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(7, 18, 32, 32);
+        jPanel1.add(jPanel2, gridBagConstraints);
+
+        getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAceptarActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        dispose();
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAceptar;
+    private javax.swing.JButton btnCancelar;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel lblNombre;
+    private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 }

@@ -10,11 +10,25 @@ package ec.edu.ups.biblioteca.views;
  */
 public class PrincipalView extends javax.swing.JFrame {
 
-    /**
-     * Creates new form PrincipalView
-     */
+    private RegistrarLibroView registrarLibroView;
+    private ActualizarRegistrarLibroView actualizarRegistrarLibroView;
+    private DevolucionLibroView devolucionLibroView;
+    private RegistrarUsuarioView registrarUsuarioView;
+    private ActualizarRegistrarUsuarioView actualizarRegistrarUsuarioView;
+    private RegistrarPrestamoView registrarPrestamoView;
+    private ListaLibrosView listaLibrosView;
+    private ListaUsuariosView listaUsuariosView;
+
     public PrincipalView() {
         initComponents();
+        registrarLibroView = new RegistrarLibroView();
+        actualizarRegistrarLibroView = new ActualizarRegistrarLibroView();
+        devolucionLibroView = new DevolucionLibroView();
+        registrarUsuarioView = new RegistrarUsuarioView();
+        actualizarRegistrarUsuarioView = new ActualizarRegistrarUsuarioView();
+        registrarPrestamoView = new RegistrarPrestamoView();
+        listaLibrosView = new ListaLibrosView();
+        listaUsuariosView = new ListaUsuariosView();
     }
 
     /**
@@ -28,98 +42,153 @@ public class PrincipalView extends javax.swing.JFrame {
 
         desktopPane = new javax.swing.JDesktopPane();
         menuBar = new javax.swing.JMenuBar();
-        fileMenu = new javax.swing.JMenu();
-        openMenuItem = new javax.swing.JMenuItem();
-        saveMenuItem = new javax.swing.JMenuItem();
-        saveAsMenuItem = new javax.swing.JMenuItem();
-        exitMenuItem = new javax.swing.JMenuItem();
-        editMenu = new javax.swing.JMenu();
-        cutMenuItem = new javax.swing.JMenuItem();
-        copyMenuItem = new javax.swing.JMenuItem();
-        pasteMenuItem = new javax.swing.JMenuItem();
-        deleteMenuItem = new javax.swing.JMenuItem();
-        helpMenu = new javax.swing.JMenu();
-        contentMenuItem = new javax.swing.JMenuItem();
-        aboutMenuItem = new javax.swing.JMenuItem();
+        libroMenu = new javax.swing.JMenu();
+        registrarLibMenuItem = new javax.swing.JMenuItem();
+        actualizarLibMenuItem = new javax.swing.JMenuItem();
+        devolverLibMenuItem = new javax.swing.JMenuItem();
+        usuarioMenu = new javax.swing.JMenu();
+        registrarUsuMenuItem = new javax.swing.JMenuItem();
+        actualizarUsuMenuItem = new javax.swing.JMenuItem();
+        prestamoMenu = new javax.swing.JMenu();
+        prestamoMenuItem = new javax.swing.JMenuItem();
+        gestionMenu = new javax.swing.JMenu();
+        gestionLibrosMenuItem = new javax.swing.JMenuItem();
+        gestionUsuMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1024, 720));
+        getContentPane().add(desktopPane, java.awt.BorderLayout.CENTER);
 
-        fileMenu.setMnemonic('f');
-        fileMenu.setText("File");
+        libroMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/biblioteca/images/marcador-del-diario-hacia-abajo.png"))); // NOI18N
+        libroMenu.setMnemonic('f');
+        libroMenu.setText("Libros");
 
-        openMenuItem.setMnemonic('o');
-        openMenuItem.setText("Open");
-        fileMenu.add(openMenuItem);
+        registrarLibMenuItem.setMnemonic('o');
+        registrarLibMenuItem.setText("Registrar Libro");
+        registrarLibMenuItem.addActionListener(this::registrarLibMenuItemActionPerformed);
+        libroMenu.add(registrarLibMenuItem);
 
-        saveMenuItem.setMnemonic('s');
-        saveMenuItem.setText("Save");
-        fileMenu.add(saveMenuItem);
+        actualizarLibMenuItem.setMnemonic('s');
+        actualizarLibMenuItem.setText("Actualizar Libros");
+        actualizarLibMenuItem.addActionListener(this::actualizarLibMenuItemActionPerformed);
+        libroMenu.add(actualizarLibMenuItem);
 
-        saveAsMenuItem.setMnemonic('a');
-        saveAsMenuItem.setText("Save As ...");
-        saveAsMenuItem.setDisplayedMnemonicIndex(5);
-        fileMenu.add(saveAsMenuItem);
+        devolverLibMenuItem.setMnemonic('a');
+        devolverLibMenuItem.setText("Devolver Libro");
+        devolverLibMenuItem.addActionListener(this::devolverLibMenuItemActionPerformed);
+        libroMenu.add(devolverLibMenuItem);
 
-        exitMenuItem.setMnemonic('x');
-        exitMenuItem.setText("Exit");
-        exitMenuItem.addActionListener(this::exitMenuItemActionPerformed);
-        fileMenu.add(exitMenuItem);
+        menuBar.add(libroMenu);
 
-        menuBar.add(fileMenu);
+        usuarioMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/biblioteca/images/agregar-usuario.png"))); // NOI18N
+        usuarioMenu.setText("Usuarios");
 
-        editMenu.setMnemonic('e');
-        editMenu.setText("Edit");
+        registrarUsuMenuItem.setMnemonic('t');
+        registrarUsuMenuItem.setText("Registrar Usuario");
+        registrarUsuMenuItem.addActionListener(this::registrarUsuMenuItemActionPerformed);
+        usuarioMenu.add(registrarUsuMenuItem);
 
-        cutMenuItem.setMnemonic('t');
-        cutMenuItem.setText("Cut");
-        editMenu.add(cutMenuItem);
+        actualizarUsuMenuItem.setMnemonic('y');
+        actualizarUsuMenuItem.setText("Actualizar Usuario");
+        actualizarUsuMenuItem.addActionListener(this::actualizarUsuMenuItemActionPerformed);
+        usuarioMenu.add(actualizarUsuMenuItem);
 
-        copyMenuItem.setMnemonic('y');
-        copyMenuItem.setText("Copy");
-        editMenu.add(copyMenuItem);
+        menuBar.add(usuarioMenu);
 
-        pasteMenuItem.setMnemonic('p');
-        pasteMenuItem.setText("Paste");
-        editMenu.add(pasteMenuItem);
+        prestamoMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/biblioteca/images/importacion-de-archivos.png"))); // NOI18N
+        prestamoMenu.setText("Prestamos");
 
-        deleteMenuItem.setMnemonic('d');
-        deleteMenuItem.setText("Delete");
-        editMenu.add(deleteMenuItem);
+        prestamoMenuItem.setMnemonic('d');
+        prestamoMenuItem.setText("Registrar Prestamo");
+        prestamoMenuItem.addActionListener(this::prestamoMenuItemActionPerformed);
+        prestamoMenu.add(prestamoMenuItem);
 
-        menuBar.add(editMenu);
+        menuBar.add(prestamoMenu);
 
-        helpMenu.setMnemonic('h');
-        helpMenu.setText("Help");
+        gestionMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/biblioteca/images/marcador-del-diario-hacia-abajo.png"))); // NOI18N
+        gestionMenu.setMnemonic('f');
+        gestionMenu.setText("Gestionar");
 
-        contentMenuItem.setMnemonic('c');
-        contentMenuItem.setText("Contents");
-        helpMenu.add(contentMenuItem);
+        gestionLibrosMenuItem.setMnemonic('o');
+        gestionLibrosMenuItem.setText("Gestionar Libros");
+        gestionLibrosMenuItem.addActionListener(this::gestionLibrosMenuItemActionPerformed);
+        gestionMenu.add(gestionLibrosMenuItem);
 
-        aboutMenuItem.setMnemonic('a');
-        aboutMenuItem.setText("About");
-        helpMenu.add(aboutMenuItem);
+        gestionUsuMenuItem.setMnemonic('s');
+        gestionUsuMenuItem.setText("Gestionar Usuarios");
+        gestionUsuMenuItem.addActionListener(this::gestionUsuMenuItemActionPerformed);
+        gestionMenu.add(gestionUsuMenuItem);
 
-        menuBar.add(helpMenu);
+        menuBar.add(gestionMenu);
 
         setJMenuBar(menuBar);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
-        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
-        System.exit(0);
-    }//GEN-LAST:event_exitMenuItemActionPerformed
+    private void registrarLibMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarLibMenuItemActionPerformed
+        if (!registrarLibroView.isVisible()) {
+            desktopPane.remove(registrarLibroView);
+            registrarLibroView.setVisible(true);
+            desktopPane.add(registrarLibroView);
+        }
+    }//GEN-LAST:event_registrarLibMenuItemActionPerformed
+
+    private void actualizarLibMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actualizarLibMenuItemActionPerformed
+        if (!actualizarRegistrarLibroView.isVisible()) {
+            desktopPane.remove(actualizarRegistrarLibroView);
+            actualizarRegistrarLibroView.setVisible(true);
+            desktopPane.add(actualizarRegistrarLibroView);
+        }
+    }//GEN-LAST:event_actualizarLibMenuItemActionPerformed
+
+    private void devolverLibMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_devolverLibMenuItemActionPerformed
+        if (!devolucionLibroView.isVisible()) {
+            desktopPane.remove(devolucionLibroView);
+            devolucionLibroView.setVisible(true);
+            desktopPane.add(devolucionLibroView);
+        }
+    }//GEN-LAST:event_devolverLibMenuItemActionPerformed
+
+    private void registrarUsuMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarUsuMenuItemActionPerformed
+        if (!registrarUsuarioView.isVisible()) {
+            desktopPane.remove(registrarUsuarioView);
+            registrarUsuarioView.setVisible(true);
+            desktopPane.add(registrarUsuarioView);
+        }
+    }//GEN-LAST:event_registrarUsuMenuItemActionPerformed
+
+    private void actualizarUsuMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actualizarUsuMenuItemActionPerformed
+        if (!actualizarRegistrarUsuarioView.isVisible()) {
+            desktopPane.remove(actualizarRegistrarUsuarioView);
+            actualizarRegistrarUsuarioView.setVisible(true);
+            desktopPane.add(actualizarRegistrarUsuarioView);
+        }
+    }//GEN-LAST:event_actualizarUsuMenuItemActionPerformed
+
+    private void prestamoMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prestamoMenuItemActionPerformed
+        if (!registrarPrestamoView.isVisible()) {
+            desktopPane.remove(registrarPrestamoView);
+            registrarPrestamoView.setVisible(true);
+            desktopPane.add(registrarPrestamoView);
+        }
+    }//GEN-LAST:event_prestamoMenuItemActionPerformed
+
+    private void gestionLibrosMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gestionLibrosMenuItemActionPerformed
+        if (!listaLibrosView.isVisible()) {
+            desktopPane.remove(listaLibrosView);
+            listaLibrosView.setVisible(true);
+            desktopPane.add(listaLibrosView);
+        }
+    }//GEN-LAST:event_gestionLibrosMenuItemActionPerformed
+
+    private void gestionUsuMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gestionUsuMenuItemActionPerformed
+        if (!listaUsuariosView.isVisible()) {
+            desktopPane.remove(listaUsuariosView);
+            listaUsuariosView.setVisible(true);
+            desktopPane.add(listaUsuariosView);
+        }
+    }//GEN-LAST:event_gestionUsuMenuItemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -157,21 +226,20 @@ public class PrincipalView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem aboutMenuItem;
-    private javax.swing.JMenuItem contentMenuItem;
-    private javax.swing.JMenuItem copyMenuItem;
-    private javax.swing.JMenuItem cutMenuItem;
-    private javax.swing.JMenuItem deleteMenuItem;
+    private javax.swing.JMenuItem actualizarLibMenuItem;
+    private javax.swing.JMenuItem actualizarUsuMenuItem;
     private javax.swing.JDesktopPane desktopPane;
-    private javax.swing.JMenu editMenu;
-    private javax.swing.JMenuItem exitMenuItem;
-    private javax.swing.JMenu fileMenu;
-    private javax.swing.JMenu helpMenu;
+    private javax.swing.JMenuItem devolverLibMenuItem;
+    private javax.swing.JMenuItem gestionLibrosMenuItem;
+    private javax.swing.JMenu gestionMenu;
+    private javax.swing.JMenuItem gestionUsuMenuItem;
+    private javax.swing.JMenu libroMenu;
     private javax.swing.JMenuBar menuBar;
-    private javax.swing.JMenuItem openMenuItem;
-    private javax.swing.JMenuItem pasteMenuItem;
-    private javax.swing.JMenuItem saveAsMenuItem;
-    private javax.swing.JMenuItem saveMenuItem;
+    private javax.swing.JMenu prestamoMenu;
+    private javax.swing.JMenuItem prestamoMenuItem;
+    private javax.swing.JMenuItem registrarLibMenuItem;
+    private javax.swing.JMenuItem registrarUsuMenuItem;
+    private javax.swing.JMenu usuarioMenu;
     // End of variables declaration//GEN-END:variables
 
 }

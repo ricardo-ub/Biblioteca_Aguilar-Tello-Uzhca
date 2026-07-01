@@ -26,21 +26,194 @@ public class ActualizarRegistrarUsuarioView extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 394, Short.MAX_VALUE)
+        jPanel2 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        txtCedula = new javax.swing.JTextField();
+        jSeparator1 = new javax.swing.JSeparator();
+        txtCorreo = new javax.swing.JTextField();
+        lblCedula = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        lblCorreo = new javax.swing.JLabel();
+        txtNombre = new javax.swing.JTextField();
+        btnCancelar = new javax.swing.JButton();
+        lblNombre = new javax.swing.JLabel();
+        btnBuscar = new javax.swing.JButton();
+        btnActualizar = new javax.swing.JButton();
+
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
+        setTitle("Actualizar Usuario");
+
+        jPanel2.setBackground(new java.awt.Color(29, 30, 32));
+        jPanel2.setLayout(new java.awt.GridBagLayout());
+
+        jPanel3.setBackground(new java.awt.Color(29, 30, 32));
+
+        txtCedula.setBackground(new java.awt.Color(60, 60, 60));
+        txtCedula.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtCedula.setForeground(new java.awt.Color(235, 235, 235));
+        txtCedula.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(80, 80, 80)));
+        txtCedula.addActionListener(this::txtCedulaActionPerformed);
+
+        jSeparator1.setBackground(new java.awt.Color(85, 85, 85));
+
+        txtCorreo.setBackground(new java.awt.Color(60, 60, 60));
+        txtCorreo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtCorreo.setForeground(new java.awt.Color(235, 235, 235));
+        txtCorreo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(80, 80, 80)));
+
+        lblCedula.setBackground(java.awt.Color.white);
+        lblCedula.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblCedula.setForeground(new java.awt.Color(235, 235, 235));
+        lblCedula.setText("Cédula:");
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(74, 144, 226));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/biblioteca/images/lapiz-de-usuario.png"))); // NOI18N
+        jLabel1.setText("Actualizar/Editar Usuario");
+        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+        jLabel1.setIconTextGap(8);
+
+        lblCorreo.setBackground(java.awt.Color.white);
+        lblCorreo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblCorreo.setForeground(new java.awt.Color(235, 235, 235));
+        lblCorreo.setText("Correo:");
+
+        txtNombre.setBackground(new java.awt.Color(60, 60, 60));
+        txtNombre.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtNombre.setForeground(new java.awt.Color(235, 235, 235));
+        txtNombre.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(80, 80, 80)));
+
+        btnCancelar.setBackground(new java.awt.Color(80, 80, 80));
+        btnCancelar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnCancelar.setForeground(new java.awt.Color(235, 235, 235));
+        btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/biblioteca/images/deshacer.png"))); // NOI18N
+        btnCancelar.setText("Cancelar");
+        btnCancelar.setBorderPainted(false);
+        btnCancelar.setFocusPainted(false);
+        btnCancelar.setIconTextGap(8);
+        btnCancelar.addActionListener(this::btnCancelarActionPerformed);
+
+        lblNombre.setBackground(java.awt.Color.white);
+        lblNombre.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblNombre.setForeground(new java.awt.Color(235, 235, 235));
+        lblNombre.setText("Nombre:");
+
+        btnBuscar.setBackground(new java.awt.Color(80, 80, 80));
+        btnBuscar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnBuscar.setForeground(new java.awt.Color(235, 235, 235));
+        btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/biblioteca/images/busqueda.png"))); // NOI18N
+        btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(this::btnBuscarActionPerformed);
+
+        btnActualizar.setBackground(new java.awt.Color(33, 150, 243));
+        btnActualizar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnActualizar.setForeground(new java.awt.Color(235, 235, 235));
+        btnActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/biblioteca/images/actualizar.png"))); // NOI18N
+        btnActualizar.setText("Actualizar");
+        btnActualizar.setBorderPainted(false);
+        btnActualizar.setFocusPainted(false);
+        btnActualizar.setIconTextGap(10);
+        btnActualizar.addActionListener(this::btnActualizarActionPerformed);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(43, 43, 43)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblCorreo)
+                                    .addComponent(lblCedula)
+                                    .addComponent(lblNombre))
+                                .addGap(37, 37, 37)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnBuscar))))))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(71, 71, 71)
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(97, 97, 97)
+                        .addComponent(btnActualizar)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnCancelar)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 274, Short.MAX_VALUE)
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblCedula)
+                    .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscar))
+                .addGap(15, 15, 15)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblNombre)
+                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblCorreo)
+                    .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCancelar)
+                    .addComponent(btnActualizar))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jPanel2.add(jPanel3, new java.awt.GridBagConstraints());
+
+        getContentPane().add(jPanel2, java.awt.BorderLayout.PAGE_START);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void txtCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCedulaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCedulaActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnActualizarActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        dispose();
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnActualizar;
+    private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnCancelar;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel lblCedula;
+    private javax.swing.JLabel lblCorreo;
+    private javax.swing.JLabel lblNombre;
+    private javax.swing.JTextField txtCedula;
+    private javax.swing.JTextField txtCorreo;
+    private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 }

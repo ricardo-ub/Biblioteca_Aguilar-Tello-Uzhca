@@ -26,21 +26,161 @@ public class ListaLibrosView extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 394, Short.MAX_VALUE)
+        jPanel16 = new javax.swing.JPanel();
+        jPanel17 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jSeparator1 = new javax.swing.JSeparator();
+        btnListarLibros = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        btnEliminarLib = new javax.swing.JButton();
+
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
+        setTitle("Lista Libros");
+
+        jPanel16.setBackground(new java.awt.Color(29, 30, 32));
+        jPanel16.setLayout(new java.awt.GridBagLayout());
+
+        jPanel17.setBackground(new java.awt.Color(29, 30, 32));
+
+        jTable1.setBackground(new java.awt.Color(29, 30, 32));
+        jTable1.setForeground(new java.awt.Color(235, 235, 235));
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        jSeparator1.setBackground(new java.awt.Color(85, 85, 85));
+
+        btnListarLibros.setBackground(new java.awt.Color(33, 150, 243));
+        btnListarLibros.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnListarLibros.setForeground(new java.awt.Color(235, 235, 235));
+        btnListarLibros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/biblioteca/images/controlar (2).png"))); // NOI18N
+        btnListarLibros.setText("Listar");
+        btnListarLibros.setBorderPainted(false);
+        btnListarLibros.setFocusPainted(false);
+        btnListarLibros.setIconTextGap(10);
+        btnListarLibros.addActionListener(this::btnListarLibrosActionPerformed);
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(74, 144, 226));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/biblioteca/images/documento (1).png"))); // NOI18N
+        jLabel1.setText("Gestión de Libros");
+        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+        jLabel1.setIconTextGap(8);
+
+        btnEliminarLib.setBackground(new java.awt.Color(80, 80, 80));
+        btnEliminarLib.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnEliminarLib.setForeground(new java.awt.Color(235, 235, 235));
+        btnEliminarLib.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/biblioteca/images/deshacer.png"))); // NOI18N
+        btnEliminarLib.setText("Eliminar");
+        btnEliminarLib.setBorderPainted(false);
+        btnEliminarLib.setFocusPainted(false);
+        btnEliminarLib.setIconTextGap(8);
+        btnEliminarLib.addActionListener(this::btnEliminarLibActionPerformed);
+
+        javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
+        jPanel17.setLayout(jPanel17Layout);
+        jPanel17Layout.setHorizontalGroup(
+            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel17Layout.createSequentialGroup()
+                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel17Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnEliminarLib)
+                            .addComponent(btnListarLibros)))
+                    .addGroup(jPanel17Layout.createSequentialGroup()
+                        .addGap(108, 108, 108)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel17Layout.createSequentialGroup()
+                        .addGap(187, 187, 187)
+                        .addComponent(jLabel1)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 274, Short.MAX_VALUE)
+        jPanel17Layout.setVerticalGroup(
+            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel17Layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel17Layout.createSequentialGroup()
+                        .addGap(77, 77, 77)
+                        .addComponent(btnListarLibros)
+                        .addGap(30, 30, 30)
+                        .addComponent(btnEliminarLib))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
+
+        jPanel16.add(jPanel17, new java.awt.GridBagConstraints());
+
+        getContentPane().add(jPanel16, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnListarLibrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarLibrosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnListarLibrosActionPerformed
+
+    private void btnEliminarLibActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarLibActionPerformed
+        dispose();
+    }//GEN-LAST:event_btnEliminarLibActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnEliminarLib;
+    private javax.swing.JButton btnListarLibros;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel12;
+    private javax.swing.JPanel jPanel13;
+    private javax.swing.JPanel jPanel14;
+    private javax.swing.JPanel jPanel15;
+    private javax.swing.JPanel jPanel16;
+    private javax.swing.JPanel jPanel17;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JLabel lblFechaVen;
+    private javax.swing.JLabel lblFechaVen1;
+    private javax.swing.JLabel lblFechaVen2;
+    private javax.swing.JLabel lblFechaVen3;
+    private javax.swing.JLabel lblFechaVen4;
+    private javax.swing.JLabel lblFechaVen5;
+    private javax.swing.JLabel lblFechaVen6;
+    private javax.swing.JTextField txtISBN;
+    private javax.swing.JTextField txtISBN1;
+    private javax.swing.JTextField txtISBN2;
+    private javax.swing.JTextField txtISBN3;
+    private javax.swing.JTextField txtISBN4;
+    private javax.swing.JTextField txtISBN5;
+    private javax.swing.JTextField txtISBN6;
     // End of variables declaration//GEN-END:variables
 }

@@ -26,21 +26,239 @@ public class ActualizarRegistrarLibroView extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 394, Short.MAX_VALUE)
+        jPanel2 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        txtCategoria = new javax.swing.JTextField();
+        jComboBox = new javax.swing.JComboBox<>();
+        lblAnio = new javax.swing.JLabel();
+        txtISBN = new javax.swing.JTextField();
+        jSeparator1 = new javax.swing.JSeparator();
+        btnActualizar = new javax.swing.JButton();
+        txtAnio = new javax.swing.JTextField();
+        lblISBN = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        lblAutor = new javax.swing.JLabel();
+        txtTitulo = new javax.swing.JTextField();
+        lblCategoria = new javax.swing.JLabel();
+        btnCancelar = new javax.swing.JButton();
+        lblTitulo = new javax.swing.JLabel();
+        btnBuscar = new javax.swing.JButton();
+
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
+        setTitle("Actualizar Libro");
+
+        jPanel2.setBackground(new java.awt.Color(29, 30, 32));
+        jPanel2.setLayout(new java.awt.GridBagLayout());
+
+        jPanel3.setBackground(new java.awt.Color(29, 30, 32));
+
+        txtCategoria.setBackground(new java.awt.Color(60, 60, 60));
+        txtCategoria.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtCategoria.setForeground(new java.awt.Color(235, 235, 235));
+        txtCategoria.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(80, 80, 80)));
+
+        jComboBox.setBackground(new java.awt.Color(60, 60, 60));
+        jComboBox.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jComboBox.setForeground(new java.awt.Color(235, 235, 235));
+        jComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(80, 80, 80)));
+
+        lblAnio.setBackground(java.awt.Color.white);
+        lblAnio.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblAnio.setForeground(new java.awt.Color(235, 235, 235));
+        lblAnio.setText("Año:");
+
+        txtISBN.setBackground(new java.awt.Color(60, 60, 60));
+        txtISBN.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtISBN.setForeground(new java.awt.Color(235, 235, 235));
+        txtISBN.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(80, 80, 80)));
+        txtISBN.addActionListener(this::txtISBNActionPerformed);
+
+        jSeparator1.setBackground(new java.awt.Color(85, 85, 85));
+
+        btnActualizar.setBackground(new java.awt.Color(33, 150, 243));
+        btnActualizar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnActualizar.setForeground(new java.awt.Color(235, 235, 235));
+        btnActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/biblioteca/images/actualizar.png"))); // NOI18N
+        btnActualizar.setText("Actualizar");
+        btnActualizar.setBorderPainted(false);
+        btnActualizar.setFocusPainted(false);
+        btnActualizar.setIconTextGap(10);
+        btnActualizar.addActionListener(this::btnActualizarActionPerformed);
+
+        txtAnio.setBackground(new java.awt.Color(60, 60, 60));
+        txtAnio.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtAnio.setForeground(new java.awt.Color(235, 235, 235));
+        txtAnio.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(80, 80, 80)));
+
+        lblISBN.setBackground(java.awt.Color.white);
+        lblISBN.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblISBN.setForeground(new java.awt.Color(235, 235, 235));
+        lblISBN.setText("ISBN:");
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(74, 144, 226));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/biblioteca/images/editar.png"))); // NOI18N
+        jLabel1.setText("Actualizar/Editar Libro");
+        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+        jLabel1.setIconTextGap(8);
+
+        lblAutor.setBackground(java.awt.Color.white);
+        lblAutor.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblAutor.setForeground(new java.awt.Color(235, 235, 235));
+        lblAutor.setText("Autor:");
+
+        txtTitulo.setBackground(new java.awt.Color(60, 60, 60));
+        txtTitulo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtTitulo.setForeground(new java.awt.Color(235, 235, 235));
+        txtTitulo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(80, 80, 80)));
+
+        lblCategoria.setBackground(java.awt.Color.white);
+        lblCategoria.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblCategoria.setForeground(new java.awt.Color(235, 235, 235));
+        lblCategoria.setText("Categoria:");
+
+        btnCancelar.setBackground(new java.awt.Color(80, 80, 80));
+        btnCancelar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnCancelar.setForeground(new java.awt.Color(235, 235, 235));
+        btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/biblioteca/images/deshacer.png"))); // NOI18N
+        btnCancelar.setText("Cancelar");
+        btnCancelar.setBorderPainted(false);
+        btnCancelar.setFocusPainted(false);
+        btnCancelar.setIconTextGap(8);
+        btnCancelar.addActionListener(this::btnCancelarActionPerformed);
+
+        lblTitulo.setBackground(java.awt.Color.white);
+        lblTitulo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblTitulo.setForeground(new java.awt.Color(235, 235, 235));
+        lblTitulo.setText("Titulo:");
+
+        btnBuscar.setBackground(new java.awt.Color(80, 80, 80));
+        btnBuscar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnBuscar.setForeground(new java.awt.Color(235, 235, 235));
+        btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/biblioteca/images/busqueda.png"))); // NOI18N
+        btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(this::btnBuscarActionPerformed);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblAnio)
+                            .addComponent(lblAutor)
+                            .addComponent(lblISBN)
+                            .addComponent(lblTitulo)
+                            .addComponent(lblCategoria))
+                        .addGap(52, 52, 52)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtAnio, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(txtISBN, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnBuscar))))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(86, 86, 86)
+                        .addComponent(jLabel1))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnActualizar)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnCancelar)
+                        .addGap(133, 133, 133)))
+                .addContainerGap())
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 274, Short.MAX_VALUE)
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(4, 4, 4)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblISBN)
+                    .addComponent(txtISBN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(lblTitulo)
+                        .addGap(24, 24, 24)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblAutor)
+                            .addComponent(jComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblAnio)
+                            .addComponent(txtAnio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(txtTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblCategoria)
+                    .addComponent(txtCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnActualizar)
+                    .addComponent(btnCancelar))
+                .addGap(21, 21, 21))
         );
+
+        jPanel2.add(jPanel3, new java.awt.GridBagConstraints());
+
+        getContentPane().add(jPanel2, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void txtISBNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtISBNActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtISBNActionPerformed
+
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnActualizarActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        dispose();
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnActualizar;
+    private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnCancelar;
+    private javax.swing.JComboBox<String> jComboBox;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel lblAnio;
+    private javax.swing.JLabel lblAutor;
+    private javax.swing.JLabel lblCategoria;
+    private javax.swing.JLabel lblISBN;
+    private javax.swing.JLabel lblTitulo;
+    private javax.swing.JTextField txtAnio;
+    private javax.swing.JTextField txtCategoria;
+    private javax.swing.JTextField txtISBN;
+    private javax.swing.JTextField txtTitulo;
     // End of variables declaration//GEN-END:variables
 }
