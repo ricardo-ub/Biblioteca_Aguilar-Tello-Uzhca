@@ -29,15 +29,15 @@ public class RegistrarLibroView extends javax.swing.JInternalFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         txtCategoria = new javax.swing.JTextField();
         jComboBox1 = new javax.swing.JComboBox<>();
         lblAnio = new javax.swing.JLabel();
         txtISBN = new javax.swing.JTextField();
-        jSeparator1 = new javax.swing.JSeparator();
         btnAceptar = new javax.swing.JButton();
         txtAnio = new javax.swing.JTextField();
         lblISBN = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         lblAutor = new javax.swing.JLabel();
         txtTitulo = new javax.swing.JTextField();
         lblCategoria = new javax.swing.JLabel();
@@ -49,39 +49,52 @@ public class RegistrarLibroView extends javax.swing.JInternalFrame {
         setMaximizable(true);
         setResizable(true);
         setTitle("Registrar Libro");
+        setPreferredSize(new java.awt.Dimension(550, 420));
 
-        jPanel1.setBackground(new java.awt.Color(29, 30, 32));
+        jPanel1.setBackground(new java.awt.Color(35, 30, 25));
+        jPanel1.setPreferredSize(new java.awt.Dimension(363, 488));
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
-        jPanel2.setBackground(new java.awt.Color(29, 30, 32));
+        jPanel2.setBackground(new java.awt.Color(35, 30, 25));
 
-        txtCategoria.setBackground(new java.awt.Color(60, 60, 60));
-        txtCategoria.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtCategoria.setForeground(new java.awt.Color(235, 235, 235));
-        txtCategoria.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(80, 80, 80)));
+        jLabel1.setBackground(new java.awt.Color(218, 204, 184));
+        jLabel1.setFont(new java.awt.Font("Serif", 0, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(218, 204, 184));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/biblioteca/images/libro-circular-abierto (2).png"))); // NOI18N
+        jLabel1.setText("Registre su Libro");
+        jLabel1.setIconTextGap(10);
 
-        jComboBox1.setBackground(new java.awt.Color(60, 60, 60));
-        jComboBox1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jComboBox1.setForeground(new java.awt.Color(235, 235, 235));
+        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/biblioteca/images/Adobe Express - file.png"))); // NOI18N
+        jLabel2.setText("dwdw");
+
+        txtCategoria.setBackground(new java.awt.Color(18, 19, 17));
+        txtCategoria.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
+        txtCategoria.setForeground(new java.awt.Color(218, 204, 184));
+        txtCategoria.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 40, 28)));
+        txtCategoria.setCaretColor(new java.awt.Color(51, 204, 0));
+
+        jComboBox1.setBackground(new java.awt.Color(18, 19, 17));
+        jComboBox1.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
+        jComboBox1.setForeground(new java.awt.Color(218, 204, 184));
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(80, 80, 80)));
+        jComboBox1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 40, 28)));
 
-        lblAnio.setBackground(java.awt.Color.white);
-        lblAnio.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblAnio.setForeground(new java.awt.Color(235, 235, 235));
+        lblAnio.setBackground(new java.awt.Color(218, 204, 184));
+        lblAnio.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
+        lblAnio.setForeground(new java.awt.Color(218, 204, 184));
         lblAnio.setText("Año:");
 
-        txtISBN.setBackground(new java.awt.Color(60, 60, 60));
-        txtISBN.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtISBN.setForeground(new java.awt.Color(235, 235, 235));
-        txtISBN.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(80, 80, 80)));
+        txtISBN.setBackground(new java.awt.Color(18, 19, 17));
+        txtISBN.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
+        txtISBN.setForeground(new java.awt.Color(218, 204, 184));
+        txtISBN.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 40, 28)));
         txtISBN.addActionListener(this::txtISBNActionPerformed);
 
-        jSeparator1.setBackground(new java.awt.Color(85, 85, 85));
-
-        btnAceptar.setBackground(new java.awt.Color(33, 150, 243));
-        btnAceptar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnAceptar.setForeground(new java.awt.Color(235, 235, 235));
+        btnAceptar.setBackground(new java.awt.Color(209, 161, 95));
+        btnAceptar.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
+        btnAceptar.setForeground(new java.awt.Color(0, 0, 0));
         btnAceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/biblioteca/images/controlar (2).png"))); // NOI18N
         btnAceptar.setText("Aceptar");
         btnAceptar.setBorderPainted(false);
@@ -89,38 +102,33 @@ public class RegistrarLibroView extends javax.swing.JInternalFrame {
         btnAceptar.setIconTextGap(10);
         btnAceptar.addActionListener(this::btnAceptarActionPerformed);
 
-        txtAnio.setBackground(new java.awt.Color(60, 60, 60));
-        txtAnio.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtAnio.setForeground(new java.awt.Color(235, 235, 235));
-        txtAnio.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(80, 80, 80)));
+        txtAnio.setBackground(new java.awt.Color(18, 19, 17));
+        txtAnio.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
+        txtAnio.setForeground(new java.awt.Color(218, 204, 184));
+        txtAnio.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 40, 28)));
 
-        lblISBN.setBackground(java.awt.Color.white);
-        lblISBN.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblISBN.setForeground(new java.awt.Color(235, 235, 235));
+        lblISBN.setBackground(new java.awt.Color(218, 204, 184));
+        lblISBN.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
+        lblISBN.setForeground(new java.awt.Color(218, 204, 184));
         lblISBN.setText("ISBN:");
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(74, 144, 226));
-        jLabel1.setText("Registre su Libro");
-        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-
-        lblAutor.setBackground(java.awt.Color.white);
-        lblAutor.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblAutor.setForeground(new java.awt.Color(235, 235, 235));
+        lblAutor.setBackground(new java.awt.Color(218, 204, 184));
+        lblAutor.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
+        lblAutor.setForeground(new java.awt.Color(218, 204, 184));
         lblAutor.setText("Autor:");
 
-        txtTitulo.setBackground(new java.awt.Color(60, 60, 60));
-        txtTitulo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtTitulo.setForeground(new java.awt.Color(235, 235, 235));
-        txtTitulo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(80, 80, 80)));
+        txtTitulo.setBackground(new java.awt.Color(18, 19, 17));
+        txtTitulo.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
+        txtTitulo.setForeground(new java.awt.Color(218, 204, 184));
+        txtTitulo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 40, 28)));
 
-        lblCategoria.setBackground(java.awt.Color.white);
-        lblCategoria.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblCategoria.setForeground(new java.awt.Color(235, 235, 235));
+        lblCategoria.setBackground(new java.awt.Color(218, 204, 184));
+        lblCategoria.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
+        lblCategoria.setForeground(new java.awt.Color(218, 204, 184));
         lblCategoria.setText("Categoria:");
 
-        btnCancelar.setBackground(new java.awt.Color(80, 80, 80));
-        btnCancelar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnCancelar.setBackground(new java.awt.Color(49, 43, 35));
+        btnCancelar.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
         btnCancelar.setForeground(new java.awt.Color(235, 235, 235));
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/biblioteca/images/deshacer.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
@@ -129,9 +137,9 @@ public class RegistrarLibroView extends javax.swing.JInternalFrame {
         btnCancelar.setIconTextGap(8);
         btnCancelar.addActionListener(this::btnCancelarActionPerformed);
 
-        lblTitulo.setBackground(java.awt.Color.white);
-        lblTitulo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblTitulo.setForeground(new java.awt.Color(235, 235, 235));
+        lblTitulo.setBackground(new java.awt.Color(218, 204, 184));
+        lblTitulo.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
+        lblTitulo.setForeground(new java.awt.Color(218, 204, 184));
         lblTitulo.setText("Titulo:");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -139,69 +147,76 @@ public class RegistrarLibroView extends javax.swing.JInternalFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(56, 56, 56)
-                                .addComponent(btnAceptar)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnCancelar))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblAnio)
-                                    .addComponent(lblAutor)
                                     .addComponent(lblISBN)
-                                    .addComponent(lblTitulo)
-                                    .addComponent(lblCategoria))
-                                .addGap(52, 52, 52)
+                                    .addComponent(lblTitulo)))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addContainerGap()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtAnio, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtISBN, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(87, 87, 87)
-                        .addComponent(jLabel1)))
+                                    .addComponent(lblCategoria)
+                                    .addComponent(lblAutor)
+                                    .addComponent(lblAnio)))
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel1))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(24, 24, 24)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtAnio, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtTitulo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtISBN, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(49, 49, 49)
+                .addComponent(btnAceptar)
+                .addGap(18, 18, 18)
+                .addComponent(btnCancelar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(17, 17, 17)
                 .addComponent(jLabel1)
-                .addGap(4, 4, 4)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lblISBN)
+                .addGap(12, 12, 12)
+                .addComponent(txtISBN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblISBN)
-                    .addComponent(txtISBN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(lblTitulo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(lblTitulo)
-                        .addGap(24, 24, 24)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblAutor)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblAnio)
-                            .addComponent(txtAnio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(txtTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(lblAutor)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblCategoria)
-                    .addComponent(txtCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33)
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lblAnio)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtAnio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblCategoria)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAceptar)
                     .addComponent(btnCancelar))
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -234,9 +249,9 @@ public class RegistrarLibroView extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnCancelar;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblAnio;
     private javax.swing.JLabel lblAutor;
     private javax.swing.JLabel lblCategoria;
