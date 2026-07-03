@@ -4,17 +4,89 @@
  */
 package ec.edu.ups.biblioteca.views;
 
+import ec.edu.ups.biblioteca.models.Usuario;
+import java.util.List;
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author DELL
  */
 public class ListaUsuariosView extends javax.swing.JInternalFrame {
 
+    private DefaultTableModel modelo;
+
     /**
      * Creates new form ListaUsuariosView
      */
     public ListaUsuariosView() {
         initComponents();
+        configurarTabla();
+    }
+
+    public JButton getBtnCancelar() {
+        return btnCancelar;
+    }
+
+    public void setBtnCancelar(JButton btnCancelar) {
+        this.btnCancelar = btnCancelar;
+    }
+
+    public JButton getBtnListaUsu() {
+        return btnListaUsu;
+    }
+
+    public void setBtnListaUsu(JButton btnListaUsu) {
+        this.btnListaUsu = btnListaUsu;
+    }
+
+    public JButton getBtnEliminar() {
+        return btnEliminar;
+    }
+
+    public void setBtnEliminar(JButton btnEliminar) {
+        this.btnEliminar = btnEliminar;
+    }
+
+    public void configurarTabla() {
+        modelo = new DefaultTableModel();
+        modelo.addColumn("Cédula");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Correo");
+
+        tblUsuarios.setModel(modelo);
+    }
+
+    public void cargarDatos(List<Usuario> usuarios) {
+        limpiarTabla();
+
+        for (Usuario usuario : usuarios) {
+            Object[] fila = {
+                usuario.getCedula(),
+                usuario.getNombre(),
+                usuario.getCorreo()
+            };
+            modelo.addRow(fila);
+        }
+    }
+
+    public JTable getTblUsuarios() {
+        return tblUsuarios;
+    }
+
+    public void limpiarTabla() {
+        modelo.setRowCount(0);
+    }
+
+    public void mostrarInformacion(String mensaje) {
+        JOptionPane.showMessageDialog(this, mensaje);
+    }
+
+    public int confirmarEliminacion() {
+        return JOptionPane.showConfirmDialog(this, "¿Está seguro de eliminar el usuario?", "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
     }
 
     /**
@@ -29,11 +101,12 @@ public class ListaUsuariosView extends javax.swing.JInternalFrame {
         jPanel16 = new javax.swing.JPanel();
         jPanel17 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblUsuarios = new javax.swing.JTable();
         jSeparator1 = new javax.swing.JSeparator();
         btnListaUsu = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        btnEliminarUsu = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -49,12 +122,12 @@ public class ListaUsuariosView extends javax.swing.JInternalFrame {
         jScrollPane1.setBackground(new java.awt.Color(29, 30, 32));
         jScrollPane1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jScrollPane1.setForeground(new java.awt.Color(235, 235, 235));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblUsuarios);
 
-        jTable1.setBackground(new java.awt.Color(29, 30, 32));
-        jTable1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        jTable1.setForeground(new java.awt.Color(235, 235, 235));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblUsuarios.setBackground(new java.awt.Color(29, 30, 32));
+        tblUsuarios.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        tblUsuarios.setForeground(new java.awt.Color(235, 235, 235));
+        tblUsuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -65,9 +138,9 @@ public class ListaUsuariosView extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jTable1.setGridColor(new java.awt.Color(80, 80, 80));
-        jTable1.setSelectionBackground(new java.awt.Color(33, 150, 243));
-        jScrollPane1.setViewportView(jTable1);
+        tblUsuarios.setGridColor(new java.awt.Color(80, 80, 80));
+        tblUsuarios.setSelectionBackground(new java.awt.Color(33, 150, 243));
+        jScrollPane1.setViewportView(tblUsuarios);
 
         jSeparator1.setBackground(new java.awt.Color(85, 85, 85));
 
@@ -88,15 +161,25 @@ public class ListaUsuariosView extends javax.swing.JInternalFrame {
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
         jLabel1.setIconTextGap(8);
 
-        btnEliminarUsu.setBackground(new java.awt.Color(80, 80, 80));
-        btnEliminarUsu.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnEliminarUsu.setForeground(new java.awt.Color(235, 235, 235));
-        btnEliminarUsu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/biblioteca/images/deshacer.png"))); // NOI18N
-        btnEliminarUsu.setText("Eliminar");
-        btnEliminarUsu.setBorderPainted(false);
-        btnEliminarUsu.setFocusPainted(false);
-        btnEliminarUsu.setIconTextGap(8);
-        btnEliminarUsu.addActionListener(this::btnEliminarUsuActionPerformed);
+        btnCancelar.setBackground(new java.awt.Color(80, 80, 80));
+        btnCancelar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnCancelar.setForeground(new java.awt.Color(235, 235, 235));
+        btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/biblioteca/images/deshacer.png"))); // NOI18N
+        btnCancelar.setText("Cancelar");
+        btnCancelar.setBorderPainted(false);
+        btnCancelar.setFocusPainted(false);
+        btnCancelar.setIconTextGap(8);
+        btnCancelar.addActionListener(this::btnCancelarActionPerformed);
+
+        btnEliminar.setBackground(new java.awt.Color(80, 80, 80));
+        btnEliminar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnEliminar.setForeground(new java.awt.Color(235, 235, 235));
+        btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/biblioteca/images/deshacer.png"))); // NOI18N
+        btnEliminar.setText("Eliminar");
+        btnEliminar.setBorderPainted(false);
+        btnEliminar.setFocusPainted(false);
+        btnEliminar.setIconTextGap(8);
+        btnEliminar.addActionListener(this::btnEliminarActionPerformed);
 
         javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
         jPanel17.setLayout(jPanel17Layout);
@@ -109,8 +192,9 @@ public class ListaUsuariosView extends javax.swing.JInternalFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnEliminarUsu)
-                            .addComponent(btnListaUsu)))
+                            .addComponent(btnCancelar)
+                            .addComponent(btnListaUsu)
+                            .addComponent(btnEliminar)))
                     .addGroup(jPanel17Layout.createSequentialGroup()
                         .addGap(108, 108, 108)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -127,16 +211,18 @@ public class ListaUsuariosView extends javax.swing.JInternalFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel17Layout.createSequentialGroup()
                         .addGap(89, 89, 89)
                         .addComponent(btnListaUsu)
                         .addGap(30, 30, 30)
-                        .addComponent(btnEliminarUsu))
+                        .addComponent(btnCancelar)
+                        .addGap(37, 37, 37)
+                        .addComponent(btnEliminar))
                     .addGroup(jPanel17Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(88, 88, 88))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
 
         jPanel16.add(jPanel17, new java.awt.GridBagConstraints());
@@ -150,19 +236,24 @@ public class ListaUsuariosView extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnListaUsuActionPerformed
 
-    private void btnEliminarUsuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarUsuActionPerformed
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         dispose();
-    }//GEN-LAST:event_btnEliminarUsuActionPerformed
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnEliminarUsu;
+    private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnListaUsu;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel17;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblUsuarios;
     // End of variables declaration//GEN-END:variables
 }

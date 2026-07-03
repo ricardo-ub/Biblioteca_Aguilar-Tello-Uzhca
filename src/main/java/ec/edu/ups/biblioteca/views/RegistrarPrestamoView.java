@@ -4,6 +4,11 @@
  */
 package ec.edu.ups.biblioteca.views;
 
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
+import javax.swing.JSpinner;
+
 /**
  *
  * @author DELL
@@ -15,6 +20,58 @@ public class RegistrarPrestamoView extends javax.swing.JInternalFrame {
      */
     public RegistrarPrestamoView() {
         initComponents();
+    }
+
+    public JButton getBtnCancelar() {
+        return btnCancelar;
+    }
+
+    public void setBtnCancelar(JButton btnCancelar) {
+        this.btnCancelar = btnCancelar;
+    }
+
+    public JButton getBtnRegistrarPrest() {
+        return btnRegistrarPrest;
+    }
+
+    public void setBtnRegistrarPrest(JButton btnRegistrarPrest) {
+        this.btnRegistrarPrest = btnRegistrarPrest;
+    }
+
+    public JComboBox<String> getCmbLibros() {
+        return cmbLibros;
+    }
+
+    public void setCmbLibros(JComboBox<String> cmbLibros) {
+        this.cmbLibros = cmbLibros;
+    }
+
+    public JComboBox<String> getCmbUsuarios() {
+        return cmbUsuarios;
+    }
+
+    public void setCmbUsuarios(JComboBox<String> cmbUsuarios) {
+        this.cmbUsuarios = cmbUsuarios;
+    }
+
+    public JSpinner getSpnFechaDev() {
+        return spnFechaDev;
+    }
+
+    public void setSpnFechaDev(JSpinner spnFechaDev) {
+        this.spnFechaDev = spnFechaDev;
+    }
+
+    public JSpinner getSpnFechaPrest() {
+        return spnFechaPrest;
+    }
+
+    public void setSpnFechaPrest(JSpinner spnFechaPrest) {
+        this.spnFechaPrest = spnFechaPrest;
+    }
+    
+    public void mostrarInformacion(String prestamo_registrado_correctamente) {
+        JOptionPane.showMessageDialog(this, prestamo_registrado_correctamente);
     }
 
     /**
@@ -29,17 +86,17 @@ public class RegistrarPrestamoView extends javax.swing.JInternalFrame {
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         lblFechaDev = new javax.swing.JLabel();
-        txtUsuario = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         btnRegistrarPrest = new javax.swing.JButton();
         lblUsuario = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         lblFechaPrest = new javax.swing.JLabel();
-        txtLibro = new javax.swing.JTextField();
         btnCancelar = new javax.swing.JButton();
         lblLibro = new javax.swing.JLabel();
         spnFechaPrest = new javax.swing.JSpinner();
         spnFechaDev = new javax.swing.JSpinner();
+        cmbUsuarios = new javax.swing.JComboBox<>();
+        cmbLibros = new javax.swing.JComboBox<>();
 
         setClosable(true);
         setIconifiable(true);
@@ -56,12 +113,6 @@ public class RegistrarPrestamoView extends javax.swing.JInternalFrame {
         lblFechaDev.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblFechaDev.setForeground(new java.awt.Color(235, 235, 235));
         lblFechaDev.setText("Fecha de Devolución:");
-
-        txtUsuario.setBackground(new java.awt.Color(60, 60, 60));
-        txtUsuario.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtUsuario.setForeground(new java.awt.Color(235, 235, 235));
-        txtUsuario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(80, 80, 80)));
-        txtUsuario.addActionListener(this::txtUsuarioActionPerformed);
 
         jSeparator1.setBackground(new java.awt.Color(85, 85, 85));
 
@@ -92,11 +143,6 @@ public class RegistrarPrestamoView extends javax.swing.JInternalFrame {
         lblFechaPrest.setForeground(new java.awt.Color(235, 235, 235));
         lblFechaPrest.setText("Fecha de Préstamo ");
 
-        txtLibro.setBackground(new java.awt.Color(60, 60, 60));
-        txtLibro.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtLibro.setForeground(new java.awt.Color(235, 235, 235));
-        txtLibro.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(80, 80, 80)));
-
         btnCancelar.setBackground(new java.awt.Color(80, 80, 80));
         btnCancelar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnCancelar.setForeground(new java.awt.Color(235, 235, 235));
@@ -117,6 +163,10 @@ public class RegistrarPrestamoView extends javax.swing.JInternalFrame {
 
         spnFechaDev.setModel(new javax.swing.SpinnerDateModel());
         spnFechaDev.setEditor(new javax.swing.JSpinner.DateEditor(spnFechaDev, "dd/MM/yyyy"));
+
+        cmbUsuarios.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        cmbLibros.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -145,10 +195,10 @@ public class RegistrarPrestamoView extends javax.swing.JInternalFrame {
                     .addComponent(lblFechaPrest))
                 .addGap(52, 52, 52)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtLibro, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                    .addComponent(txtUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
                     .addComponent(spnFechaPrest)
-                    .addComponent(spnFechaDev))
+                    .addComponent(spnFechaDev)
+                    .addComponent(cmbUsuarios, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cmbLibros, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -161,19 +211,19 @@ public class RegistrarPrestamoView extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblUsuario)
-                    .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmbUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtLibro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblLibro))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblLibro)
+                    .addComponent(cmbLibros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
+                        .addGap(18, 18, 18)
                         .addComponent(lblFechaPrest))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(spnFechaPrest, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblFechaDev)
                     .addComponent(spnFechaDev, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -191,10 +241,6 @@ public class RegistrarPrestamoView extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtUsuarioActionPerformed
-
     private void btnRegistrarPrestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarPrestActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnRegistrarPrestActionPerformed
@@ -207,6 +253,8 @@ public class RegistrarPrestamoView extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnRegistrarPrest;
+    private javax.swing.JComboBox<String> cmbLibros;
+    private javax.swing.JComboBox<String> cmbUsuarios;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -217,7 +265,7 @@ public class RegistrarPrestamoView extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lblUsuario;
     private javax.swing.JSpinner spnFechaDev;
     private javax.swing.JSpinner spnFechaPrest;
-    private javax.swing.JTextField txtLibro;
-    private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
+
+
 }

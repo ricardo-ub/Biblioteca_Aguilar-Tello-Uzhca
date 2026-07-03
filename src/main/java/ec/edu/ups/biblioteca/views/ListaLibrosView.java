@@ -4,17 +4,94 @@
  */
 package ec.edu.ups.biblioteca.views;
 
+import ec.edu.ups.biblioteca.models.Libro;
+import java.util.List;
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author DELL
  */
 public class ListaLibrosView extends javax.swing.JInternalFrame {
 
+    private DefaultTableModel modelo;
+
     /**
      * Creates new form ListaLibrosView
      */
     public ListaLibrosView() {
         initComponents();
+        configurarTabla();
+    }
+
+    public JButton getBtnCancelar() {
+        return btnEliminar;
+    }
+
+    public void setBtnCancelar(JButton btnCancelar) {
+        this.btnEliminar = btnCancelar;
+    }
+
+    public JButton getBtnListarLibros() {
+        return btnListarLibros;
+    }
+
+    public void setBtnListarLibros(JButton btnListarLibros) {
+        this.btnListarLibros = btnListarLibros;
+    }
+
+    public JButton getBtnEliminar() {
+        return btnEliminar;
+    }
+
+    public void setBtnEliminar(JButton btnEliminar) {
+        this.btnEliminar = btnEliminar;
+    }
+
+    public void configurarTabla() {
+        modelo = new DefaultTableModel();
+
+        modelo.addColumn("ISBN");
+        modelo.addColumn("Título");
+        modelo.addColumn("Autor");
+        modelo.addColumn("Año");
+        modelo.addColumn("Categoría");
+
+        tblLibros.setModel(modelo);
+    }
+
+    public void cargarDatos(List<Libro> libros) {
+        limpiarTabla();
+
+        for (Libro libro : libros) {
+            Object[] fila = {
+                libro.getIsbn(),
+                libro.getTitulo(),
+                libro.getAutor().getNombre(),
+                libro.getAnio(),
+                libro.getCategoria()
+            };
+            modelo.addRow(fila);
+        }
+    }
+
+    public JTable getTblLibros() {
+        return tblLibros;
+    }
+
+    public void limpiarTabla() {
+        modelo.setRowCount(0);
+    }
+
+    public void mostrarInformacion(String mensaje) {
+        JOptionPane.showMessageDialog(this, mensaje);
+    }
+
+    public int confirmarEliminacion() {
+        return JOptionPane.showConfirmDialog(this, "¿Está seguro de eliminar el libro?", "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
     }
 
     /**
@@ -29,11 +106,12 @@ public class ListaLibrosView extends javax.swing.JInternalFrame {
         jPanel16 = new javax.swing.JPanel();
         jPanel17 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblLibros = new javax.swing.JTable();
         jSeparator1 = new javax.swing.JSeparator();
         btnListarLibros = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        btnEliminarLib = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
+        btnCancelar1 = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -46,9 +124,9 @@ public class ListaLibrosView extends javax.swing.JInternalFrame {
 
         jPanel17.setBackground(new java.awt.Color(29, 30, 32));
 
-        jTable1.setBackground(new java.awt.Color(29, 30, 32));
-        jTable1.setForeground(new java.awt.Color(235, 235, 235));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblLibros.setBackground(new java.awt.Color(29, 30, 32));
+        tblLibros.setForeground(new java.awt.Color(235, 235, 235));
+        tblLibros.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -59,7 +137,7 @@ public class ListaLibrosView extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblLibros);
 
         jSeparator1.setBackground(new java.awt.Color(85, 85, 85));
 
@@ -80,15 +158,25 @@ public class ListaLibrosView extends javax.swing.JInternalFrame {
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
         jLabel1.setIconTextGap(8);
 
-        btnEliminarLib.setBackground(new java.awt.Color(80, 80, 80));
-        btnEliminarLib.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnEliminarLib.setForeground(new java.awt.Color(235, 235, 235));
-        btnEliminarLib.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/biblioteca/images/deshacer.png"))); // NOI18N
-        btnEliminarLib.setText("Eliminar");
-        btnEliminarLib.setBorderPainted(false);
-        btnEliminarLib.setFocusPainted(false);
-        btnEliminarLib.setIconTextGap(8);
-        btnEliminarLib.addActionListener(this::btnEliminarLibActionPerformed);
+        btnEliminar.setBackground(new java.awt.Color(80, 80, 80));
+        btnEliminar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnEliminar.setForeground(new java.awt.Color(235, 235, 235));
+        btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/biblioteca/images/deshacer.png"))); // NOI18N
+        btnEliminar.setText("Eliminar");
+        btnEliminar.setBorderPainted(false);
+        btnEliminar.setFocusPainted(false);
+        btnEliminar.setIconTextGap(8);
+        btnEliminar.addActionListener(this::btnEliminarActionPerformed);
+
+        btnCancelar1.setBackground(new java.awt.Color(80, 80, 80));
+        btnCancelar1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnCancelar1.setForeground(new java.awt.Color(235, 235, 235));
+        btnCancelar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/biblioteca/images/deshacer.png"))); // NOI18N
+        btnCancelar1.setText("Cancelar");
+        btnCancelar1.setBorderPainted(false);
+        btnCancelar1.setFocusPainted(false);
+        btnCancelar1.setIconTextGap(8);
+        btnCancelar1.addActionListener(this::btnCancelar1ActionPerformed);
 
         javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
         jPanel17.setLayout(jPanel17Layout);
@@ -101,8 +189,9 @@ public class ListaLibrosView extends javax.swing.JInternalFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnEliminarLib)
-                            .addComponent(btnListarLibros)))
+                            .addComponent(btnEliminar)
+                            .addComponent(btnListarLibros)
+                            .addComponent(btnCancelar1)))
                     .addGroup(jPanel17Layout.createSequentialGroup()
                         .addGap(108, 108, 108)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -124,7 +213,9 @@ public class ListaLibrosView extends javax.swing.JInternalFrame {
                         .addGap(77, 77, 77)
                         .addComponent(btnListarLibros)
                         .addGap(30, 30, 30)
-                        .addComponent(btnEliminarLib))
+                        .addComponent(btnEliminar)
+                        .addGap(35, 35, 35)
+                        .addComponent(btnCancelar1))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
@@ -140,47 +231,24 @@ public class ListaLibrosView extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnListarLibrosActionPerformed
 
-    private void btnEliminarLibActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarLibActionPerformed
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnCancelar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelar1ActionPerformed
         dispose();
-    }//GEN-LAST:event_btnEliminarLibActionPerformed
+    }//GEN-LAST:event_btnCancelar1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnEliminarLib;
+    private javax.swing.JButton btnCancelar1;
+    private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnListarLibros;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel10;
-    private javax.swing.JPanel jPanel11;
-    private javax.swing.JPanel jPanel12;
-    private javax.swing.JPanel jPanel13;
-    private javax.swing.JPanel jPanel14;
-    private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel17;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JLabel lblFechaVen;
-    private javax.swing.JLabel lblFechaVen1;
-    private javax.swing.JLabel lblFechaVen2;
-    private javax.swing.JLabel lblFechaVen3;
-    private javax.swing.JLabel lblFechaVen4;
-    private javax.swing.JLabel lblFechaVen5;
-    private javax.swing.JLabel lblFechaVen6;
-    private javax.swing.JTextField txtISBN;
-    private javax.swing.JTextField txtISBN1;
-    private javax.swing.JTextField txtISBN2;
-    private javax.swing.JTextField txtISBN3;
-    private javax.swing.JTextField txtISBN4;
-    private javax.swing.JTextField txtISBN5;
-    private javax.swing.JTextField txtISBN6;
+    private javax.swing.JTable tblLibros;
     // End of variables declaration//GEN-END:variables
 }

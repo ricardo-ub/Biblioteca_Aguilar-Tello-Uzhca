@@ -4,6 +4,11 @@
  */
 package ec.edu.ups.biblioteca.views;
 
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
+import javax.swing.JSpinner;
+import javax.swing.JTextField;
+
 /**
  *
  * @author DELL
@@ -15,6 +20,70 @@ public class DevolucionLibroView extends javax.swing.JInternalFrame {
      */
     public DevolucionLibroView() {
         initComponents();
+    }
+
+    public JButton getBtnBuscar() {
+        return btnBuscar;
+    }
+
+    public void setBtnBuscar(JButton btnBuscar) {
+        this.btnBuscar = btnBuscar;
+    }
+
+    public JButton getBtnCancelar() {
+        return btnCancelar;
+    }
+
+    public void setBtnCancelar(JButton btnCancelar) {
+        this.btnCancelar = btnCancelar;
+    }
+
+    public JButton getBtnDevolver() {
+        return btnDevolver;
+    }
+
+    public void setBtnDevolver(JButton btnDevolver) {
+        this.btnDevolver = btnDevolver;
+    }
+
+    public JSpinner getSpnFechaVen() {
+        return spnFechaVen;
+    }
+
+    public void setSpnFechaVen(JSpinner spnFechaVen) {
+        this.spnFechaVen = spnFechaVen;
+    }
+
+    public JTextField getTxtISBN() {
+        return txtISBN;
+    }
+
+    public void setTxtISBN(JTextField txtISBN) {
+        this.txtISBN = txtISBN;
+    }
+
+    public JTextField getTxtPrestado() {
+        return txtPrestado;
+    }
+
+    public void setTxtPrestado(JTextField txtPrestado) {
+        this.txtPrestado = txtPrestado;
+    }
+
+    public JTextField getTxtTitulo() {
+        return txtTitulo;
+    }
+
+    public void setTxtTitulo(JTextField txtTitulo) {
+        this.txtTitulo = txtTitulo;
+    }
+    
+    public void mostrarInformacion(String libro_devuelto_correctamente) {
+        JOptionPane.showMessageDialog(this, libro_devuelto_correctamente);
+    }
+
+    public int confirmarEliminacion() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     /**
@@ -32,7 +101,6 @@ public class DevolucionLibroView extends javax.swing.JInternalFrame {
         txtISBN = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         btnDevolver = new javax.swing.JButton();
-        txtFechaVen = new javax.swing.JTextField();
         lblISBN = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         lblPrestar = new javax.swing.JLabel();
@@ -41,6 +109,7 @@ public class DevolucionLibroView extends javax.swing.JInternalFrame {
         lblTitulo = new javax.swing.JLabel();
         btnBuscar = new javax.swing.JButton();
         txtPrestado = new javax.swing.JTextField();
+        spnFechaVen = new javax.swing.JSpinner();
 
         setClosable(true);
         setIconifiable(true);
@@ -75,12 +144,6 @@ public class DevolucionLibroView extends javax.swing.JInternalFrame {
         btnDevolver.setFocusPainted(false);
         btnDevolver.setIconTextGap(10);
         btnDevolver.addActionListener(this::btnDevolverActionPerformed);
-
-        txtFechaVen.setEditable(false);
-        txtFechaVen.setBackground(new java.awt.Color(60, 60, 60));
-        txtFechaVen.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtFechaVen.setForeground(new java.awt.Color(235, 235, 235));
-        txtFechaVen.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(80, 80, 80)));
 
         lblISBN.setBackground(java.awt.Color.white);
         lblISBN.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -133,6 +196,9 @@ public class DevolucionLibroView extends javax.swing.JInternalFrame {
         txtPrestado.setForeground(new java.awt.Color(235, 235, 235));
         txtPrestado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(80, 80, 80)));
 
+        spnFechaVen.setModel(new javax.swing.SpinnerDateModel());
+        spnFechaVen.setEditor(new javax.swing.JSpinner.DateEditor(spnFechaVen, "dd/MM/yyyy"));
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -159,11 +225,12 @@ public class DevolucionLibroView extends javax.swing.JInternalFrame {
                                     .addGroup(jPanel3Layout.createSequentialGroup()
                                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(txtTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtFechaVen, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(txtISBN, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(18, 18, 18)
                                         .addComponent(btnBuscar))
-                                    .addComponent(txtPrestado, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(spnFechaVen, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(txtPrestado, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))))))
                     .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(87, 87, 87)
@@ -184,20 +251,20 @@ public class DevolucionLibroView extends javax.swing.JInternalFrame {
                             .addComponent(lblISBN)
                             .addComponent(btnBuscar))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblTitulo)
-                        .addGap(27, 27, 27)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblTitulo)
+                            .addComponent(txtTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(26, 26, 26)
                         .addComponent(lblPrestar)
                         .addGap(18, 18, 18)
-                        .addComponent(lblFechaVen))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblFechaVen)
+                            .addComponent(spnFechaVen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(txtISBN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
-                        .addComponent(txtPrestado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtFechaVen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(54, 54, 54)
+                        .addGap(60, 60, 60)
+                        .addComponent(txtPrestado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(52, 52, 52)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnDevolver)
                     .addComponent(btnCancelar))
@@ -240,9 +307,10 @@ public class DevolucionLibroView extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lblISBN;
     private javax.swing.JLabel lblPrestar;
     private javax.swing.JLabel lblTitulo;
-    private javax.swing.JTextField txtFechaVen;
+    private javax.swing.JSpinner spnFechaVen;
     private javax.swing.JTextField txtISBN;
     private javax.swing.JTextField txtPrestado;
     private javax.swing.JTextField txtTitulo;
     // End of variables declaration//GEN-END:variables
+
 }

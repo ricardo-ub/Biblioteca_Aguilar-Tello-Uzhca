@@ -4,6 +4,12 @@
  */
 package ec.edu.ups.biblioteca.views;
 
+import ec.edu.ups.biblioteca.models.Autor;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+
 /**
  *
  * @author DELL
@@ -17,6 +23,75 @@ public class ActualizarRegistrarLibroView extends javax.swing.JInternalFrame {
         initComponents();
     }
 
+    public JButton getBtnActualizar() {
+        return btnActualizar;
+    }
+
+    public void setBtnActualizar(JButton btnActualizar) {
+        this.btnActualizar = btnActualizar;
+    }
+
+    public JButton getBtnBuscar() {
+        return btnBuscar;
+    }
+
+    public void setBtnBuscar(JButton btnBuscar) {
+        this.btnBuscar = btnBuscar;
+    }
+
+    public JButton getBtnCancelar() {
+        return btnCancelar;
+    }
+
+    public void setBtnCancelar(JButton btnCancelar) {
+        this.btnCancelar = btnCancelar;
+    }
+
+    public JComboBox<String> getCmbAutores() {
+        return cmbAutores;
+    }
+
+    public void setCmbAutores(JComboBox<String> cmbAutores) {
+        this.cmbAutores = cmbAutores;
+    }
+
+    public JTextField getTxtAnio() {
+        return txtAnio;
+    }
+
+    public void setTxtAnio(JTextField txtAnio) {
+        this.txtAnio = txtAnio;
+    }
+
+    public JComboBox<String> getCmbCategoria() {
+        return cmbCategoria;
+    }
+
+    public void setCmbCategoria(JComboBox<String> cmbCategoria) {
+        this.cmbCategoria = cmbCategoria;
+    }
+
+
+    public JTextField getTxtISBN() {
+        return txtISBN;
+    }
+
+    public void setTxtISBN(JTextField txtISBN) {
+        this.txtISBN = txtISBN;
+    }
+
+    public JTextField getTxtTitulo() {
+        return txtTitulo;
+    }
+
+    public void setTxtTitulo(JTextField txtTitulo) {
+        this.txtTitulo = txtTitulo;
+    }
+    
+    public void mostrarInformacion(String libro_actualizado_correctamente) {
+        JOptionPane.showMessageDialog(this, libro_actualizado_correctamente);
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -28,8 +103,7 @@ public class ActualizarRegistrarLibroView extends javax.swing.JInternalFrame {
 
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        txtCategoria = new javax.swing.JTextField();
-        jComboBox = new javax.swing.JComboBox<>();
+        cmbAutores = new javax.swing.JComboBox<>();
         lblAnio = new javax.swing.JLabel();
         txtISBN = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
@@ -43,6 +117,7 @@ public class ActualizarRegistrarLibroView extends javax.swing.JInternalFrame {
         btnCancelar = new javax.swing.JButton();
         lblTitulo = new javax.swing.JLabel();
         btnBuscar = new javax.swing.JButton();
+        cmbCategoria = new javax.swing.JComboBox<>();
 
         setClosable(true);
         setIconifiable(true);
@@ -55,16 +130,11 @@ public class ActualizarRegistrarLibroView extends javax.swing.JInternalFrame {
 
         jPanel3.setBackground(new java.awt.Color(29, 30, 32));
 
-        txtCategoria.setBackground(new java.awt.Color(60, 60, 60));
-        txtCategoria.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtCategoria.setForeground(new java.awt.Color(235, 235, 235));
-        txtCategoria.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(80, 80, 80)));
-
-        jComboBox.setBackground(new java.awt.Color(60, 60, 60));
-        jComboBox.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jComboBox.setForeground(new java.awt.Color(235, 235, 235));
-        jComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(80, 80, 80)));
+        cmbAutores.setBackground(new java.awt.Color(60, 60, 60));
+        cmbAutores.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cmbAutores.setForeground(new java.awt.Color(235, 235, 235));
+        cmbAutores.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbAutores.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(80, 80, 80)));
 
         lblAnio.setBackground(java.awt.Color.white);
         lblAnio.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -159,14 +229,17 @@ public class ActualizarRegistrarLibroView extends javax.swing.JInternalFrame {
                             .addComponent(lblCategoria))
                         .addGap(52, 52, 52)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtAnio, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(txtISBN, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnBuscar))))
+                                .addComponent(btnBuscar))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                                    .addComponent(txtAnio, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                                    .addComponent(cmbAutores, 0, 200, Short.MAX_VALUE)
+                                    .addComponent(cmbCategoria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(86, 86, 86)
                         .addComponent(jLabel1))
@@ -201,7 +274,7 @@ public class ActualizarRegistrarLibroView extends javax.swing.JInternalFrame {
                         .addGap(24, 24, 24)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblAutor)
-                            .addComponent(jComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cmbAutores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblAnio)
@@ -209,9 +282,12 @@ public class ActualizarRegistrarLibroView extends javax.swing.JInternalFrame {
                     .addComponent(txtTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblCategoria)
-                    .addComponent(txtCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(lblCategoria)
+                        .addGap(20, 20, 20))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(cmbCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnActualizar)
                     .addComponent(btnCancelar))
@@ -246,7 +322,8 @@ public class ActualizarRegistrarLibroView extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnCancelar;
-    private javax.swing.JComboBox<String> jComboBox;
+    private javax.swing.JComboBox<String> cmbAutores;
+    private javax.swing.JComboBox<String> cmbCategoria;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -257,8 +334,8 @@ public class ActualizarRegistrarLibroView extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lblISBN;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JTextField txtAnio;
-    private javax.swing.JTextField txtCategoria;
     private javax.swing.JTextField txtISBN;
     private javax.swing.JTextField txtTitulo;
     // End of variables declaration//GEN-END:variables
+
 }

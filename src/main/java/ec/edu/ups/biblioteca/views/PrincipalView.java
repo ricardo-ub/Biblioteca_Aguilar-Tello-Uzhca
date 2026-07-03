@@ -4,12 +4,17 @@
  */
 package ec.edu.ups.biblioteca.views;
 
+import ec.edu.ups.biblioteca.controllers.BibliotecaController;
+import ec.edu.ups.biblioteca.dao.BibliotecaDAO;
+import ec.edu.ups.biblioteca.dao.BibliotecaDAOMemoria;
+
 /**
  *
  * @author DELL
  */
 public class PrincipalView extends javax.swing.JFrame {
 
+    private RegistrarAutorView registrarAutorView;
     private RegistrarLibroView registrarLibroView;
     private ActualizarRegistrarLibroView actualizarRegistrarLibroView;
     private DevolucionLibroView devolucionLibroView;
@@ -18,9 +23,12 @@ public class PrincipalView extends javax.swing.JFrame {
     private RegistrarPrestamoView registrarPrestamoView;
     private ListaLibrosView listaLibrosView;
     private ListaUsuariosView listaUsuariosView;
+    private ListaPrestamosView listaPrestamosView;
+    private BibliotecaController bibliotecaController;
 
     public PrincipalView() {
         initComponents();
+        registrarAutorView = new RegistrarAutorView();
         registrarLibroView = new RegistrarLibroView();
         actualizarRegistrarLibroView = new ActualizarRegistrarLibroView();
         devolucionLibroView = new DevolucionLibroView();
@@ -29,24 +37,24 @@ public class PrincipalView extends javax.swing.JFrame {
         registrarPrestamoView = new RegistrarPrestamoView();
         listaLibrosView = new ListaLibrosView();
         listaUsuariosView = new ListaUsuariosView();
+        listaPrestamosView = new ListaPrestamosView();
+
+        BibliotecaDAO bibliotecaDAO = new BibliotecaDAOMemoria();
+        bibliotecaController = new BibliotecaController(registrarAutorView, registrarLibroView, registrarUsuarioView, actualizarRegistrarLibroView, actualizarRegistrarUsuarioView, registrarPrestamoView, devolucionLibroView, listaLibrosView, listaUsuariosView, listaPrestamosView, bibliotecaDAO);
+
         this.setJMenuBar(null);
 
-        // 2. La metemos a la fuerza dentro de la imagen (desktopPane)
         desktopPane.add(menuBar);
 
-        // 3. Le damos una ubicación y tamaño fijos (X, Y, Ancho, Alto)
-        // La Y=80 la empuja hacia abajo para dejarle espacio a tu título e icono.
-        // El Ancho=2000 asegura que cruce toda la pantalla.
         menuBar.setBounds(0, 160, 2000, 70);
 
-// Forzamos la separación usando Bordes Vacíos (Arriba, Izquierda, Abajo, Derecha)
         javax.swing.border.Border espaciado = javax.swing.BorderFactory.createEmptyBorder(0, 25, 0, 25);
 
-        // Aplicamos el borde invisible a cada menú
         libroMenu.setBorder(espaciado);
         usuarioMenu.setBorder(espaciado);
         prestamoMenu.setBorder(espaciado);
         gestionMenu.setBorder(espaciado);
+
     }
 
     /**
@@ -72,6 +80,7 @@ public class PrincipalView extends javax.swing.JFrame {
             }
         };
         libroMenu = new javax.swing.JMenu();
+        registrarAutorLibMenuItem = new javax.swing.JMenuItem();
         registrarLibMenuItem = new javax.swing.JMenuItem();
         actualizarLibMenuItem = new javax.swing.JMenuItem();
         devolverLibMenuItem = new javax.swing.JMenuItem();
@@ -83,6 +92,7 @@ public class PrincipalView extends javax.swing.JFrame {
         gestionMenu = new javax.swing.JMenu();
         gestionLibrosMenuItem = new javax.swing.JMenuItem();
         gestionUsuMenuItem = new javax.swing.JMenuItem();
+        gestionPrestamosMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1024, 720));
@@ -118,6 +128,11 @@ public class PrincipalView extends javax.swing.JFrame {
         libroMenu.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         libroMenu.setIconTextGap(14);
         libroMenu.setMargin(new java.awt.Insets(25, 0, 25, 0));
+
+        registrarAutorLibMenuItem.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        registrarAutorLibMenuItem.setText("Registrar Autor");
+        registrarAutorLibMenuItem.addActionListener(this::registrarAutorLibMenuItemActionPerformed);
+        libroMenu.add(registrarAutorLibMenuItem);
 
         registrarLibMenuItem.setBackground(new java.awt.Color(40, 40, 40));
         registrarLibMenuItem.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
@@ -208,6 +223,11 @@ public class PrincipalView extends javax.swing.JFrame {
         gestionUsuMenuItem.addActionListener(this::gestionUsuMenuItemActionPerformed);
         gestionMenu.add(gestionUsuMenuItem);
 
+        gestionPrestamosMenuItem.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        gestionPrestamosMenuItem.setText("Gestionar Prestamos");
+        gestionPrestamosMenuItem.addActionListener(this::gestionPrestamosMenuItemActionPerformed);
+        gestionMenu.add(gestionPrestamosMenuItem);
+
         menuBar.add(gestionMenu);
 
         setJMenuBar(menuBar);
@@ -279,6 +299,21 @@ public class PrincipalView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_gestionUsuMenuItemActionPerformed
 
+    private void gestionPrestamosMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gestionPrestamosMenuItemActionPerformed
+        if (!listaPrestamosView.isVisible()) {
+            desktopPane.remove(listaPrestamosView);
+            listaPrestamosView.setVisible(true);
+            desktopPane.add(listaPrestamosView);
+        }    }//GEN-LAST:event_gestionPrestamosMenuItemActionPerformed
+
+    private void registrarAutorLibMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarAutorLibMenuItemActionPerformed
+        if (!registrarAutorView.isVisible()) {
+            desktopPane.remove(registrarAutorView);
+            registrarAutorView.setVisible(true);
+            desktopPane.add(registrarAutorView);
+        }
+    }//GEN-LAST:event_registrarAutorLibMenuItemActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -325,6 +360,7 @@ public class PrincipalView extends javax.swing.JFrame {
     private javax.swing.JMenuItem devolverLibMenuItem;
     private javax.swing.JMenuItem gestionLibrosMenuItem;
     private javax.swing.JMenu gestionMenu;
+    private javax.swing.JMenuItem gestionPrestamosMenuItem;
     private javax.swing.JMenuItem gestionUsuMenuItem;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -333,6 +369,7 @@ public class PrincipalView extends javax.swing.JFrame {
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenu prestamoMenu;
     private javax.swing.JMenuItem prestamoMenuItem;
+    private javax.swing.JMenuItem registrarAutorLibMenuItem;
     private javax.swing.JMenuItem registrarLibMenuItem;
     private javax.swing.JMenuItem registrarUsuMenuItem;
     private javax.swing.JMenu usuarioMenu;

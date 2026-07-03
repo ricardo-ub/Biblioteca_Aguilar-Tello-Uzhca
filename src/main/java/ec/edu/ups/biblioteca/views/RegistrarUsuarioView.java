@@ -4,6 +4,10 @@
  */
 package ec.edu.ups.biblioteca.views;
 
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+
 /**
  *
  * @author DELL
@@ -17,6 +21,50 @@ public class RegistrarUsuarioView extends javax.swing.JInternalFrame {
         initComponents();
     }
 
+    public JButton getBtnCancelar() {
+        return btnCancelar;
+    }
+
+    public void setBtnCancelar(JButton btnCancelar) {
+        this.btnCancelar = btnCancelar;
+    }
+
+    public JButton getBtnRegistUsu() {
+        return btnRegistUsu;
+    }
+
+    public void setBtnRegistUsu(JButton btnRegistUsu) {
+        this.btnRegistUsu = btnRegistUsu;
+    }
+
+    public JTextField getTxtCedula() {
+        return txtCedula;
+    }
+
+    public void setTxtCedula(JTextField txtCedula) {
+        this.txtCedula = txtCedula;
+    }
+
+    public JTextField getTxtCorreo() {
+        return txtCorreo;
+    }
+
+    public void setTxtCorreo(JTextField txtCorreo) {
+        this.txtCorreo = txtCorreo;
+    }
+
+    public JTextField getTxtNombre() {
+        return txtNombre;
+    }
+
+    public void setTxtNombre(JTextField txtNombre) {
+        this.txtNombre = txtNombre;
+    }
+
+    public void mostrarInformacion(String usuario_registrado_correctamente) {
+        JOptionPane.showMessageDialog(this, usuario_registrado_correctamente);
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -71,7 +119,6 @@ public class RegistrarUsuarioView extends javax.swing.JInternalFrame {
         btnRegistUsu.setIconTextGap(10);
         btnRegistUsu.addActionListener(this::btnRegistUsuActionPerformed);
 
-        txtCorreo.setEditable(false);
         txtCorreo.setBackground(new java.awt.Color(60, 60, 60));
         txtCorreo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtCorreo.setForeground(new java.awt.Color(235, 235, 235));
@@ -94,7 +141,6 @@ public class RegistrarUsuarioView extends javax.swing.JInternalFrame {
         lblCorreo.setForeground(new java.awt.Color(235, 235, 235));
         lblCorreo.setText("Correo:");
 
-        txtNombre.setEditable(false);
         txtNombre.setBackground(new java.awt.Color(60, 60, 60));
         txtNombre.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtNombre.setForeground(new java.awt.Color(235, 235, 235));
@@ -205,4 +251,5 @@ public class RegistrarUsuarioView extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtCorreo;
     private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
+
 }
