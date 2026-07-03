@@ -7,6 +7,8 @@ package ec.edu.ups.biblioteca.views;
 import ec.edu.ups.biblioteca.controllers.BibliotecaController;
 import ec.edu.ups.biblioteca.dao.BibliotecaDAO;
 import ec.edu.ups.biblioteca.dao.BibliotecaDAOMemoria;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 /**
  *
@@ -78,6 +80,10 @@ public class PrincipalView extends javax.swing.JFrame {
 
     }
 
+    public void cambiarIdioma(Locale locale) {
+        ResourceBundle bundle = ResourceBundle.getBundle("ec.edu.ups.carrito.i18n.mensajes", locale);
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -114,6 +120,9 @@ public class PrincipalView extends javax.swing.JFrame {
         gestionLibrosMenuItem = new javax.swing.JMenuItem();
         gestionUsuMenuItem = new javax.swing.JMenuItem();
         gestionPrestamosMenuItem = new javax.swing.JMenuItem();
+        idiomaMenu = new javax.swing.JMenu();
+        españolMenuItem = new javax.swing.JMenuItem();
+        inglesMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1024, 720));
@@ -266,6 +275,18 @@ public class PrincipalView extends javax.swing.JFrame {
 
         menuBar.add(gestionMenu);
 
+        idiomaMenu.setText("Idioma");
+
+        españolMenuItem.setText("Español");
+        españolMenuItem.addActionListener(this::españolMenuItemActionPerformed);
+        idiomaMenu.add(españolMenuItem);
+
+        inglesMenuItem.setText("Ingles");
+        inglesMenuItem.addActionListener(this::inglesMenuItemActionPerformed);
+        idiomaMenu.add(inglesMenuItem);
+
+        menuBar.add(idiomaMenu);
+
         setJMenuBar(menuBar);
 
         pack();
@@ -350,6 +371,16 @@ public class PrincipalView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_registrarAutorLibMenuItemActionPerformed
 
+    private void españolMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_españolMenuItemActionPerformed
+        Locale locale = new Locale("es", "EC");
+        this.cambiarIdioma(locale);
+    }//GEN-LAST:event_españolMenuItemActionPerformed
+
+    private void inglesMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inglesMenuItemActionPerformed
+        Locale locale = new Locale("en", "US");
+        this.cambiarIdioma(locale);
+    }//GEN-LAST:event_inglesMenuItemActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -394,10 +425,13 @@ public class PrincipalView extends javax.swing.JFrame {
     private javax.swing.JMenuItem actualizarUsuMenuItem;
     private javax.swing.JDesktopPane desktopPane;
     private javax.swing.JMenuItem devolverLibMenuItem;
+    private javax.swing.JMenuItem españolMenuItem;
     private javax.swing.JMenuItem gestionLibrosMenuItem;
     private javax.swing.JMenu gestionMenu;
     private javax.swing.JMenuItem gestionPrestamosMenuItem;
     private javax.swing.JMenuItem gestionUsuMenuItem;
+    private javax.swing.JMenu idiomaMenu;
+    private javax.swing.JMenuItem inglesMenuItem;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
