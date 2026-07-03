@@ -77,13 +77,13 @@ public class DevolucionLibroView extends javax.swing.JInternalFrame {
     public void setTxtTitulo(JTextField txtTitulo) {
         this.txtTitulo = txtTitulo;
     }
-    
+
     public void mostrarInformacion(String libro_devuelto_correctamente) {
         JOptionPane.showMessageDialog(this, libro_devuelto_correctamente);
     }
 
     public int confirmarEliminacion() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return JOptionPane.showConfirmDialog(this,"¿Desea devolver este libro?", "Confirmar devolución",JOptionPane.YES_NO_OPTION);
     }
 
     /**

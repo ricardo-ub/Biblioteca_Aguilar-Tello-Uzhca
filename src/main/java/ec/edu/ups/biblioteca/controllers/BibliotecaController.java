@@ -70,8 +70,9 @@ public class BibliotecaController {
         configurarEventosListaLibros();
         configurarEventosListaUsuarios();
         configurarEventosListaPrestamos();
+        cargarComboCategorias();
     }
-    
+
     private void refrescarListas() {
         listarLibros();
         listarUsuarios();
@@ -112,7 +113,7 @@ public class BibliotecaController {
             }
         });
     }
-    
+
     public void cargarComboAutores() {
         registrarLibroView.getCmbAutor().removeAllItems();
         actualizarRegistroLibroView.getCmbAutores().removeAllItems();
@@ -126,7 +127,7 @@ public class BibliotecaController {
 
     //LIBRO
     public void registrarLibro() {
-String isbn = registrarLibroView.getTxtISBN().getText().trim();
+        String isbn = registrarLibroView.getTxtISBN().getText().trim();
         String titulo = registrarLibroView.getTxtTitulo().getText().trim();
         String nombreAutorSel = (String) registrarLibroView.getCmbAutor().getSelectedItem();
         Autor autor = bibliotecaDAO.buscarAutor(nombreAutorSel);
@@ -408,7 +409,7 @@ String isbn = registrarLibroView.getTxtISBN().getText().trim();
     }
 
     public void buscarPrestamoDevolucion() {
-        String isbn = devolucionLibroView.getTxtISBN().getText();
+        String isbn = devolucionLibroView.getTxtISBN().getText().trim();
         Prestamo prestamo = bibliotecaDAO.buscarPrestamo(isbn);
         if (prestamo != null) {
             devolucionLibroView.getTxtTitulo().setText(prestamo.getLibro().getTitulo());
@@ -420,7 +421,7 @@ String isbn = registrarLibroView.getTxtISBN().getText().trim();
     }
 
     public void devolverLibro() {
-        String isbn = devolucionLibroView.getTxtISBN().getText();
+        String isbn = devolucionLibroView.getTxtISBN().getText().trim();
         int opcion = devolucionLibroView.confirmarEliminacion();
         if (opcion == JOptionPane.YES_OPTION) {
             bibliotecaDAO.devolverLibro(isbn);
@@ -451,7 +452,7 @@ String isbn = registrarLibroView.getTxtISBN().getText().trim();
             }
         });
     }
-    
+
     public void eliminarLibroSeleccionado() {
         int fila = listaLibrosView.getTblLibros().getSelectedRow();
         if (fila == -1) {
@@ -471,7 +472,7 @@ String isbn = registrarLibroView.getTxtISBN().getText().trim();
             refrescarListas();
         }
     }
-    
+
     public void eliminarUsuarioSeleccionado() {
         int fila = listaUsuariosView.getTblUsuarios().getSelectedRow();
         if (fila == -1) {
@@ -516,7 +517,6 @@ String isbn = registrarLibroView.getTxtISBN().getText().trim();
 
     }
 
-
     public void listarUsuarios() {
         List<Usuario> usuarios = bibliotecaDAO.listarUsuarios();
         listaUsuariosView.cargarDatos(usuarios);
@@ -551,5 +551,53 @@ String isbn = registrarLibroView.getTxtISBN().getText().trim();
                 listarPrestamos();
             }
         });
+
+        listaPrestamosView.getBtnEliminar().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                eliminarPrestamoSeleccionado();
+            }
+        });
+    }
+
+    public void eliminarPrestamoSeleccionado() {
+        int fila = listaPrestamosView.getTblPrestamos().getSelectedRow();
+        if (fila == -1) {
+            listaPrestamosView.mostrarInformacion("Seleccione un préstamo.");
+            return;
+        }
+        String titulo = (String) listaPrestamosView.getTblPrestamos().getValueAt(fila, 0);
+
+        Libro libro = buscarLibroPorTitulo(titulo);
+
+        if (libro == null) {
+            return;
+        }
+        int opcion = listaPrestamosView.confirmarEliminacion();
+        if (opcion == JOptionPane.YES_OPTION) {
+            bibliotecaDAO.devolverLibro(libro.getIsbn());
+            listaPrestamosView.mostrarInformacion("Préstamo eliminado correctamente.");
+            refrescarListas();
+        }
+    }
+
+    public void cargarComboCategorias() {
+        String[] categorias = {
+            "Novela",
+            "Ciencia",
+            "Historia",
+            "Tecnología",
+            "Programación",
+            "Matemáticas",
+            "Infantil"
+        };
+
+        registrarLibroView.getCmbCategoria().removeAllItems();
+        actualizarRegistroLibroView.getCmbCategoria().removeAllItems();
+
+        for (String categoria : categorias) {
+            registrarLibroView.getCmbCategoria().addItem(categoria);
+            actualizarRegistroLibroView.getCmbCategoria().addItem(categoria);
+        }
     }
 }

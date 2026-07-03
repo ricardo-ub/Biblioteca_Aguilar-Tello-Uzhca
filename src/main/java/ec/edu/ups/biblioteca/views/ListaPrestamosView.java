@@ -8,6 +8,7 @@ import ec.edu.ups.biblioteca.models.Prestamo;
 import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -26,6 +27,14 @@ public class ListaPrestamosView extends javax.swing.JInternalFrame {
         configurarTabla();
     }
 
+    public JTable getTblPrestamos() {
+        return tblPrestamos;
+    }
+
+    public void setTblPrestamos(JTable tblPrestamos) {
+        this.tblPrestamos = tblPrestamos;
+    }
+    
     public JButton getBtnCancelar() {
         return btnCancelar;
     }

@@ -93,10 +93,10 @@ public class BibliotecaDAOMemoria implements BibliotecaDAO {
             return false;
         }
         for (Prestamo prestamo : prestamos) {
-            if (prestamo.getLibro().equals(libro) && !prestamo.isDevuelto()) {
+            if (prestamo.getLibro().equals(libro)) 
                 return false;
-            }
         }
+        
         libros.remove(libro);
         return true;
     }
@@ -137,7 +137,7 @@ public class BibliotecaDAOMemoria implements BibliotecaDAO {
             return false;
         }
         for (Prestamo prestamo : prestamos) {
-            if (prestamo.getUsuario().equals(usuario) && !prestamo.isDevuelto()) {
+            if (prestamo.getUsuario().equals(usuario)) {
                 return false;
             }
         }
@@ -158,8 +158,7 @@ public class BibliotecaDAOMemoria implements BibliotecaDAO {
     @Override
     public Prestamo buscarPrestamo(String isbn) {
         for (Prestamo prestamo : prestamos) {
-            if (prestamo.getLibro().getIsbn().equals(isbn)
-                    && !prestamo.isDevuelto()) {
+            if (prestamo.getLibro().getIsbn().equals(isbn)) {
                 return prestamo;
             }
         }
@@ -170,13 +169,19 @@ public class BibliotecaDAOMemoria implements BibliotecaDAO {
     public void devolverLibro(String isbn) {
         Prestamo prestamo = buscarPrestamo(isbn);
         if (prestamo != null) {
-            prestamo.setDevuelto(true);
+            prestamos.remove(prestamo);
         }
     }
 
     @Override
     public List<Prestamo> listarPrestamos() {
-        return prestamos;
+        List<Prestamo> activos = new ArrayList<>();
+        for (Prestamo prestamo : prestamos) {
+            if (!prestamo.isDevuelto()) {
+                activos.add(prestamo);
+            }
+        }
+        return activos;
     }
 
 }
