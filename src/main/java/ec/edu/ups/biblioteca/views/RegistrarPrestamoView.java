@@ -126,10 +126,8 @@ public class RegistrarPrestamoView extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
 
         setClosable(true);
-        setIconifiable(true);
-        setMaximizable(true);
-        setResizable(true);
         setTitle("Registro Prestamo");
+        setPreferredSize(new java.awt.Dimension(600, 380));
 
         jPanel2.setBackground(new java.awt.Color(35, 30, 25));
         jPanel2.setLayout(new java.awt.GridBagLayout());

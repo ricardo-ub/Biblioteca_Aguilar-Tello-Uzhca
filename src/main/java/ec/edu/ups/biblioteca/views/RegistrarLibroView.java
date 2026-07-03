@@ -139,7 +139,6 @@ public class RegistrarLibroView extends javax.swing.JInternalFrame {
         cmbCategoria = new javax.swing.JComboBox<>();
 
         setClosable(true);
-        setIconifiable(true);
         setResizable(true);
         setTitle("Registrar Libro");
         setAutoscrolls(true);

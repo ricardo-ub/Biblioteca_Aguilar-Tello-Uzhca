@@ -110,9 +110,6 @@ public class RegistrarAutorView extends javax.swing.JInternalFrame {
         jLabel4 = new javax.swing.JLabel();
 
         setClosable(true);
-        setIconifiable(true);
-        setMaximizable(true);
-        setResizable(true);
         setTitle("Registrar Autor");
 
         jPanel1.setBackground(new java.awt.Color(35, 30, 25));

@@ -119,9 +119,6 @@ public class ActualizarRegistrarUsuarioView extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
 
         setClosable(true);
-        setIconifiable(true);
-        setMaximizable(true);
-        setResizable(true);
         setTitle("Actualizar Usuario");
 
         jPanel2.setBackground(new java.awt.Color(35, 30, 25));
