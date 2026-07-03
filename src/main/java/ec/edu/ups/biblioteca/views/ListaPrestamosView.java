@@ -5,7 +5,10 @@
 package ec.edu.ups.biblioteca.views;
 
 import ec.edu.ups.biblioteca.models.Prestamo;
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -18,13 +21,30 @@ import javax.swing.table.DefaultTableModel;
 public class ListaPrestamosView extends javax.swing.JInternalFrame {
 
     private DefaultTableModel modelo;
+    private Locale localizacion;
+    private ResourceBundle mensajes;
 
-    /**
-     * Creates new form ListaPrestamosView
-     */
     public ListaPrestamosView() {
         initComponents();
+        cambiarIdioma(new Locale("es", "EC"));
+    }
+
+    public void cambiarIdioma(Locale locale) {
+        localizacion = locale;
+        mensajes = ResourceBundle.getBundle("ec.edu.ups.biblioteca.i18n.mensajes", localizacion);
+
+        setTitle(mensajes.getString("ventana.listaPrestamos"));
+
+        jLabel1.setText(mensajes.getString("encabezado.gestionPrestamos"));
+
+        btnListaPrest.setText(mensajes.getString("boton.listar"));
+        btnEliminar.setText(mensajes.getString("boton.eliminar"));
+        btnCancelar.setText(mensajes.getString("boton.cancelar"));
+
         configurarTabla();
+
+        revalidate();
+        repaint();
     }
 
     public JTable getTblPrestamos() {
@@ -34,7 +54,7 @@ public class ListaPrestamosView extends javax.swing.JInternalFrame {
     public void setTblPrestamos(JTable tblPrestamos) {
         this.tblPrestamos = tblPrestamos;
     }
-    
+
     public JButton getBtnCancelar() {
         return btnCancelar;
     }
@@ -60,29 +80,54 @@ public class ListaPrestamosView extends javax.swing.JInternalFrame {
     }
 
     public void configurarTabla() {
+        if (modelo == null) {
+            modelo = new DefaultTableModel();
+            tblPrestamos.setModel(modelo);
+        }
 
-        modelo = new DefaultTableModel();
+        Object[] columnas = {
+            mensajes.getString("tabla.columna.libro"),
+            mensajes.getString("tabla.columna.usuario"),
+            mensajes.getString("tabla.columna.fechaPrestamo"),
+            mensajes.getString("tabla.columna.fechaDevolucion"),
+            mensajes.getString("tabla.columna.devuelto")
+        };
 
-        modelo.addColumn("Libro");
-        modelo.addColumn("Usuario");
-        modelo.addColumn("Fecha préstamo");
-        modelo.addColumn("Fecha devolución");
-        modelo.addColumn("Devuelto");
+        modelo.setColumnIdentifiers(columnas);
 
-        tblPrestamos.setModel(modelo);
+        tblPrestamos.getColumnModel().getColumn(0).setHeaderValue(mensajes.getString("tabla.columna.libro"));
+        tblPrestamos.getColumnModel().getColumn(1).setHeaderValue(mensajes.getString("tabla.columna.usuario"));
+        tblPrestamos.getColumnModel().getColumn(2).setHeaderValue(mensajes.getString("tabla.columna.fechaPrestamo"));
+        tblPrestamos.getColumnModel().getColumn(3).setHeaderValue(mensajes.getString("tabla.columna.fechaDevolucion"));
+        tblPrestamos.getColumnModel().getColumn(4).setHeaderValue(mensajes.getString("tabla.columna.devuelto"));
+
+        tblPrestamos.getTableHeader().revalidate();
+        tblPrestamos.getTableHeader().repaint();
+        tblPrestamos.repaint();
     }
 
     public void cargarDatos(List<Prestamo> prestamos) {
         limpiarTabla();
 
+        SimpleDateFormat formatoFecha = new SimpleDateFormat(mensajes.getString("formato.fechaCorta"), localizacion);
+
         for (Prestamo prestamo : prestamos) {
+            String estado;
+
+            if (prestamo.isDevuelto()) {
+                estado = mensajes.getString("estado.si");
+            } else {
+                estado = mensajes.getString("estado.no");
+            }
+
             Object[] fila = {
                 prestamo.getLibro().getTitulo(),
                 prestamo.getUsuario().getNombre(),
-                prestamo.getFechaPrestamo(),
-                prestamo.getFechaDevolucion(),
-                prestamo.isDevuelto() ? "Si" : "No"
+                formatoFecha.format(prestamo.getFechaPrestamo()),
+                formatoFecha.format(prestamo.getFechaDevolucion()),
+                estado
             };
+
             modelo.addRow(fila);
         }
     }
@@ -92,11 +137,11 @@ public class ListaPrestamosView extends javax.swing.JInternalFrame {
     }
 
     public void mostrarInformacion(String mensaje) {
-        JOptionPane.showMessageDialog(this, mensaje);
+        JOptionPane.showMessageDialog(this, mensaje, mensajes.getString("dialogo.titulo.informacion"), JOptionPane.INFORMATION_MESSAGE);
     }
 
     public int confirmarEliminacion() {
-        return JOptionPane.showConfirmDialog(this, "¿Está seguro de eliminar el préstamo?", "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
+        return JOptionPane.showConfirmDialog(this, mensajes.getString("confirmacion.eliminarPrestamo"), mensajes.getString("dialogo.titulo.eliminacion"), JOptionPane.YES_NO_OPTION);
     }
 
     /**

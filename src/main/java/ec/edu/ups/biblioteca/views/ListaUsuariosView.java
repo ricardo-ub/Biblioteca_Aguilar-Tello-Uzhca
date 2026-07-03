@@ -6,6 +6,8 @@ package ec.edu.ups.biblioteca.views;
 
 import ec.edu.ups.biblioteca.models.Usuario;
 import java.util.List;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -18,13 +20,32 @@ import javax.swing.table.DefaultTableModel;
 public class ListaUsuariosView extends javax.swing.JInternalFrame {
 
     private DefaultTableModel modelo;
+    private Locale localizacion;
+    private ResourceBundle mensajes;
 
-    /**
-     * Creates new form ListaUsuariosView
-     */
     public ListaUsuariosView() {
         initComponents();
+        cambiarIdioma(new Locale("es", "EC"));
+    }
+
+    public void cambiarIdioma(Locale locale) {
+        localizacion = locale;
+        mensajes = ResourceBundle.getBundle("ec.edu.ups.biblioteca.i18n.mensajes", localizacion);
+
+        setTitle(mensajes.getString("ventana.listaUsuarios"));
+
+        jLabel1.setText(mensajes.getString("encabezado.gestionUsuarios"));
+
+        btnListaUsu.setText(mensajes.getString("boton.listar"));
+        btnEliminar.setText(mensajes.getString("boton.eliminar"));
+        btnCancelar.setText(mensajes.getString("boton.cancelar"));
+
+        jLabel2.setText("");
+
         configurarTabla();
+
+        revalidate();
+        repaint();
     }
 
     public JButton getBtnCancelar() {
@@ -52,12 +73,26 @@ public class ListaUsuariosView extends javax.swing.JInternalFrame {
     }
 
     public void configurarTabla() {
-        modelo = new DefaultTableModel();
-        modelo.addColumn("Cédula");
-        modelo.addColumn("Nombre");
-        modelo.addColumn("Correo");
+        if (modelo == null) {
+            modelo = new DefaultTableModel();
+            tblUsuarios.setModel(modelo);
+        }
 
-        tblUsuarios.setModel(modelo);
+        Object[] columnas = {
+            mensajes.getString("tabla.columna.cedula"),
+            mensajes.getString("tabla.columna.nombre"),
+            mensajes.getString("tabla.columna.correo")
+        };
+
+        modelo.setColumnIdentifiers(columnas);
+
+        tblUsuarios.getColumnModel().getColumn(0).setHeaderValue(mensajes.getString("tabla.columna.cedula"));
+        tblUsuarios.getColumnModel().getColumn(1).setHeaderValue(mensajes.getString("tabla.columna.nombre"));
+        tblUsuarios.getColumnModel().getColumn(2).setHeaderValue(mensajes.getString("tabla.columna.correo"));
+
+        tblUsuarios.getTableHeader().revalidate();
+        tblUsuarios.getTableHeader().repaint();
+        tblUsuarios.repaint();
     }
 
     public void cargarDatos(List<Usuario> usuarios) {
@@ -82,11 +117,11 @@ public class ListaUsuariosView extends javax.swing.JInternalFrame {
     }
 
     public void mostrarInformacion(String mensaje) {
-        JOptionPane.showMessageDialog(this, mensaje);
+        JOptionPane.showMessageDialog(this, mensaje, mensajes.getString("dialogo.titulo.informacion"), JOptionPane.INFORMATION_MESSAGE);
     }
 
     public int confirmarEliminacion() {
-        return JOptionPane.showConfirmDialog(this, "¿Está seguro de eliminar el usuario?", "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
+        return JOptionPane.showConfirmDialog(this, mensajes.getString("confirmacion.eliminarUsuario"), mensajes.getString("dialogo.titulo.eliminacion"), JOptionPane.YES_NO_OPTION);
     }
 
     /**

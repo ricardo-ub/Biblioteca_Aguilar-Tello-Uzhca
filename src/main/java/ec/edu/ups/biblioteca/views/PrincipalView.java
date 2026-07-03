@@ -27,6 +27,8 @@ public class PrincipalView extends javax.swing.JFrame {
     private ListaUsuariosView listaUsuariosView;
     private ListaPrestamosView listaPrestamosView;
     private BibliotecaController bibliotecaController;
+    private Locale localizacion;
+    private ResourceBundle mensajes;
 
     public PrincipalView() {
         initComponents();
@@ -69,8 +71,6 @@ public class PrincipalView extends javax.swing.JFrame {
         panelTitulo.setBounds(20, 0, 800, 150);
         desktopPane.add(panelTitulo, 0);
 
-        // Sacamos los labels del título del desktopPane y los metemos dentro
-        // del panelTitulo, con las mismas coordenadas de antes pero relativas al panel.
         desktopPane.remove(jLabel1);
         desktopPane.remove(jLabel2);
         desktopPane.remove(jLabel3);
@@ -78,10 +78,55 @@ public class PrincipalView extends javax.swing.JFrame {
         panelTitulo.add(jLabel1);
         panelTitulo.add(jLabel2);
 
+        cambiarIdioma(new Locale("es", "EC"));
     }
 
     public void cambiarIdioma(Locale locale) {
-        ResourceBundle bundle = ResourceBundle.getBundle("ec.edu.ups.carrito.i18n.mensajes", locale);
+        localizacion = locale;
+        mensajes = ResourceBundle.getBundle("ec.edu.ups.biblioteca.i18n.mensajes", localizacion);
+
+        setTitle(mensajes.getString("aplicacion.titulo"));
+
+        jLabel1.setText(mensajes.getString("aplicacion.encabezado"));
+        jLabel2.setText(mensajes.getString("aplicacion.nombre"));
+
+        libroMenu.setText(mensajes.getString("menu.libros"));
+        usuarioMenu.setText(mensajes.getString("menu.usuarios"));
+        prestamoMenu.setText(mensajes.getString("menu.prestamos"));
+        gestionMenu.setText(mensajes.getString("menu.gestionar"));
+        idiomaMenu.setText(mensajes.getString("idioma.menu"));
+
+        registrarAutorLibMenuItem.setText(mensajes.getString("menu.registrarAutor"));
+        registrarLibMenuItem.setText(mensajes.getString("menu.registrarLibro"));
+        actualizarLibMenuItem.setText(mensajes.getString("menu.actualizarLibro"));
+        devolverLibMenuItem.setText(mensajes.getString("menu.devolverLibro"));
+
+        registrarUsuMenuItem.setText(mensajes.getString("menu.registrarUsuario"));
+        actualizarUsuMenuItem.setText(mensajes.getString("menu.actualizarUsuario"));
+
+        prestamoMenuItem.setText(mensajes.getString("menu.registrarPrestamo"));
+
+        gestionLibrosMenuItem.setText(mensajes.getString("menu.gestionarLibros"));
+        gestionUsuMenuItem.setText(mensajes.getString("menu.gestionarUsuarios"));
+        gestionPrestamosMenuItem.setText(mensajes.getString("menu.gestionarPrestamos"));
+
+        españolMenuItem.setText(mensajes.getString("idioma.espanol"));
+        inglesMenuItem.setText(mensajes.getString("idioma.ingles"));
+
+        registrarAutorView.cambiarIdioma(localizacion);
+        registrarLibroView.cambiarIdioma(localizacion);
+        actualizarRegistrarLibroView.cambiarIdioma(localizacion);
+        registrarUsuarioView.cambiarIdioma(localizacion);
+        actualizarRegistrarUsuarioView.cambiarIdioma(localizacion);
+        registrarPrestamoView.cambiarIdioma(localizacion);
+        devolucionLibroView.cambiarIdioma(localizacion);
+        listaLibrosView.cambiarIdioma(localizacion);
+        listaUsuariosView.cambiarIdioma(localizacion);
+        listaPrestamosView.cambiarIdioma(localizacion);
+        bibliotecaController.cambiarIdioma(localizacion);
+
+        menuBar.revalidate();
+        menuBar.repaint();
     }
 
     /**

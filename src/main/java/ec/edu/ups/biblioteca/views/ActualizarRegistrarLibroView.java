@@ -5,6 +5,8 @@
 package ec.edu.ups.biblioteca.views;
 
 import ec.edu.ups.biblioteca.models.Autor;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
@@ -16,11 +18,33 @@ import javax.swing.JTextField;
  */
 public class ActualizarRegistrarLibroView extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form ActualizarRegistrarLibroView
-     */
+    private Locale localizacion;
+    private ResourceBundle mensajes;
+
     public ActualizarRegistrarLibroView() {
         initComponents();
+        cambiarIdioma(new Locale("es", "EC"));
+    }
+
+    public void cambiarIdioma(Locale locale) {
+        localizacion = locale;
+        mensajes = ResourceBundle.getBundle("ec.edu.ups.biblioteca.i18n.mensajes", localizacion);
+
+        setTitle(mensajes.getString("ventana.actualizarLibro"));
+
+        jLabel1.setText(mensajes.getString("encabezado.actualizarLibro"));
+        lblISBN.setText(mensajes.getString("etiqueta.isbn"));
+        lblTitulo.setText(mensajes.getString("etiqueta.titulo"));
+        lblAutor.setText(mensajes.getString("etiqueta.autor"));
+        lblAnio.setText(mensajes.getString("etiqueta.anio"));
+        lblCategoria.setText(mensajes.getString("etiqueta.categoria"));
+
+        btnBuscar.setText(mensajes.getString("boton.buscar"));
+        btnActualizar.setText(mensajes.getString("boton.actualizar"));
+        btnCancelar.setText(mensajes.getString("boton.cancelar"));
+
+        revalidate();
+        repaint();
     }
 
     public JButton getBtnActualizar() {
@@ -71,7 +95,6 @@ public class ActualizarRegistrarLibroView extends javax.swing.JInternalFrame {
         this.cmbCategoria = cmbCategoria;
     }
 
-
     public JTextField getTxtISBN() {
         return txtISBN;
     }
@@ -87,11 +110,11 @@ public class ActualizarRegistrarLibroView extends javax.swing.JInternalFrame {
     public void setTxtTitulo(JTextField txtTitulo) {
         this.txtTitulo = txtTitulo;
     }
-    
-    public void mostrarInformacion(String libro_actualizado_correctamente) {
-        JOptionPane.showMessageDialog(this, libro_actualizado_correctamente);
+
+    public void mostrarInformacion(String mensaje) {
+        JOptionPane.showMessageDialog(this, mensaje, mensajes.getString("dialogo.titulo.informacion"), JOptionPane.INFORMATION_MESSAGE);
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

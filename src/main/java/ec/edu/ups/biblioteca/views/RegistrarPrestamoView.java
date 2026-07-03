@@ -4,6 +4,8 @@
  */
 package ec.edu.ups.biblioteca.views;
 
+import java.util.Locale;
+import java.util.ResourceBundle;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
@@ -15,11 +17,36 @@ import javax.swing.JSpinner;
  */
 public class RegistrarPrestamoView extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form RegistrarPrestamoView
-     */
+    private Locale localizacion;
+    private ResourceBundle mensajes;
+
     public RegistrarPrestamoView() {
         initComponents();
+        cambiarIdioma(new Locale("es", "EC"));
+    }
+
+    public void cambiarIdioma(Locale locale) {
+        localizacion = locale;
+        mensajes = ResourceBundle.getBundle("ec.edu.ups.biblioteca.i18n.mensajes", localizacion);
+
+        setTitle(mensajes.getString("ventana.registrarPrestamo"));
+
+        jLabel1.setText(mensajes.getString("encabezado.registrarPrestamo"));
+        lblUsuario.setText(mensajes.getString("etiqueta.usuario"));
+        lblLibro.setText(mensajes.getString("etiqueta.libro"));
+        lblFechaPrest.setText(mensajes.getString("etiqueta.fechaPrestamo"));
+        lblFechaDev.setText(mensajes.getString("etiqueta.fechaDevolucion"));
+
+        btnRegistrarPrest.setText(mensajes.getString("boton.registrar"));
+        btnCancelar.setText(mensajes.getString("boton.cancelar"));
+
+        spnFechaPrest.setEditor(new JSpinner.DateEditor(spnFechaPrest, mensajes.getString("formato.fechaCorta")));
+        spnFechaDev.setEditor(new JSpinner.DateEditor(spnFechaDev, mensajes.getString("formato.fechaCorta")));
+
+        jLabel2.setText("");
+
+        revalidate();
+        repaint();
     }
 
     public JButton getBtnCancelar() {
@@ -69,9 +96,9 @@ public class RegistrarPrestamoView extends javax.swing.JInternalFrame {
     public void setSpnFechaPrest(JSpinner spnFechaPrest) {
         this.spnFechaPrest = spnFechaPrest;
     }
-    
-    public void mostrarInformacion(String prestamo_registrado_correctamente) {
-        JOptionPane.showMessageDialog(this, prestamo_registrado_correctamente);
+
+    public void mostrarInformacion(String mensaje) {
+        JOptionPane.showMessageDialog(this, mensaje, mensajes.getString("dialogo.titulo.informacion"), JOptionPane.INFORMATION_MESSAGE);
     }
 
     /**
@@ -271,6 +298,5 @@ public class RegistrarPrestamoView extends javax.swing.JInternalFrame {
     private javax.swing.JSpinner spnFechaDev;
     private javax.swing.JSpinner spnFechaPrest;
     // End of variables declaration//GEN-END:variables
-
 
 }

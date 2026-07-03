@@ -4,6 +4,8 @@
  */
 package ec.edu.ups.biblioteca.views;
 
+import java.util.Locale;
+import java.util.ResourceBundle;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
@@ -15,11 +17,36 @@ import javax.swing.JTextField;
  */
 public class DevolucionLibroView extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form DevolucionLibroView
-     */
+    private Locale localizacion;
+    private ResourceBundle mensajes;
+
     public DevolucionLibroView() {
         initComponents();
+        cambiarIdioma(new Locale("es", "EC"));
+    }
+
+    public void cambiarIdioma(Locale locale) {
+        localizacion = locale;
+        mensajes = ResourceBundle.getBundle("ec.edu.ups.biblioteca.i18n.mensajes", localizacion);
+
+        setTitle(mensajes.getString("ventana.devolucionLibro"));
+
+        jLabel1.setText(mensajes.getString("encabezado.devolucionLibro"));
+        lblISBN.setText(mensajes.getString("etiqueta.isbn"));
+        lblTitulo.setText(mensajes.getString("etiqueta.titulo"));
+        lblPrestar.setText(mensajes.getString("etiqueta.prestadoA"));
+        lblFechaVen.setText(mensajes.getString("etiqueta.fechaVencimiento"));
+
+        btnBuscar.setText(mensajes.getString("boton.buscar"));
+        btnDevolver.setText(mensajes.getString("boton.devolver"));
+        btnCancelar.setText(mensajes.getString("boton.cancelar"));
+
+        spnFechaVen.setEditor(new JSpinner.DateEditor(spnFechaVen, mensajes.getString("formato.fechaCorta")));
+
+        jLabel2.setText("");
+
+        revalidate();
+        repaint();
     }
 
     public JButton getBtnBuscar() {
@@ -78,12 +105,12 @@ public class DevolucionLibroView extends javax.swing.JInternalFrame {
         this.txtTitulo = txtTitulo;
     }
 
-    public void mostrarInformacion(String libro_devuelto_correctamente) {
-        JOptionPane.showMessageDialog(this, libro_devuelto_correctamente);
+    public void mostrarInformacion(String mensaje) {
+        JOptionPane.showMessageDialog(this, mensaje, mensajes.getString("dialogo.titulo.informacion"), JOptionPane.INFORMATION_MESSAGE);
     }
 
     public int confirmarEliminacion() {
-        return JOptionPane.showConfirmDialog(this,"¿Desea devolver este libro?", "Confirmar devolución",JOptionPane.YES_NO_OPTION);
+        return JOptionPane.showConfirmDialog(this, mensajes.getString("confirmacion.devolverLibro"), mensajes.getString("dialogo.titulo.devolucion"), JOptionPane.YES_NO_OPTION);
     }
 
     /**

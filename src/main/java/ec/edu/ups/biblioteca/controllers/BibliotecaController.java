@@ -23,6 +23,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
 
 /**
@@ -42,6 +44,8 @@ public class BibliotecaController {
     private ListaLibrosView listaLibrosView;
     private ListaUsuariosView listaUsuariosView;
     private ListaPrestamosView listaPrestamosView;
+    private Locale localizacion;
+    private ResourceBundle mensajes;
 
     public BibliotecaController(RegistrarAutorView registrarAutorView, RegistrarLibroView registrarLibroView, RegistrarUsuarioView registrarUsuarioView, ActualizarRegistrarLibroView actualizarRegistroLibroView, ActualizarRegistrarUsuarioView actualizarRegistroUsuarioView, RegistrarPrestamoView registrarPrestamoView, DevolucionLibroView devolucionLibroView, ListaLibrosView listaLibrosView, ListaUsuariosView listaUsuariosView, ListaPrestamosView listaPrestamosView, BibliotecaDAO bibliotecaDAO) {
         this.registrarAutorView = registrarAutorView;
@@ -56,6 +60,8 @@ public class BibliotecaController {
         this.listaPrestamosView = listaPrestamosView;
 
         this.bibliotecaDAO = bibliotecaDAO;
+
+        cambiarIdioma(new Locale("es", "EC"));
 
         configurarEventosRegistrarAutor();
         configurarEventosRegistrarLibro();
@@ -73,6 +79,14 @@ public class BibliotecaController {
         cargarComboCategorias();
     }
 
+    public void cambiarIdioma(Locale locale) {
+        localizacion = locale;
+        mensajes = ResourceBundle.getBundle("ec.edu.ups.biblioteca.i18n.mensajes", localizacion);
+
+        cargarComboCategorias();
+        listarPrestamos();
+    }
+
     private void refrescarListas() {
         listarLibros();
         listarUsuarios();
@@ -86,16 +100,16 @@ public class BibliotecaController {
         String correo = registrarAutorView.getTxtCorreo().getText().trim();
 
         if (nombre.isEmpty()) {
-            registrarAutorView.mostrarInformacion("El nombre del autor es obligatorio.");
+            registrarAutorView.mostrarInformacion(mensajes.getString("mensaje.autor.nombreObligatorio"));
             return;
         }
 
         if (bibliotecaDAO.buscarAutor(nombre) != null) {
             bibliotecaDAO.actualizarAutor(new Autor(nombre, nacionalidad, correo));
-            registrarAutorView.mostrarInformacion("Autor actualizado correctamente.");
+            registrarAutorView.mostrarInformacion(mensajes.getString("mensaje.autor.actualizado"));
         } else {
             bibliotecaDAO.crearAutor(new Autor(nombre, nacionalidad, correo));
-            registrarAutorView.mostrarInformacion("Autor registrado correctamente.");
+            registrarAutorView.mostrarInformacion(mensajes.getString("mensaje.autor.registrado"));
         }
 
         registrarAutorView.getTxtNombre().setText("");
@@ -129,34 +143,38 @@ public class BibliotecaController {
     public void registrarLibro() {
         String isbn = registrarLibroView.getTxtISBN().getText().trim();
         String titulo = registrarLibroView.getTxtTitulo().getText().trim();
-        String nombreAutorSel = (String) registrarLibroView.getCmbAutor().getSelectedItem();
-        Autor autor = bibliotecaDAO.buscarAutor(nombreAutorSel);
+        String nombreAutorSeleccionado = (String) registrarLibroView.getCmbAutor().getSelectedItem();
+        Autor autor = bibliotecaDAO.buscarAutor(nombreAutorSeleccionado);
         String categoria = (String) registrarLibroView.getCmbCategoria().getSelectedItem();
 
         if (isbn.isEmpty() || titulo.isEmpty()) {
-            registrarLibroView.mostrarInformacion("El ISBN y el título son obligatorios.");
+            registrarLibroView.mostrarInformacion(mensajes.getString("mensaje.libro.camposObligatorios"));
             return;
         }
+
         if (autor == null) {
-            registrarLibroView.mostrarInformacion("Seleccione un autor (registre uno primero si no hay ninguno).");
+            registrarLibroView.mostrarInformacion(mensajes.getString("mensaje.libro.seleccionarAutor"));
             return;
         }
+
         if (bibliotecaDAO.buscarLibro(isbn) != null) {
-            registrarLibroView.mostrarInformacion("Ya existe un libro registrado con ese ISBN.");
+            registrarLibroView.mostrarInformacion(mensajes.getString("mensaje.libro.isbnExistente"));
             return;
         }
 
         int anio;
+
         try {
             anio = Integer.parseInt(registrarLibroView.getTxtAnio().getText().trim());
         } catch (NumberFormatException ex) {
-            registrarLibroView.mostrarInformacion("El año debe ser un número válido.");
+            registrarLibroView.mostrarInformacion(mensajes.getString("mensaje.libro.anioInvalido"));
             return;
         }
 
         Libro libro = new Libro(isbn, titulo, autor, anio, categoria);
         bibliotecaDAO.crearLibro(libro);
-        registrarLibroView.mostrarInformacion("Libro registrado correctamente.");
+
+        registrarLibroView.mostrarInformacion(mensajes.getString("mensaje.libro.registrado"));
     }
 
     public void configurarEventosRegistrarLibro() {
@@ -187,17 +205,23 @@ public class BibliotecaController {
         String correo = registrarUsuarioView.getTxtCorreo().getText().trim();
 
         if (cedula.isEmpty() || nombre.isEmpty()) {
-            registrarUsuarioView.mostrarInformacion("La cédula y el nombre son obligatorios.");
+            registrarUsuarioView.mostrarInformacion(mensajes.getString("mensaje.usuario.camposObligatorios"));
             return;
         }
+
         if (bibliotecaDAO.buscarUsuario(cedula) != null) {
-            registrarUsuarioView.mostrarInformacion("Ya existe un usuario registrado con esa cédula.");
+            registrarUsuarioView.mostrarInformacion(mensajes.getString("mensaje.usuario.cedulaExistente"));
             return;
         }
 
         Usuario usuario = new Usuario(cedula, nombre, correo);
         bibliotecaDAO.crearUsuario(usuario);
-        registrarUsuarioView.mostrarInformacion("Usuario registrado correctamente.");
+
+        registrarUsuarioView.mostrarInformacion(mensajes.getString("mensaje.usuario.registrado"));
+
+        registrarUsuarioView.getTxtCedula().setText("");
+        registrarUsuarioView.getTxtNombre().setText("");
+        registrarUsuarioView.getTxtCorreo().setText("");
     }
 
     public void configurarEventosRegistrarUsuario() {
@@ -222,47 +246,50 @@ public class BibliotecaController {
     }
 
     public void buscarLibroActualizar() {
-        String isbn = actualizarRegistroLibroView.getTxtISBN().getText();
+        String isbn = actualizarRegistroLibroView.getTxtISBN().getText().trim();
         Libro libro = bibliotecaDAO.buscarLibro(isbn);
+
         if (libro != null) {
             actualizarRegistroLibroView.getTxtTitulo().setText(libro.getTitulo());
             actualizarRegistroLibroView.getCmbAutores().setSelectedItem(libro.getAutor().getNombre());
             actualizarRegistroLibroView.getTxtAnio().setText(String.valueOf(libro.getAnio()));
             actualizarRegistroLibroView.getCmbCategoria().setSelectedItem(libro.getCategoria());
         } else {
-            actualizarRegistroLibroView.mostrarInformacion("Libro no encontrado.");
+            actualizarRegistroLibroView.mostrarInformacion(mensajes.getString("mensaje.libro.noEncontrado"));
         }
     }
 
     public void actualizarLibro() {
         String isbn = actualizarRegistroLibroView.getTxtISBN().getText().trim();
+
         if (bibliotecaDAO.buscarLibro(isbn) == null) {
-            actualizarRegistroLibroView.mostrarInformacion("Primero busque un libro existente por ISBN.");
+            actualizarRegistroLibroView.mostrarInformacion(mensajes.getString("mensaje.libro.buscarPrimero"));
             return;
         }
 
         String titulo = actualizarRegistroLibroView.getTxtTitulo().getText().trim();
-        String nombreAutorSel = (String) actualizarRegistroLibroView.getCmbAutores().getSelectedItem();
-        Autor autor = bibliotecaDAO.buscarAutor(nombreAutorSel);
+        String nombreAutorSeleccionado = (String) actualizarRegistroLibroView.getCmbAutores().getSelectedItem();
+        Autor autor = bibliotecaDAO.buscarAutor(nombreAutorSeleccionado);
         String categoria = (String) actualizarRegistroLibroView.getCmbCategoria().getSelectedItem();
 
         if (titulo.isEmpty() || autor == null) {
-            actualizarRegistroLibroView.mostrarInformacion("Complete el título y seleccione un autor.");
+            actualizarRegistroLibroView.mostrarInformacion(mensajes.getString("mensaje.libro.completarActualizacion"));
             return;
         }
 
         int anio;
+
         try {
             anio = Integer.parseInt(actualizarRegistroLibroView.getTxtAnio().getText().trim());
         } catch (NumberFormatException ex) {
-            actualizarRegistroLibroView.mostrarInformacion("El año debe ser un número válido.");
+            actualizarRegistroLibroView.mostrarInformacion(mensajes.getString("mensaje.libro.anioInvalido"));
             return;
         }
 
         Libro libro = new Libro(isbn, titulo, autor, anio, categoria);
-
         bibliotecaDAO.actualizarLibro(libro);
-        actualizarRegistroLibroView.mostrarInformacion("Libro actualizado correctamente.");
+
+        actualizarRegistroLibroView.mostrarInformacion(mensajes.getString("mensaje.libro.actualizado"));
         limpiarActualizarLibro();
     }
 
@@ -293,32 +320,37 @@ public class BibliotecaController {
     }
 
     public void buscarUsuarioActualizar() {
-        String cedula = actualizarRegistroUsuarioView.getTxtCedula().getText();
+        String cedula = actualizarRegistroUsuarioView.getTxtCedula().getText().trim();
         Usuario usuario = bibliotecaDAO.buscarUsuario(cedula);
+
         if (usuario != null) {
             actualizarRegistroUsuarioView.getTxtNombre().setText(usuario.getNombre());
             actualizarRegistroUsuarioView.getTxtCorreo().setText(usuario.getCorreo());
         } else {
-            actualizarRegistroUsuarioView.mostrarInformacion("Usuario no encontrado.");
+            actualizarRegistroUsuarioView.mostrarInformacion(mensajes.getString("mensaje.usuario.noEncontrado"));
         }
     }
 
     public void actualizarUsuario() {
         String cedula = actualizarRegistroUsuarioView.getTxtCedula().getText().trim();
+
         if (bibliotecaDAO.buscarUsuario(cedula) == null) {
-            actualizarRegistroUsuarioView.mostrarInformacion("Primero busque un usuario existente por cédula.");
+            actualizarRegistroUsuarioView.mostrarInformacion(mensajes.getString("mensaje.usuario.buscarPrimero"));
             return;
         }
+
         String nombre = actualizarRegistroUsuarioView.getTxtNombre().getText().trim();
         String correo = actualizarRegistroUsuarioView.getTxtCorreo().getText().trim();
+
         if (nombre.isEmpty()) {
-            actualizarRegistroUsuarioView.mostrarInformacion("El nombre es obligatorio.");
+            actualizarRegistroUsuarioView.mostrarInformacion(mensajes.getString("mensaje.usuario.nombreObligatorio"));
             return;
         }
-        Usuario usuario = new Usuario(cedula, nombre, correo);
 
+        Usuario usuario = new Usuario(cedula, nombre, correo);
         bibliotecaDAO.actualizarUsuario(usuario);
-        actualizarRegistroUsuarioView.mostrarInformacion("Usuario actualizado correctamente.");
+
+        actualizarRegistroUsuarioView.mostrarInformacion(mensajes.getString("mensaje.usuario.actualizado"));
         limpiarActualizarUsuario();
     }
 
@@ -365,13 +397,14 @@ public class BibliotecaController {
     }
 
     public void registrarPrestamo() {
-        String nombreUsuarioSel = (String) registrarPrestamoView.getCmbUsuarios().getSelectedItem();
-        String tituloLibroSel = (String) registrarPrestamoView.getCmbLibros().getSelectedItem();
-        Usuario usuario = buscarUsuarioPorNombre(nombreUsuarioSel);
-        Libro libro = buscarLibroPorTitulo(tituloLibroSel);
+        String nombreUsuarioSeleccionado = (String) registrarPrestamoView.getCmbUsuarios().getSelectedItem();
+        String tituloLibroSeleccionado = (String) registrarPrestamoView.getCmbLibros().getSelectedItem();
+
+        Usuario usuario = buscarUsuarioPorNombre(nombreUsuarioSeleccionado);
+        Libro libro = buscarLibroPorTitulo(tituloLibroSeleccionado);
 
         if (usuario == null || libro == null) {
-            registrarPrestamoView.mostrarInformacion("Seleccione un usuario y un libro válidos.");
+            registrarPrestamoView.mostrarInformacion(mensajes.getString("mensaje.prestamo.seleccionInvalida"));
             return;
         }
 
@@ -379,23 +412,24 @@ public class BibliotecaController {
         Date fechaDevolucion = (Date) registrarPrestamoView.getSpnFechaDev().getValue();
 
         if (fechaPrestamo == null || fechaDevolucion == null) {
-            registrarPrestamoView.mostrarInformacion("Debe indicar la fecha de préstamo y de devolución.");
+            registrarPrestamoView.mostrarInformacion(mensajes.getString("mensaje.prestamo.fechasObligatorias"));
             return;
         }
+
         if (!fechaDevolucion.after(fechaPrestamo)) {
-            registrarPrestamoView.mostrarInformacion("La fecha de devolución debe ser posterior a la fecha de préstamo.");
+            registrarPrestamoView.mostrarInformacion(mensajes.getString("mensaje.prestamo.fechaInvalida"));
             return;
         }
 
         if (bibliotecaDAO.buscarPrestamo(libro.getIsbn()) != null) {
-            registrarPrestamoView.mostrarInformacion("Ese libro ya está prestado y aún no ha sido devuelto.");
+            registrarPrestamoView.mostrarInformacion(mensajes.getString("mensaje.prestamo.libroPrestado"));
             return;
         }
 
         Prestamo prestamo = new Prestamo(usuario, libro, fechaPrestamo, fechaDevolucion, false);
-
         bibliotecaDAO.crearPrestamo(prestamo);
-        registrarPrestamoView.mostrarInformacion("Préstamo registrado correctamente.");
+
+        registrarPrestamoView.mostrarInformacion(mensajes.getString("mensaje.prestamo.registrado"));
     }
 
     public void configurarEventosRegistrarPrestamo() {
@@ -411,21 +445,30 @@ public class BibliotecaController {
     public void buscarPrestamoDevolucion() {
         String isbn = devolucionLibroView.getTxtISBN().getText().trim();
         Prestamo prestamo = bibliotecaDAO.buscarPrestamo(isbn);
+
         if (prestamo != null) {
             devolucionLibroView.getTxtTitulo().setText(prestamo.getLibro().getTitulo());
             devolucionLibroView.getTxtPrestado().setText(prestamo.getUsuario().getNombre());
             devolucionLibroView.getSpnFechaVen().setValue(prestamo.getFechaDevolucion());
         } else {
-            devolucionLibroView.mostrarInformacion("No existe un préstamo activo para ese libro.");
+            devolucionLibroView.getTxtTitulo().setText("");
+            devolucionLibroView.getTxtPrestado().setText("");
+            devolucionLibroView.mostrarInformacion(mensajes.getString("mensaje.prestamo.noActivo"));
         }
     }
 
     public void devolverLibro() {
         String isbn = devolucionLibroView.getTxtISBN().getText().trim();
+        Prestamo prestamo = bibliotecaDAO.buscarPrestamo(isbn);
         int opcion = devolucionLibroView.confirmarEliminacion();
+
+        if (prestamo == null) {
+            devolucionLibroView.mostrarInformacion(mensajes.getString("mensaje.prestamo.noActivo"));
+            return;
+        }
         if (opcion == JOptionPane.YES_OPTION) {
             bibliotecaDAO.devolverLibro(isbn);
-            devolucionLibroView.mostrarInformacion("Libro devuelto correctamente.");
+            devolucionLibroView.mostrarInformacion(mensajes.getString("mensaje.prestamo.devuelto"));
             limpiarDevolucion();
         }
     }
@@ -455,19 +498,24 @@ public class BibliotecaController {
 
     public void eliminarLibroSeleccionado() {
         int fila = listaLibrosView.getTblLibros().getSelectedRow();
+
         if (fila == -1) {
-            listaLibrosView.mostrarInformacion("Seleccione un libro de la tabla.");
+            listaLibrosView.mostrarInformacion(mensajes.getString("mensaje.libro.seleccionarTabla"));
             return;
         }
+
         String isbn = (String) listaLibrosView.getTblLibros().getValueAt(fila, 0);
         int opcion = listaLibrosView.confirmarEliminacion();
+
         if (opcion == JOptionPane.YES_OPTION) {
             boolean eliminado = bibliotecaDAO.eliminarLibro(isbn);
+
             if (eliminado) {
-                listaLibrosView.mostrarInformacion("Libro eliminado correctamente.");
+                listaLibrosView.mostrarInformacion(mensajes.getString("mensaje.libro.eliminado"));
             } else {
-                listaLibrosView.mostrarInformacion("No se puede eliminar: el libro tiene un préstamo activo.");
+                listaLibrosView.mostrarInformacion(mensajes.getString("mensaje.libro.noEliminarPrestamo"));
             }
+
             cargarComboLibros();
             refrescarListas();
         }
@@ -475,19 +523,24 @@ public class BibliotecaController {
 
     public void eliminarUsuarioSeleccionado() {
         int fila = listaUsuariosView.getTblUsuarios().getSelectedRow();
+
         if (fila == -1) {
-            listaUsuariosView.mostrarInformacion("Seleccione un usuario de la tabla.");
+            listaUsuariosView.mostrarInformacion(mensajes.getString("mensaje.usuario.seleccionarTabla"));
             return;
         }
+
         String cedula = (String) listaUsuariosView.getTblUsuarios().getValueAt(fila, 0);
         int opcion = listaUsuariosView.confirmarEliminacion();
+
         if (opcion == JOptionPane.YES_OPTION) {
             boolean eliminado = bibliotecaDAO.eliminarUsuario(cedula);
+
             if (eliminado) {
-                listaUsuariosView.mostrarInformacion("Usuario eliminado correctamente.");
+                listaUsuariosView.mostrarInformacion(mensajes.getString("mensaje.usuario.eliminado"));
             } else {
-                listaUsuariosView.mostrarInformacion("No se puede eliminar: el usuario tiene un préstamo activo.");
+                listaUsuariosView.mostrarInformacion(mensajes.getString("mensaje.usuario.noEliminarPrestamo"));
             }
+
             cargarComboUsuarios();
             refrescarListas();
         }
@@ -562,34 +615,37 @@ public class BibliotecaController {
 
     public void eliminarPrestamoSeleccionado() {
         int fila = listaPrestamosView.getTblPrestamos().getSelectedRow();
+
         if (fila == -1) {
-            listaPrestamosView.mostrarInformacion("Seleccione un préstamo.");
+            listaPrestamosView.mostrarInformacion(mensajes.getString("mensaje.prestamo.seleccionarTabla"));
             return;
         }
-        String titulo = (String) listaPrestamosView.getTblPrestamos().getValueAt(fila, 0);
 
+        String titulo = String.valueOf(listaPrestamosView.getTblPrestamos().getValueAt(fila, 0));
         Libro libro = buscarLibroPorTitulo(titulo);
 
         if (libro == null) {
             return;
         }
+
         int opcion = listaPrestamosView.confirmarEliminacion();
+
         if (opcion == JOptionPane.YES_OPTION) {
             bibliotecaDAO.devolverLibro(libro.getIsbn());
-            listaPrestamosView.mostrarInformacion("Préstamo eliminado correctamente.");
+            listaPrestamosView.mostrarInformacion(mensajes.getString("mensaje.prestamo.eliminado"));
             refrescarListas();
         }
     }
 
     public void cargarComboCategorias() {
         String[] categorias = {
-            "Novela",
-            "Ciencia",
-            "Historia",
-            "Tecnología",
-            "Programación",
-            "Matemáticas",
-            "Infantil"
+            mensajes.getString("categoria.novela"),
+            mensajes.getString("categoria.ciencia"),
+            mensajes.getString("categoria.historia"),
+            mensajes.getString("categoria.tecnologia"),
+            mensajes.getString("categoria.programacion"),
+            mensajes.getString("categoria.matematicas"),
+            mensajes.getString("categoria.infantil")
         };
 
         registrarLibroView.getCmbCategoria().removeAllItems();

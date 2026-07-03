@@ -7,6 +7,8 @@ package ec.edu.ups.biblioteca.views;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 /**
  *
@@ -14,11 +16,30 @@ import javax.swing.JTextField;
  */
 public class RegistrarAutorView extends javax.swing.JInternalFrame {
 
+    private Locale localizacion;
+    private ResourceBundle mensajes;
+
     /**
      * Creates new form RegistrarAutorView
      */
     public RegistrarAutorView() {
         initComponents();
+        cambiarIdioma(new Locale("es", "EC"));
+    }
+
+    public void cambiarIdioma(Locale locale) {
+        localizacion = locale;
+        mensajes = ResourceBundle.getBundle("ec.edu.ups.biblioteca.i18n.mensajes", localizacion);
+
+        setTitle(mensajes.getString("ventana.registrarAutor"));
+        jLabel1.setText(mensajes.getString("encabezado.registrarAutor"));
+        lblNombre.setText(mensajes.getString("etiqueta.nombre"));
+        jLabel2.setText(mensajes.getString("etiqueta.nacionalidad"));
+        jLabel3.setText(mensajes.getString("etiqueta.correo"));
+        btnAceptar.setText(mensajes.getString("boton.aceptar"));
+        btnCancelar.setText(mensajes.getString("boton.cancelar"));
+
+        jLabel4.setText("");
     }
 
     public JTextField getTxtCorreo() {
@@ -37,8 +58,6 @@ public class RegistrarAutorView extends javax.swing.JInternalFrame {
         this.txtNacionalidad = txtNacionalidad;
     }
 
-    
-    
     public JButton getBtnAceptar() {
         return btnAceptar;
     }
@@ -62,9 +81,9 @@ public class RegistrarAutorView extends javax.swing.JInternalFrame {
     public void setTxtNombre(JTextField txtNombre) {
         this.txtNombre = txtNombre;
     }
-    
-    public void mostrarInformacion(String autor_registrado_correctamente) {
-        JOptionPane.showMessageDialog(this, autor_registrado_correctamente);
+
+    public void mostrarInformacion(String mensaje) {
+        JOptionPane.showMessageDialog(this, mensaje, mensajes.getString("dialogo.titulo.informacion"), JOptionPane.INFORMATION_MESSAGE);
     }
 
     /**

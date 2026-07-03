@@ -5,6 +5,8 @@
 package ec.edu.ups.biblioteca.views;
 
 import ec.edu.ups.biblioteca.models.Autor;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
@@ -16,11 +18,37 @@ import javax.swing.JTextField;
  */
 public class RegistrarLibroView extends javax.swing.JInternalFrame {
 
+    private Locale localizacion;
+    private ResourceBundle mensajes;
+
     /**
      * Creates new form RegistrarLibroView
      */
     public RegistrarLibroView() {
         initComponents();
+        cambiarIdioma(new Locale("es", "EC"));
+    }
+
+    public void cambiarIdioma(Locale locale) {
+        localizacion = locale;
+        mensajes = ResourceBundle.getBundle("ec.edu.ups.biblioteca.i18n.mensajes", localizacion);
+
+        setTitle(mensajes.getString("ventana.registrarLibro"));
+
+        jLabel1.setText(mensajes.getString("encabezado.registrarLibro"));
+        lblISBN.setText(mensajes.getString("etiqueta.isbn"));
+        lblTitulo.setText(mensajes.getString("etiqueta.titulo"));
+        lblAutor.setText(mensajes.getString("etiqueta.autor"));
+        lblAnio.setText(mensajes.getString("etiqueta.anio"));
+        lblCategoria.setText(mensajes.getString("etiqueta.categoria"));
+
+        btnAceptar.setText(mensajes.getString("boton.aceptar"));
+        btnCancelar.setText(mensajes.getString("boton.cancelar"));
+
+        jLabel2.setText("");
+
+        revalidate();
+        repaint();
     }
 
     public JButton getBtnAceptar() {
@@ -63,7 +91,6 @@ public class RegistrarLibroView extends javax.swing.JInternalFrame {
         this.cmbCategoria = cmbCategoria;
     }
 
-
     public JTextField getTxtISBN() {
         return txtISBN;
     }
@@ -80,8 +107,8 @@ public class RegistrarLibroView extends javax.swing.JInternalFrame {
         this.txtTitulo = txtTitulo;
     }
 
-    public void mostrarInformacion(String libro_registrado_correctamente) {
-        JOptionPane.showMessageDialog(this, libro_registrado_correctamente);
+    public void mostrarInformacion(String mensaje) {
+        JOptionPane.showMessageDialog(this, mensaje, mensajes.getString("dialogo.titulo.informacion"), JOptionPane.INFORMATION_MESSAGE);
     }
 
     /**

@@ -6,6 +6,8 @@ package ec.edu.ups.biblioteca.views;
 
 import ec.edu.ups.biblioteca.models.Libro;
 import java.util.List;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -18,13 +20,30 @@ import javax.swing.table.DefaultTableModel;
 public class ListaLibrosView extends javax.swing.JInternalFrame {
 
     private DefaultTableModel modelo;
+    private Locale localizacion;
+    private ResourceBundle mensajes;
 
-    /**
-     * Creates new form ListaLibrosView
-     */
     public ListaLibrosView() {
         initComponents();
+        cambiarIdioma(new Locale("es", "EC"));
+    }
+
+    public void cambiarIdioma(Locale locale) {
+        localizacion = locale;
+        mensajes = ResourceBundle.getBundle("ec.edu.ups.biblioteca.i18n.mensajes", localizacion);
+
+        setTitle(mensajes.getString("ventana.listaLibros"));
+
+        jLabel1.setText(mensajes.getString("encabezado.gestionLibros"));
+
+        btnListarLibros.setText(mensajes.getString("boton.listar"));
+        btnEliminar.setText(mensajes.getString("boton.eliminar"));
+        btnCancelar1.setText(mensajes.getString("boton.cancelar"));
+
         configurarTabla();
+
+        revalidate();
+        repaint();
     }
 
     public JButton getBtnCancelar() {
@@ -52,15 +71,30 @@ public class ListaLibrosView extends javax.swing.JInternalFrame {
     }
 
     public void configurarTabla() {
-        modelo = new DefaultTableModel();
+        if (modelo == null) {
+            modelo = new DefaultTableModel();
+            tblLibros.setModel(modelo);
+        }
 
-        modelo.addColumn("ISBN");
-        modelo.addColumn("Título");
-        modelo.addColumn("Autor");
-        modelo.addColumn("Año");
-        modelo.addColumn("Categoría");
+        Object[] columnas = {
+            mensajes.getString("tabla.columna.isbn"),
+            mensajes.getString("tabla.columna.titulo"),
+            mensajes.getString("tabla.columna.autor"),
+            mensajes.getString("tabla.columna.anio"),
+            mensajes.getString("tabla.columna.categoria")
+        };
 
-        tblLibros.setModel(modelo);
+        modelo.setColumnIdentifiers(columnas);
+
+        tblLibros.getColumnModel().getColumn(0).setHeaderValue(mensajes.getString("tabla.columna.isbn"));
+        tblLibros.getColumnModel().getColumn(1).setHeaderValue(mensajes.getString("tabla.columna.titulo"));
+        tblLibros.getColumnModel().getColumn(2).setHeaderValue(mensajes.getString("tabla.columna.autor"));
+        tblLibros.getColumnModel().getColumn(3).setHeaderValue(mensajes.getString("tabla.columna.anio"));
+        tblLibros.getColumnModel().getColumn(4).setHeaderValue(mensajes.getString("tabla.columna.categoria"));
+
+        tblLibros.getTableHeader().revalidate();
+        tblLibros.getTableHeader().repaint();
+        tblLibros.repaint();
     }
 
     public void cargarDatos(List<Libro> libros) {
@@ -87,11 +121,11 @@ public class ListaLibrosView extends javax.swing.JInternalFrame {
     }
 
     public void mostrarInformacion(String mensaje) {
-        JOptionPane.showMessageDialog(this, mensaje);
+        JOptionPane.showMessageDialog(this, mensaje, mensajes.getString("dialogo.titulo.informacion"), JOptionPane.INFORMATION_MESSAGE);
     }
 
     public int confirmarEliminacion() {
-        return JOptionPane.showConfirmDialog(this, "¿Está seguro de eliminar el libro?", "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
+        return JOptionPane.showConfirmDialog(this, mensajes.getString("confirmacion.eliminarLibro"), mensajes.getString("dialogo.titulo.eliminacion"), JOptionPane.YES_NO_OPTION);
     }
 
     /**

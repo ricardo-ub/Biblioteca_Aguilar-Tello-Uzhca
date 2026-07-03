@@ -4,6 +4,8 @@
  */
 package ec.edu.ups.biblioteca.views;
 
+import java.util.Locale;
+import java.util.ResourceBundle;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -14,11 +16,32 @@ import javax.swing.JTextField;
  */
 public class RegistrarUsuarioView extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form RegistrarUsuarioView
-     */
+    private Locale localizacion;
+    private ResourceBundle mensajes;
+
     public RegistrarUsuarioView() {
         initComponents();
+        cambiarIdioma(new Locale("es", "EC"));
+    }
+
+    public void cambiarIdioma(Locale locale) {
+        localizacion = locale;
+        mensajes = ResourceBundle.getBundle("ec.edu.ups.biblioteca.i18n.mensajes", localizacion);
+
+        setTitle(mensajes.getString("ventana.registrarUsuario"));
+
+        jLabel1.setText(mensajes.getString("encabezado.registrarUsuario"));
+        lblCedula.setText(mensajes.getString("etiqueta.cedula"));
+        lblNombre.setText(mensajes.getString("etiqueta.nombre"));
+        lblCorreo.setText(mensajes.getString("etiqueta.correo"));
+
+        btnRegistUsu.setText(mensajes.getString("boton.registrar"));
+        btnCancelar.setText(mensajes.getString("boton.cancelar"));
+
+        jLabel2.setText("");
+
+        revalidate();
+        repaint();
     }
 
     public JButton getBtnCancelar() {
@@ -61,10 +84,10 @@ public class RegistrarUsuarioView extends javax.swing.JInternalFrame {
         this.txtNombre = txtNombre;
     }
 
-    public void mostrarInformacion(String usuario_registrado_correctamente) {
-        JOptionPane.showMessageDialog(this, usuario_registrado_correctamente);
+    public void mostrarInformacion(String mensaje) {
+        JOptionPane.showMessageDialog(this, mensaje, mensajes.getString("dialogo.titulo.informacion"), JOptionPane.INFORMATION_MESSAGE);
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
