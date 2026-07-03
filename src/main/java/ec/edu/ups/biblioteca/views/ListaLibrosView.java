@@ -105,9 +105,9 @@ public class ListaLibrosView extends javax.swing.JInternalFrame {
 
         jPanel16 = new javax.swing.JPanel();
         jPanel17 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblLibros = new javax.swing.JTable();
-        jSeparator1 = new javax.swing.JSeparator();
         btnListarLibros = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         btnEliminar = new javax.swing.JButton();
@@ -119,13 +119,18 @@ public class ListaLibrosView extends javax.swing.JInternalFrame {
         setResizable(true);
         setTitle("Lista Libros");
 
-        jPanel16.setBackground(new java.awt.Color(29, 30, 32));
+        jPanel16.setBackground(new java.awt.Color(35, 30, 25));
         jPanel16.setLayout(new java.awt.GridBagLayout());
 
-        jPanel17.setBackground(new java.awt.Color(29, 30, 32));
+        jPanel17.setBackground(new java.awt.Color(35, 30, 25));
 
-        tblLibros.setBackground(new java.awt.Color(29, 30, 32));
-        tblLibros.setForeground(new java.awt.Color(235, 235, 235));
+        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/biblioteca/images/Adobe Express - file.png"))); // NOI18N
+
+        tblLibros.setBackground(new java.awt.Color(35, 30, 25));
+        tblLibros.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
+        tblLibros.setForeground(new java.awt.Color(218, 204, 184));
         tblLibros.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -139,11 +144,9 @@ public class ListaLibrosView extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(tblLibros);
 
-        jSeparator1.setBackground(new java.awt.Color(85, 85, 85));
-
-        btnListarLibros.setBackground(new java.awt.Color(33, 150, 243));
-        btnListarLibros.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnListarLibros.setForeground(new java.awt.Color(235, 235, 235));
+        btnListarLibros.setBackground(new java.awt.Color(209, 161, 95));
+        btnListarLibros.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
+        btnListarLibros.setForeground(new java.awt.Color(35, 30, 25));
         btnListarLibros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/biblioteca/images/controlar (2).png"))); // NOI18N
         btnListarLibros.setText("Listar");
         btnListarLibros.setBorderPainted(false);
@@ -151,16 +154,16 @@ public class ListaLibrosView extends javax.swing.JInternalFrame {
         btnListarLibros.setIconTextGap(10);
         btnListarLibros.addActionListener(this::btnListarLibrosActionPerformed);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(74, 144, 226));
+        jLabel1.setFont(new java.awt.Font("Serif", 0, 30)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(218, 204, 184));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/biblioteca/images/documento (1).png"))); // NOI18N
         jLabel1.setText("Gestión de Libros");
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
         jLabel1.setIconTextGap(8);
 
-        btnEliminar.setBackground(new java.awt.Color(80, 80, 80));
-        btnEliminar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnEliminar.setForeground(new java.awt.Color(235, 235, 235));
+        btnEliminar.setBackground(new java.awt.Color(51, 40, 28));
+        btnEliminar.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
+        btnEliminar.setForeground(new java.awt.Color(218, 204, 184));
         btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/biblioteca/images/deshacer.png"))); // NOI18N
         btnEliminar.setText("Eliminar");
         btnEliminar.setBorderPainted(false);
@@ -168,9 +171,9 @@ public class ListaLibrosView extends javax.swing.JInternalFrame {
         btnEliminar.setIconTextGap(8);
         btnEliminar.addActionListener(this::btnEliminarActionPerformed);
 
-        btnCancelar1.setBackground(new java.awt.Color(80, 80, 80));
-        btnCancelar1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnCancelar1.setForeground(new java.awt.Color(235, 235, 235));
+        btnCancelar1.setBackground(new java.awt.Color(51, 40, 28));
+        btnCancelar1.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
+        btnCancelar1.setForeground(new java.awt.Color(218, 204, 184));
         btnCancelar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/biblioteca/images/deshacer.png"))); // NOI18N
         btnCancelar1.setText("Cancelar");
         btnCancelar1.setBorderPainted(false);
@@ -193,21 +196,21 @@ public class ListaLibrosView extends javax.swing.JInternalFrame {
                             .addComponent(btnListarLibros)
                             .addComponent(btnCancelar1)))
                     .addGroup(jPanel17Layout.createSequentialGroup()
-                        .addGap(108, 108, 108)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(54, 54, 54)
+                        .addComponent(jLabel2))
                     .addGroup(jPanel17Layout.createSequentialGroup()
-                        .addGap(187, 187, 187)
+                        .addGap(117, 117, 117)
                         .addComponent(jLabel1)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel17Layout.setVerticalGroup(
             jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel17Layout.createSequentialGroup()
-                .addGap(10, 10, 10)
+                .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel17Layout.createSequentialGroup()
                         .addGap(77, 77, 77)
@@ -245,10 +248,10 @@ public class ListaLibrosView extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnListarLibros;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel17;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable tblLibros;
     // End of variables declaration//GEN-END:variables
 }

@@ -77,7 +77,6 @@ public class RegistrarUsuarioView extends javax.swing.JInternalFrame {
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         txtCedula = new javax.swing.JTextField();
-        jSeparator1 = new javax.swing.JSeparator();
         btnRegistUsu = new javax.swing.JButton();
         txtCorreo = new javax.swing.JTextField();
         lblCedula = new javax.swing.JLabel();
@@ -86,6 +85,7 @@ public class RegistrarUsuarioView extends javax.swing.JInternalFrame {
         txtNombre = new javax.swing.JTextField();
         btnCancelar = new javax.swing.JButton();
         lblNombre = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setClosable(true);
         setIconifiable(true);
@@ -93,25 +93,22 @@ public class RegistrarUsuarioView extends javax.swing.JInternalFrame {
         setResizable(true);
         setTitle("Registro de Usuario");
 
-        jPanel2.setBackground(new java.awt.Color(29, 30, 32));
+        jPanel2.setBackground(new java.awt.Color(35, 30, 25));
         jPanel2.setMaximumSize(new java.awt.Dimension(0, 0));
         jPanel2.setLayout(new java.awt.GridBagLayout());
-        getContentPane().add(jPanel2, java.awt.BorderLayout.LINE_END);
 
-        jPanel3.setBackground(new java.awt.Color(29, 30, 32));
+        jPanel3.setBackground(new java.awt.Color(35, 30, 25));
         jPanel3.setMaximumSize(new java.awt.Dimension(0, 0));
 
-        txtCedula.setBackground(new java.awt.Color(60, 60, 60));
-        txtCedula.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtCedula.setForeground(new java.awt.Color(235, 235, 235));
+        txtCedula.setBackground(new java.awt.Color(18, 19, 17));
+        txtCedula.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
+        txtCedula.setForeground(new java.awt.Color(218, 204, 184));
         txtCedula.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(80, 80, 80)));
         txtCedula.addActionListener(this::txtCedulaActionPerformed);
 
-        jSeparator1.setBackground(new java.awt.Color(85, 85, 85));
-
-        btnRegistUsu.setBackground(new java.awt.Color(33, 150, 243));
-        btnRegistUsu.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnRegistUsu.setForeground(new java.awt.Color(235, 235, 235));
+        btnRegistUsu.setBackground(new java.awt.Color(209, 161, 95));
+        btnRegistUsu.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
+        btnRegistUsu.setForeground(new java.awt.Color(35, 30, 25));
         btnRegistUsu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/biblioteca/images/controlar (2).png"))); // NOI18N
         btnRegistUsu.setText("Registrar");
         btnRegistUsu.setBorderPainted(false);
@@ -119,36 +116,36 @@ public class RegistrarUsuarioView extends javax.swing.JInternalFrame {
         btnRegistUsu.setIconTextGap(10);
         btnRegistUsu.addActionListener(this::btnRegistUsuActionPerformed);
 
-        txtCorreo.setBackground(new java.awt.Color(60, 60, 60));
-        txtCorreo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtCorreo.setForeground(new java.awt.Color(235, 235, 235));
+        txtCorreo.setBackground(new java.awt.Color(18, 19, 17));
+        txtCorreo.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
+        txtCorreo.setForeground(new java.awt.Color(218, 204, 184));
         txtCorreo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(80, 80, 80)));
 
         lblCedula.setBackground(java.awt.Color.white);
-        lblCedula.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblCedula.setForeground(new java.awt.Color(235, 235, 235));
+        lblCedula.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
+        lblCedula.setForeground(new java.awt.Color(218, 204, 184));
         lblCedula.setText("Cédula:");
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(74, 144, 226));
+        jLabel1.setFont(new java.awt.Font("Serif", 0, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(218, 204, 184));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/biblioteca/images/circulo-de-usuario (1).png"))); // NOI18N
         jLabel1.setText("Registrar Usuario");
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
         jLabel1.setIconTextGap(8);
 
         lblCorreo.setBackground(java.awt.Color.white);
-        lblCorreo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblCorreo.setForeground(new java.awt.Color(235, 235, 235));
+        lblCorreo.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
+        lblCorreo.setForeground(new java.awt.Color(218, 204, 184));
         lblCorreo.setText("Correo:");
 
-        txtNombre.setBackground(new java.awt.Color(60, 60, 60));
-        txtNombre.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtNombre.setForeground(new java.awt.Color(235, 235, 235));
+        txtNombre.setBackground(new java.awt.Color(18, 19, 17));
+        txtNombre.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
+        txtNombre.setForeground(new java.awt.Color(218, 204, 184));
         txtNombre.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(80, 80, 80)));
 
-        btnCancelar.setBackground(new java.awt.Color(80, 80, 80));
-        btnCancelar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnCancelar.setForeground(new java.awt.Color(235, 235, 235));
+        btnCancelar.setBackground(new java.awt.Color(51, 40, 28));
+        btnCancelar.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
+        btnCancelar.setForeground(new java.awt.Color(218, 204, 184));
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/biblioteca/images/deshacer.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
         btnCancelar.setBorderPainted(false);
@@ -157,23 +154,22 @@ public class RegistrarUsuarioView extends javax.swing.JInternalFrame {
         btnCancelar.addActionListener(this::btnCancelarActionPerformed);
 
         lblNombre.setBackground(java.awt.Color.white);
-        lblNombre.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblNombre.setForeground(new java.awt.Color(235, 235, 235));
+        lblNombre.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
+        lblNombre.setForeground(new java.awt.Color(218, 204, 184));
         lblNombre.setText("Nombre:");
+
+        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/biblioteca/images/Adobe Express - file.png"))); // NOI18N
+        jLabel2.setText("dwdw");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(87, 87, 87)
-                                .addComponent(jLabel1))))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(43, 43, 43)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -190,17 +186,22 @@ public class RegistrarUsuarioView extends javax.swing.JInternalFrame {
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(btnRegistUsu)
                                 .addGap(61, 61, 61)
-                                .addComponent(btnCancelar)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(btnCancelar)))
+                        .addGap(36, 36, 36)))
+                .addContainerGap(19, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(33, 33, 33))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(4, 4, 4)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCedula)
                     .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -212,25 +213,27 @@ public class RegistrarUsuarioView extends javax.swing.JInternalFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCorreo)
                     .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(34, 34, 34)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRegistUsu)
                     .addComponent(btnCancelar))
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel3, java.awt.BorderLayout.PAGE_START);
+        jPanel2.add(jPanel3, new java.awt.GridBagConstraints());
+
+        getContentPane().add(jPanel2, java.awt.BorderLayout.LINE_END);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnRegistUsuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistUsuActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnRegistUsuActionPerformed
-
     private void txtCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCedulaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCedulaActionPerformed
+
+    private void btnRegistUsuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistUsuActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnRegistUsuActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         dispose();
@@ -241,9 +244,9 @@ public class RegistrarUsuarioView extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnRegistUsu;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblCedula;
     private javax.swing.JLabel lblCorreo;
     private javax.swing.JLabel lblNombre;

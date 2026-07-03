@@ -113,16 +113,17 @@ public class RegistrarLibroView extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setIconifiable(true);
-        setMaximizable(true);
         setResizable(true);
         setTitle("Registrar Libro");
-        setPreferredSize(new java.awt.Dimension(550, 420));
+        setAutoscrolls(true);
+        setPreferredSize(new java.awt.Dimension(480, 600));
 
         jPanel1.setBackground(new java.awt.Color(35, 30, 25));
         jPanel1.setPreferredSize(new java.awt.Dimension(363, 488));
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
         jPanel2.setBackground(new java.awt.Color(35, 30, 25));
+        jPanel2.setAutoscrolls(true);
 
         jLabel1.setBackground(new java.awt.Color(218, 204, 184));
         jLabel1.setFont(new java.awt.Font("Serif", 0, 36)); // NOI18N
@@ -139,7 +140,6 @@ public class RegistrarLibroView extends javax.swing.JInternalFrame {
         cmbAutor.setBackground(new java.awt.Color(18, 19, 17));
         cmbAutor.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
         cmbAutor.setForeground(new java.awt.Color(218, 204, 184));
-        cmbAutor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cmbAutor.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 40, 28)));
 
         lblAnio.setBackground(new java.awt.Color(218, 204, 184));
@@ -155,6 +155,7 @@ public class RegistrarLibroView extends javax.swing.JInternalFrame {
 
         btnAceptar.setBackground(new java.awt.Color(209, 161, 95));
         btnAceptar.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
+        btnAceptar.setForeground(new java.awt.Color(18, 19, 17));
         btnAceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/biblioteca/images/controlar (2).png"))); // NOI18N
         btnAceptar.setText("Aceptar");
         btnAceptar.setBorderPainted(false);

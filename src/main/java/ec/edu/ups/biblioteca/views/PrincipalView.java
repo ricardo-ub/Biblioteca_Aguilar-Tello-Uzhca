@@ -55,6 +55,27 @@ public class PrincipalView extends javax.swing.JFrame {
         prestamoMenu.setBorder(espaciado);
         gestionMenu.setBorder(espaciado);
 
+        javax.swing.JPanel panelTitulo = new javax.swing.JPanel() {
+            @Override
+            protected void paintComponent(java.awt.Graphics g) {
+                g.setColor(new java.awt.Color(20, 20, 20, 150));
+                g.fillRect(0, 0, getWidth(), getHeight());
+            }
+        };
+        panelTitulo.setLayout(null);
+        panelTitulo.setOpaque(false);
+        panelTitulo.setBounds(20, 0, 800, 150);
+        desktopPane.add(panelTitulo, 0);
+
+        // Sacamos los labels del título del desktopPane y los metemos dentro
+        // del panelTitulo, con las mismas coordenadas de antes pero relativas al panel.
+        desktopPane.remove(jLabel1);
+        desktopPane.remove(jLabel2);
+        desktopPane.remove(jLabel3);
+        panelTitulo.add(jLabel3);
+        panelTitulo.add(jLabel1);
+        panelTitulo.add(jLabel2);
+
     }
 
     /**
@@ -67,14 +88,14 @@ public class PrincipalView extends javax.swing.JFrame {
     private void initComponents() {
 
         desktopPane = new ec.edu.ups.biblioteca.views.EscritorioFondo();
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar() {
             @Override
             protected void paintComponent(java.awt.Graphics g) {
                 // El color 30, 30, 30 es el gris oscuro y 180 es el nivel de cristal ahumado
-                g.setColor(new java.awt.Color(30, 30, 30, 160));
+                g.setColor(new java.awt.Color(30, 30, 30, 180));
                 g.fillRect(0, 0, getWidth(), getHeight());
                 super.paintComponent(g);
             }
@@ -97,18 +118,18 @@ public class PrincipalView extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1024, 720));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setFont(new java.awt.Font("Georgia", 1, 48)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(234, 224, 200));
+        jLabel2.setText("Aguilar-Tello-Uzhca");
+        desktopPane.add(jLabel2);
+        jLabel2.setBounds(160, 50, 530, 62);
+
+        jLabel1.setFont(new java.awt.Font("Georgia", 1, 48)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(229, 184, 11));
         jLabel1.setText("BIBLIOTECA");
         jLabel1.setIconTextGap(8);
         desktopPane.add(jLabel1);
-        jLabel1.setBounds(160, 20, 290, 50);
-
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Aguilar-Tello-Uzhca");
-        desktopPane.add(jLabel2);
-        jLabel2.setBounds(160, 70, 480, 64);
+        jLabel1.setBounds(160, 10, 340, 50);
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/biblioteca/images/biblioteca-publica (2).png"))); // NOI18N
         desktopPane.add(jLabel3);
@@ -122,6 +143,8 @@ public class PrincipalView extends javax.swing.JFrame {
         menuBar.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         menuBar.setMargin(new java.awt.Insets(5, 5, 10, 10));
 
+        libroMenu.setBackground(new java.awt.Color(234, 224, 200));
+        libroMenu.setForeground(new java.awt.Color(234, 224, 200));
         libroMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/biblioteca/images/libro-marcador.png"))); // NOI18N
         libroMenu.setMnemonic('f');
         libroMenu.setText("Libros");
@@ -130,12 +153,14 @@ public class PrincipalView extends javax.swing.JFrame {
         libroMenu.setMargin(new java.awt.Insets(25, 0, 25, 0));
 
         registrarAutorLibMenuItem.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        registrarAutorLibMenuItem.setForeground(new java.awt.Color(234, 224, 200));
         registrarAutorLibMenuItem.setText("Registrar Autor");
         registrarAutorLibMenuItem.addActionListener(this::registrarAutorLibMenuItemActionPerformed);
         libroMenu.add(registrarAutorLibMenuItem);
 
         registrarLibMenuItem.setBackground(new java.awt.Color(40, 40, 40));
         registrarLibMenuItem.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        registrarLibMenuItem.setForeground(new java.awt.Color(234, 224, 200));
         registrarLibMenuItem.setMnemonic('o');
         registrarLibMenuItem.setText("Registrar Libro");
         registrarLibMenuItem.setMargin(new java.awt.Insets(5, 10, 5, 10));
@@ -144,6 +169,7 @@ public class PrincipalView extends javax.swing.JFrame {
 
         actualizarLibMenuItem.setBackground(new java.awt.Color(40, 40, 40));
         actualizarLibMenuItem.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        actualizarLibMenuItem.setForeground(new java.awt.Color(234, 224, 200));
         actualizarLibMenuItem.setMnemonic('s');
         actualizarLibMenuItem.setText("Actualizar Libros");
         actualizarLibMenuItem.setMargin(new java.awt.Insets(5, 10, 5, 10));
@@ -152,6 +178,7 @@ public class PrincipalView extends javax.swing.JFrame {
 
         devolverLibMenuItem.setBackground(new java.awt.Color(40, 40, 40));
         devolverLibMenuItem.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        devolverLibMenuItem.setForeground(new java.awt.Color(234, 224, 200));
         devolverLibMenuItem.setMnemonic('a');
         devolverLibMenuItem.setText("Devolver Libro");
         devolverLibMenuItem.setMargin(new java.awt.Insets(5, 10, 5, 10));
@@ -160,6 +187,7 @@ public class PrincipalView extends javax.swing.JFrame {
 
         menuBar.add(libroMenu);
 
+        usuarioMenu.setForeground(new java.awt.Color(234, 224, 200));
         usuarioMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/biblioteca/images/agregar-usuario (1).png"))); // NOI18N
         usuarioMenu.setText("Usuarios");
         usuarioMenu.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
@@ -168,6 +196,7 @@ public class PrincipalView extends javax.swing.JFrame {
 
         registrarUsuMenuItem.setBackground(new java.awt.Color(40, 40, 40));
         registrarUsuMenuItem.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        registrarUsuMenuItem.setForeground(new java.awt.Color(234, 224, 200));
         registrarUsuMenuItem.setMnemonic('t');
         registrarUsuMenuItem.setText("Registrar Usuario");
         registrarUsuMenuItem.setMargin(new java.awt.Insets(5, 10, 5, 10));
@@ -176,6 +205,7 @@ public class PrincipalView extends javax.swing.JFrame {
 
         actualizarUsuMenuItem.setBackground(new java.awt.Color(40, 40, 40));
         actualizarUsuMenuItem.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        actualizarUsuMenuItem.setForeground(new java.awt.Color(234, 224, 200));
         actualizarUsuMenuItem.setMnemonic('y');
         actualizarUsuMenuItem.setText("Actualizar Usuario");
         actualizarUsuMenuItem.setMargin(new java.awt.Insets(5, 10, 5, 10));
@@ -184,6 +214,7 @@ public class PrincipalView extends javax.swing.JFrame {
 
         menuBar.add(usuarioMenu);
 
+        prestamoMenu.setForeground(new java.awt.Color(234, 224, 200));
         prestamoMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/biblioteca/images/pedir-prestado (1).png"))); // NOI18N
         prestamoMenu.setText("Prestamos");
         prestamoMenu.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
@@ -192,6 +223,7 @@ public class PrincipalView extends javax.swing.JFrame {
 
         prestamoMenuItem.setBackground(new java.awt.Color(40, 40, 40));
         prestamoMenuItem.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        prestamoMenuItem.setForeground(new java.awt.Color(234, 224, 200));
         prestamoMenuItem.setMnemonic('d');
         prestamoMenuItem.setText("Registrar Prestamo");
         prestamoMenuItem.setMargin(new java.awt.Insets(5, 10, 5, 10));
@@ -200,31 +232,35 @@ public class PrincipalView extends javax.swing.JFrame {
 
         menuBar.add(prestamoMenu);
 
+        gestionMenu.setForeground(new java.awt.Color(234, 224, 200));
         gestionMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/biblioteca/images/procesando-orden (1).png"))); // NOI18N
         gestionMenu.setMnemonic('f');
-        gestionMenu.setText("Gestionar");
+        gestionMenu.setText("Listados");
         gestionMenu.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         gestionMenu.setIconTextGap(14);
         gestionMenu.setMargin(new java.awt.Insets(25, 0, 25, 0));
 
         gestionLibrosMenuItem.setBackground(new java.awt.Color(40, 40, 40));
         gestionLibrosMenuItem.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        gestionLibrosMenuItem.setForeground(new java.awt.Color(234, 224, 200));
         gestionLibrosMenuItem.setMnemonic('o');
-        gestionLibrosMenuItem.setText("Gestionar Libros");
+        gestionLibrosMenuItem.setText("Listados de Libros");
         gestionLibrosMenuItem.setMargin(new java.awt.Insets(5, 10, 5, 10));
         gestionLibrosMenuItem.addActionListener(this::gestionLibrosMenuItemActionPerformed);
         gestionMenu.add(gestionLibrosMenuItem);
 
         gestionUsuMenuItem.setBackground(new java.awt.Color(40, 40, 40));
         gestionUsuMenuItem.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        gestionUsuMenuItem.setForeground(new java.awt.Color(234, 224, 200));
         gestionUsuMenuItem.setMnemonic('s');
-        gestionUsuMenuItem.setText("Gestionar Usuarios");
+        gestionUsuMenuItem.setText("Listrados de Usuarios");
         gestionUsuMenuItem.setMargin(new java.awt.Insets(5, 10, 5, 10));
         gestionUsuMenuItem.addActionListener(this::gestionUsuMenuItemActionPerformed);
         gestionMenu.add(gestionUsuMenuItem);
 
         gestionPrestamosMenuItem.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        gestionPrestamosMenuItem.setText("Gestionar Prestamos");
+        gestionPrestamosMenuItem.setForeground(new java.awt.Color(234, 224, 200));
+        gestionPrestamosMenuItem.setText("Listados de Prestamos");
         gestionPrestamosMenuItem.addActionListener(this::gestionPrestamosMenuItemActionPerformed);
         gestionMenu.add(gestionPrestamosMenuItem);
 

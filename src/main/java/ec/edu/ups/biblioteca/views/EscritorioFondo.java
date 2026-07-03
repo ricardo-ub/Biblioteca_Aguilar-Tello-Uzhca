@@ -19,7 +19,7 @@ public class EscritorioFondo extends JDesktopPane {
 
     public EscritorioFondo() {
         try {
-            imagen = new ImageIcon(getClass().getResource("/ec/edu/ups/biblioteca/images/Dark library background UI.png")).getImage();
+            imagen = new ImageIcon(getClass().getResource("/ec/edu/ups/biblioteca/images/Fondo JDesktop.png")).getImage();
         } catch (Exception e) {
             System.err.println("No se encontró la imagen de fondo.");
         }

@@ -79,7 +79,6 @@ public class RegistrarAutorView extends javax.swing.JInternalFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jSeparator1 = new javax.swing.JSeparator();
         btnAceptar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
@@ -89,6 +88,7 @@ public class RegistrarAutorView extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         txtNacionalidad = new javax.swing.JTextField();
         txtCorreo = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
 
         setClosable(true);
         setIconifiable(true);
@@ -96,16 +96,14 @@ public class RegistrarAutorView extends javax.swing.JInternalFrame {
         setResizable(true);
         setTitle("Registrar Autor");
 
-        jPanel1.setBackground(new java.awt.Color(29, 30, 32));
+        jPanel1.setBackground(new java.awt.Color(35, 30, 25));
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
-        jPanel2.setBackground(new java.awt.Color(29, 30, 32));
+        jPanel2.setBackground(new java.awt.Color(35, 30, 25));
 
-        jSeparator1.setBackground(new java.awt.Color(85, 85, 85));
-
-        btnAceptar.setBackground(new java.awt.Color(33, 150, 243));
-        btnAceptar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnAceptar.setForeground(new java.awt.Color(235, 235, 235));
+        btnAceptar.setBackground(new java.awt.Color(209, 161, 95));
+        btnAceptar.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
+        btnAceptar.setForeground(new java.awt.Color(51, 40, 28));
         btnAceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/biblioteca/images/controlar (2).png"))); // NOI18N
         btnAceptar.setText("Aceptar");
         btnAceptar.setBorderPainted(false);
@@ -113,19 +111,22 @@ public class RegistrarAutorView extends javax.swing.JInternalFrame {
         btnAceptar.setIconTextGap(10);
         btnAceptar.addActionListener(this::btnAceptarActionPerformed);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(74, 144, 226));
+        jLabel1.setFont(new java.awt.Font("Serif", 0, 30)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(218, 204, 184));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/biblioteca/images/circulo-de-usuario (1).png"))); // NOI18N
         jLabel1.setText("Registrar Autor");
-        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+        jLabel1.setIconTextGap(8);
 
-        txtNombre.setBackground(new java.awt.Color(60, 60, 60));
-        txtNombre.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtNombre.setForeground(new java.awt.Color(235, 235, 235));
+        txtNombre.setBackground(new java.awt.Color(18, 19, 17));
+        txtNombre.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
+        txtNombre.setForeground(new java.awt.Color(218, 204, 184));
         txtNombre.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(80, 80, 80)));
 
-        btnCancelar.setBackground(new java.awt.Color(80, 80, 80));
-        btnCancelar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnCancelar.setForeground(new java.awt.Color(235, 235, 235));
+        btnCancelar.setBackground(new java.awt.Color(51, 40, 28));
+        btnCancelar.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
+        btnCancelar.setForeground(new java.awt.Color(218, 204, 184));
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/biblioteca/images/deshacer.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
         btnCancelar.setBorderPainted(false);
@@ -134,65 +135,84 @@ public class RegistrarAutorView extends javax.swing.JInternalFrame {
         btnCancelar.addActionListener(this::btnCancelarActionPerformed);
 
         lblNombre.setBackground(java.awt.Color.white);
-        lblNombre.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblNombre.setForeground(new java.awt.Color(235, 235, 235));
+        lblNombre.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
+        lblNombre.setForeground(new java.awt.Color(218, 204, 184));
         lblNombre.setText("Nombre:");
 
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(218, 204, 184));
         jLabel2.setText("Nacionalidad:");
 
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(218, 204, 184));
         jLabel3.setText("Correo:");
+
+        txtNacionalidad.setBackground(new java.awt.Color(18, 19, 17));
+        txtNacionalidad.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
+        txtNacionalidad.setForeground(new java.awt.Color(218, 204, 184));
+        txtNacionalidad.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(80, 80, 80)));
+
+        txtCorreo.setBackground(new java.awt.Color(18, 19, 17));
+        txtCorreo.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
+        txtCorreo.setForeground(new java.awt.Color(218, 204, 184));
+        txtCorreo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(80, 80, 80)));
+
+        jLabel4.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/biblioteca/images/Adobe Express - file.png"))); // NOI18N
+        jLabel4.setText("dwdw");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(87, 87, 87)
-                        .addComponent(jLabel1))
+                        .addComponent(btnAceptar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnCancelar))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(btnAceptar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
-                                .addComponent(btnCancelar))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblNombre)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3))
-                                .addGap(60, 60, 60)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                                    .addComponent(txtNacionalidad)
-                                    .addComponent(txtCorreo)))))))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblNombre)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))
+                        .addGap(60, 60, 60)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtNacionalidad, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(68, 68, 68)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(4, 4, 4)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblNombre))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(txtNacionalidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblNombre))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(txtNacionalidad))
+                        .addGap(21, 21, 21)
+                        .addComponent(jLabel3))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(22, 22, 22)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAceptar)
                     .addComponent(btnCancelar))
@@ -226,9 +246,9 @@ public class RegistrarAutorView extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JTextField txtCorreo;
     private javax.swing.JTextField txtNacionalidad;

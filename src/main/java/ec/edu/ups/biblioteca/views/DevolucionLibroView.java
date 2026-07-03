@@ -99,7 +99,6 @@ public class DevolucionLibroView extends javax.swing.JInternalFrame {
         jPanel3 = new javax.swing.JPanel();
         lblFechaVen = new javax.swing.JLabel();
         txtISBN = new javax.swing.JTextField();
-        jSeparator1 = new javax.swing.JSeparator();
         btnDevolver = new javax.swing.JButton();
         lblISBN = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -110,6 +109,7 @@ public class DevolucionLibroView extends javax.swing.JInternalFrame {
         btnBuscar = new javax.swing.JButton();
         txtPrestado = new javax.swing.JTextField();
         spnFechaVen = new javax.swing.JSpinner();
+        jLabel2 = new javax.swing.JLabel();
 
         setClosable(true);
         setIconifiable(true);
@@ -117,27 +117,25 @@ public class DevolucionLibroView extends javax.swing.JInternalFrame {
         setResizable(true);
         setTitle("Devoluciones");
 
-        jPanel2.setBackground(new java.awt.Color(29, 30, 32));
+        jPanel2.setBackground(new java.awt.Color(35, 30, 25));
         jPanel2.setLayout(new java.awt.GridBagLayout());
 
-        jPanel3.setBackground(new java.awt.Color(29, 30, 32));
+        jPanel3.setBackground(new java.awt.Color(35, 30, 25));
 
         lblFechaVen.setBackground(java.awt.Color.white);
-        lblFechaVen.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblFechaVen.setForeground(new java.awt.Color(235, 235, 235));
+        lblFechaVen.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
+        lblFechaVen.setForeground(new java.awt.Color(218, 204, 184));
         lblFechaVen.setText("Fecha de Vencimiento:");
 
-        txtISBN.setBackground(new java.awt.Color(60, 60, 60));
-        txtISBN.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtISBN.setForeground(new java.awt.Color(235, 235, 235));
+        txtISBN.setBackground(new java.awt.Color(18, 19, 17));
+        txtISBN.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
+        txtISBN.setForeground(new java.awt.Color(218, 204, 184));
         txtISBN.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(80, 80, 80)));
         txtISBN.addActionListener(this::txtISBNActionPerformed);
 
-        jSeparator1.setBackground(new java.awt.Color(85, 85, 85));
-
-        btnDevolver.setBackground(new java.awt.Color(33, 150, 243));
-        btnDevolver.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnDevolver.setForeground(new java.awt.Color(235, 235, 235));
+        btnDevolver.setBackground(new java.awt.Color(209, 161, 95));
+        btnDevolver.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
+        btnDevolver.setForeground(new java.awt.Color(51, 40, 28));
         btnDevolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/biblioteca/images/controlar (2).png"))); // NOI18N
         btnDevolver.setText("Devolver");
         btnDevolver.setBorderPainted(false);
@@ -146,31 +144,31 @@ public class DevolucionLibroView extends javax.swing.JInternalFrame {
         btnDevolver.addActionListener(this::btnDevolverActionPerformed);
 
         lblISBN.setBackground(java.awt.Color.white);
-        lblISBN.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblISBN.setForeground(new java.awt.Color(235, 235, 235));
+        lblISBN.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
+        lblISBN.setForeground(new java.awt.Color(218, 204, 184));
         lblISBN.setText("ISBN:");
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(74, 144, 226));
+        jLabel1.setFont(new java.awt.Font("Serif", 0, 30)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(218, 204, 184));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/biblioteca/images/documento (1).png"))); // NOI18N
         jLabel1.setText("Devolución de Libro");
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
         jLabel1.setIconTextGap(8);
 
         lblPrestar.setBackground(java.awt.Color.white);
-        lblPrestar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblPrestar.setForeground(new java.awt.Color(235, 235, 235));
+        lblPrestar.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
+        lblPrestar.setForeground(new java.awt.Color(218, 204, 184));
         lblPrestar.setText("Prestado a:");
 
         txtTitulo.setEditable(false);
-        txtTitulo.setBackground(new java.awt.Color(60, 60, 60));
-        txtTitulo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtTitulo.setForeground(new java.awt.Color(235, 235, 235));
+        txtTitulo.setBackground(new java.awt.Color(18, 19, 17));
+        txtTitulo.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
+        txtTitulo.setForeground(new java.awt.Color(218, 204, 184));
         txtTitulo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(80, 80, 80)));
 
-        btnCancelar.setBackground(new java.awt.Color(80, 80, 80));
-        btnCancelar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnCancelar.setForeground(new java.awt.Color(235, 235, 235));
+        btnCancelar.setBackground(new java.awt.Color(51, 40, 28));
+        btnCancelar.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
+        btnCancelar.setForeground(new java.awt.Color(218, 204, 184));
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/biblioteca/images/deshacer.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
         btnCancelar.setBorderPainted(false);
@@ -179,35 +177,41 @@ public class DevolucionLibroView extends javax.swing.JInternalFrame {
         btnCancelar.addActionListener(this::btnCancelarActionPerformed);
 
         lblTitulo.setBackground(java.awt.Color.white);
-        lblTitulo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblTitulo.setForeground(new java.awt.Color(235, 235, 235));
+        lblTitulo.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
+        lblTitulo.setForeground(new java.awt.Color(218, 204, 184));
         lblTitulo.setText("Titulo:");
 
-        btnBuscar.setBackground(new java.awt.Color(80, 80, 80));
-        btnBuscar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnBuscar.setForeground(new java.awt.Color(235, 235, 235));
+        btnBuscar.setBackground(new java.awt.Color(51, 40, 28));
+        btnBuscar.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
+        btnBuscar.setForeground(new java.awt.Color(218, 204, 184));
         btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/biblioteca/images/busqueda.png"))); // NOI18N
         btnBuscar.setText("Buscar");
         btnBuscar.addActionListener(this::btnBuscarActionPerformed);
 
         txtPrestado.setEditable(false);
-        txtPrestado.setBackground(new java.awt.Color(60, 60, 60));
-        txtPrestado.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtPrestado.setForeground(new java.awt.Color(235, 235, 235));
+        txtPrestado.setBackground(new java.awt.Color(18, 19, 17));
+        txtPrestado.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
+        txtPrestado.setForeground(new java.awt.Color(218, 204, 184));
         txtPrestado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(80, 80, 80)));
 
+        spnFechaVen.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
         spnFechaVen.setModel(new javax.swing.SpinnerDateModel());
+        spnFechaVen.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(80, 80, 80)));
         spnFechaVen.setEditor(new javax.swing.JSpinner.DateEditor(spnFechaVen, "dd/MM/yyyy"));
+
+        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/biblioteca/images/Adobe Express - file.png"))); // NOI18N
+        jLabel2.setText("dwdw");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
+                        .addGap(30, 30, 30)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(56, 56, 56)
@@ -231,10 +235,12 @@ public class DevolucionLibroView extends javax.swing.JInternalFrame {
                                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                         .addComponent(spnFechaVen, javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(txtPrestado, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))))))
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(87, 87, 87)
-                        .addComponent(jLabel1)))
+                        .addGap(93, 93, 93)
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(65, 65, 65)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -242,8 +248,8 @@ public class DevolucionLibroView extends javax.swing.JInternalFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(4, 4, 4)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
@@ -286,13 +292,13 @@ public class DevolucionLibroView extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnDevolverActionPerformed
 
-    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-
-    }//GEN-LAST:event_btnBuscarActionPerformed
-
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -300,9 +306,9 @@ public class DevolucionLibroView extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnDevolver;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblFechaVen;
     private javax.swing.JLabel lblISBN;
     private javax.swing.JLabel lblPrestar;

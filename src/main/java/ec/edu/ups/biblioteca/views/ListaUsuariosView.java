@@ -102,11 +102,11 @@ public class ListaUsuariosView extends javax.swing.JInternalFrame {
         jPanel17 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblUsuarios = new javax.swing.JTable();
-        jSeparator1 = new javax.swing.JSeparator();
         btnListaUsu = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         btnCancelar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setClosable(true);
         setIconifiable(true);
@@ -114,19 +114,19 @@ public class ListaUsuariosView extends javax.swing.JInternalFrame {
         setResizable(true);
         setTitle("Gestionar Usuarios");
 
-        jPanel16.setBackground(new java.awt.Color(29, 30, 32));
+        jPanel16.setBackground(new java.awt.Color(35, 30, 25));
         jPanel16.setLayout(new java.awt.GridBagLayout());
 
-        jPanel17.setBackground(new java.awt.Color(29, 30, 32));
+        jPanel17.setBackground(new java.awt.Color(35, 30, 25));
 
-        jScrollPane1.setBackground(new java.awt.Color(29, 30, 32));
+        jScrollPane1.setBackground(new java.awt.Color(35, 30, 25));
         jScrollPane1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jScrollPane1.setForeground(new java.awt.Color(235, 235, 235));
-        jScrollPane1.setViewportView(tblUsuarios);
 
-        tblUsuarios.setBackground(new java.awt.Color(29, 30, 32));
+        tblUsuarios.setBackground(new java.awt.Color(35, 30, 25));
         tblUsuarios.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        tblUsuarios.setForeground(new java.awt.Color(235, 235, 235));
+        tblUsuarios.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
+        tblUsuarios.setForeground(new java.awt.Color(218, 204, 184));
         tblUsuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -138,15 +138,13 @@ public class ListaUsuariosView extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        tblUsuarios.setGridColor(new java.awt.Color(80, 80, 80));
-        tblUsuarios.setSelectionBackground(new java.awt.Color(33, 150, 243));
+        tblUsuarios.setGridColor(new java.awt.Color(51, 40, 28));
+        tblUsuarios.setSelectionBackground(new java.awt.Color(209, 161, 95));
         jScrollPane1.setViewportView(tblUsuarios);
 
-        jSeparator1.setBackground(new java.awt.Color(85, 85, 85));
-
-        btnListaUsu.setBackground(new java.awt.Color(33, 150, 243));
-        btnListaUsu.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnListaUsu.setForeground(new java.awt.Color(235, 235, 235));
+        btnListaUsu.setBackground(new java.awt.Color(209, 161, 95));
+        btnListaUsu.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
+        btnListaUsu.setForeground(new java.awt.Color(35, 30, 25));
         btnListaUsu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/biblioteca/images/controlar (2).png"))); // NOI18N
         btnListaUsu.setText("Listar");
         btnListaUsu.setBorderPainted(false);
@@ -154,16 +152,16 @@ public class ListaUsuariosView extends javax.swing.JInternalFrame {
         btnListaUsu.setIconTextGap(10);
         btnListaUsu.addActionListener(this::btnListaUsuActionPerformed);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(74, 144, 226));
+        jLabel1.setFont(new java.awt.Font("Serif", 0, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(218, 204, 184));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/biblioteca/images/documento (1).png"))); // NOI18N
         jLabel1.setText("Gestión de Usuarios");
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
         jLabel1.setIconTextGap(8);
 
-        btnCancelar.setBackground(new java.awt.Color(80, 80, 80));
-        btnCancelar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnCancelar.setForeground(new java.awt.Color(235, 235, 235));
+        btnCancelar.setBackground(new java.awt.Color(51, 40, 28));
+        btnCancelar.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
+        btnCancelar.setForeground(new java.awt.Color(218, 204, 184));
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/biblioteca/images/deshacer.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
         btnCancelar.setBorderPainted(false);
@@ -171,15 +169,20 @@ public class ListaUsuariosView extends javax.swing.JInternalFrame {
         btnCancelar.setIconTextGap(8);
         btnCancelar.addActionListener(this::btnCancelarActionPerformed);
 
-        btnEliminar.setBackground(new java.awt.Color(80, 80, 80));
-        btnEliminar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnEliminar.setForeground(new java.awt.Color(235, 235, 235));
+        btnEliminar.setBackground(new java.awt.Color(51, 40, 28));
+        btnEliminar.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
+        btnEliminar.setForeground(new java.awt.Color(218, 204, 184));
         btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/biblioteca/images/deshacer.png"))); // NOI18N
         btnEliminar.setText("Eliminar");
         btnEliminar.setBorderPainted(false);
         btnEliminar.setFocusPainted(false);
         btnEliminar.setIconTextGap(8);
         btnEliminar.addActionListener(this::btnEliminarActionPerformed);
+
+        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/biblioteca/images/Adobe Express - file.png"))); // NOI18N
+        jLabel2.setText("dwdw");
 
         javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
         jPanel17.setLayout(jPanel17Layout);
@@ -196,32 +199,29 @@ public class ListaUsuariosView extends javax.swing.JInternalFrame {
                             .addComponent(btnListaUsu)
                             .addComponent(btnEliminar)))
                     .addGroup(jPanel17Layout.createSequentialGroup()
-                        .addGap(108, 108, 108)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(54, 54, 54)
+                        .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel17Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(174, 174, 174))
         );
         jPanel17Layout.setVerticalGroup(
             jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel17Layout.createSequentialGroup()
-                .addGap(10, 10, 10)
+                .addContainerGap()
                 .addComponent(jLabel1)
+                .addGap(5, 5, 5)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel17Layout.createSequentialGroup()
-                        .addGap(89, 89, 89)
+                        .addGap(29, 29, 29)
                         .addComponent(btnListaUsu)
-                        .addGap(30, 30, 30)
+                        .addGap(31, 31, 31)
                         .addComponent(btnCancelar)
-                        .addGap(37, 37, 37)
+                        .addGap(31, 31, 31)
                         .addComponent(btnEliminar))
-                    .addGroup(jPanel17Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -250,10 +250,10 @@ public class ListaUsuariosView extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnListaUsu;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel17;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable tblUsuarios;
     // End of variables declaration//GEN-END:variables
 }
