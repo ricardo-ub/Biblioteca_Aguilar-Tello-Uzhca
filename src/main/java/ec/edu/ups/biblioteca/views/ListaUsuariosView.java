@@ -207,7 +207,7 @@ public class ListaUsuariosView extends javax.swing.JInternalFrame {
         btnEliminar.setBackground(new java.awt.Color(51, 40, 28));
         btnEliminar.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
         btnEliminar.setForeground(new java.awt.Color(218, 204, 184));
-        btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/biblioteca/images/deshacer.png"))); // NOI18N
+        btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/biblioteca/images/papelera-xmark.png"))); // NOI18N
         btnEliminar.setText("Eliminar");
         btnEliminar.setBorderPainted(false);
         btnEliminar.setFocusPainted(false);

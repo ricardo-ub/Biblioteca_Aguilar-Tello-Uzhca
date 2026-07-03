@@ -343,6 +343,7 @@ public class PrincipalView extends javax.swing.JFrame {
             registrarLibroView.setVisible(true);
             desktopPane.add(registrarLibroView);
         }
+        mostrarVentana(registrarLibroView);
     }//GEN-LAST:event_registrarLibMenuItemActionPerformed
 
     private void actualizarLibMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actualizarLibMenuItemActionPerformed
@@ -351,6 +352,7 @@ public class PrincipalView extends javax.swing.JFrame {
             actualizarRegistrarLibroView.setVisible(true);
             desktopPane.add(actualizarRegistrarLibroView);
         }
+        mostrarVentana(actualizarRegistrarLibroView);
     }//GEN-LAST:event_actualizarLibMenuItemActionPerformed
 
     private void devolverLibMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_devolverLibMenuItemActionPerformed
@@ -359,6 +361,7 @@ public class PrincipalView extends javax.swing.JFrame {
             devolucionLibroView.setVisible(true);
             desktopPane.add(devolucionLibroView);
         }
+        mostrarVentana(devolucionLibroView);
     }//GEN-LAST:event_devolverLibMenuItemActionPerformed
 
     private void registrarUsuMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarUsuMenuItemActionPerformed
@@ -367,6 +370,7 @@ public class PrincipalView extends javax.swing.JFrame {
             registrarUsuarioView.setVisible(true);
             desktopPane.add(registrarUsuarioView);
         }
+        mostrarVentana(registrarUsuarioView);
     }//GEN-LAST:event_registrarUsuMenuItemActionPerformed
 
     private void actualizarUsuMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actualizarUsuMenuItemActionPerformed
@@ -375,6 +379,7 @@ public class PrincipalView extends javax.swing.JFrame {
             actualizarRegistrarUsuarioView.setVisible(true);
             desktopPane.add(actualizarRegistrarUsuarioView);
         }
+        mostrarVentana(actualizarRegistrarUsuarioView);
     }//GEN-LAST:event_actualizarUsuMenuItemActionPerformed
 
     private void prestamoMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prestamoMenuItemActionPerformed
@@ -383,6 +388,7 @@ public class PrincipalView extends javax.swing.JFrame {
             registrarPrestamoView.setVisible(true);
             desktopPane.add(registrarPrestamoView);
         }
+        mostrarVentana(registrarPrestamoView);
     }//GEN-LAST:event_prestamoMenuItemActionPerformed
 
     private void gestionLibrosMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gestionLibrosMenuItemActionPerformed
@@ -391,6 +397,7 @@ public class PrincipalView extends javax.swing.JFrame {
             listaLibrosView.setVisible(true);
             desktopPane.add(listaLibrosView);
         }
+        mostrarVentana(listaLibrosView);
     }//GEN-LAST:event_gestionLibrosMenuItemActionPerformed
 
     private void gestionUsuMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gestionUsuMenuItemActionPerformed
@@ -399,6 +406,7 @@ public class PrincipalView extends javax.swing.JFrame {
             listaUsuariosView.setVisible(true);
             desktopPane.add(listaUsuariosView);
         }
+        mostrarVentana(listaUsuariosView);
     }//GEN-LAST:event_gestionUsuMenuItemActionPerformed
 
     private void gestionPrestamosMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gestionPrestamosMenuItemActionPerformed
@@ -414,6 +422,7 @@ public class PrincipalView extends javax.swing.JFrame {
             registrarAutorView.setVisible(true);
             desktopPane.add(registrarAutorView);
         }
+        mostrarVentana(registrarAutorView);
     }//GEN-LAST:event_registrarAutorLibMenuItemActionPerformed
 
     private void españolMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_españolMenuItemActionPerformed
@@ -463,6 +472,35 @@ public class PrincipalView extends javax.swing.JFrame {
                 new PrincipalView().setVisible(true);
             }
         });
+    }
+
+    private void centrarVentana(javax.swing.JInternalFrame ventana) {
+        int anchoEscritorio = desktopPane.getWidth();
+        int altoEscritorio = desktopPane.getHeight();
+        int anchoVentana = ventana.getWidth();
+        int altoVentana = ventana.getHeight();
+
+        int x = (anchoEscritorio - anchoVentana) / 2;
+        int y = (altoEscritorio - altoVentana) / 2;
+
+        if (x < 0) {
+            x = 0;
+        }
+        if (y < 0) {
+            y = 0;
+        }
+        ventana.setLocation(x, y);
+    }
+
+// Trae la ventana al frente, la centra y la deja seleccionada/activa.
+    private void mostrarVentana(javax.swing.JInternalFrame ventana) {
+        centrarVentana(ventana);
+        ventana.moveToFront();
+        try {
+            ventana.setSelected(true);
+        } catch (java.beans.PropertyVetoException e) {
+            // No pasa nada si no se puede seleccionar, seguimos igual.
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

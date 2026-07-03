@@ -218,7 +218,7 @@ public class ListaPrestamosView extends javax.swing.JInternalFrame {
         btnEliminar.setBackground(new java.awt.Color(51, 40, 28));
         btnEliminar.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
         btnEliminar.setForeground(new java.awt.Color(235, 235, 235));
-        btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/biblioteca/images/deshacer.png"))); // NOI18N
+        btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/biblioteca/images/papelera-xmark.png"))); // NOI18N
         btnEliminar.setText("Eliminar");
         btnEliminar.setBorderPainted(false);
         btnEliminar.setFocusPainted(false);
@@ -256,7 +256,7 @@ public class ListaPrestamosView extends javax.swing.JInternalFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(76, 76, 76)
                         .addComponent(jLabel1)))
-                .addContainerGap(151, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
