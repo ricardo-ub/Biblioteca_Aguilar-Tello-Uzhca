@@ -79,6 +79,7 @@ public class BibliotecaController {
         cargarComboCategorias();
     }
 
+    //Idioma
     public void cambiarIdioma(Locale locale) {
         localizacion = locale;
         mensajes = ResourceBundle.getBundle("ec.edu.ups.biblioteca.i18n.mensajes", localizacion);
@@ -86,37 +87,39 @@ public class BibliotecaController {
         cargarComboCategorias();
         listarPrestamos();
     }
-
+    
+    //Para que al entrar a la ventanas listas pueda ver al entrar
     private void refrescarListas() {
         listarLibros();
         listarUsuarios();
         listarPrestamos();
     }
+    
     //AUTOR
-
     public void registrarAutor() {
+        //Obtengo los atributos sin espacio con el trim
         String nombre = registrarAutorView.getTxtNombre().getText().trim();
         String nacionalidad = registrarAutorView.getTxtNacionalidad().getText().trim();
         String correo = registrarAutorView.getTxtCorreo().getText().trim();
 
-        if (nombre.isEmpty()) {
+        if (nombre.isEmpty()) {//Por si quiere registrar y no pone nombre de autor envia mensaje
             registrarAutorView.mostrarInformacion(mensajes.getString("mensaje.autor.nombreObligatorio"));
             return;
         }
-
+        //Para que el si esta vacio cree un autor y luego muestre un mensaje
         if (bibliotecaDAO.buscarAutor(nombre) != null) {
             bibliotecaDAO.actualizarAutor(new Autor(nombre, nacionalidad, correo));
             registrarAutorView.mostrarInformacion(mensajes.getString("mensaje.autor.actualizado"));
-        } else {
+        } else {//sino cree y muestra el mensaje actualizado
             bibliotecaDAO.crearAutor(new Autor(nombre, nacionalidad, correo));
             registrarAutorView.mostrarInformacion(mensajes.getString("mensaje.autor.registrado"));
         }
-
+        //Para borrar los txt luego de registrar al autor
         registrarAutorView.getTxtNombre().setText("");
         registrarAutorView.getTxtNacionalidad().setText("");
         registrarAutorView.getTxtCorreo().setText("");
     }
-
+    //Para el boton de aceptar con action para que ejecute el metodo
     public void configurarEventosRegistrarAutor() {
         registrarAutorView.getBtnAceptar().addActionListener(new ActionListener() {
             @Override
@@ -128,52 +131,57 @@ public class BibliotecaController {
         });
     }
 
-    public void cargarComboAutores() {
+    public void cargarComboAutores() {//Metodo para cargar los autores en los items del combo box
         registrarLibroView.getCmbAutor().removeAllItems();
         actualizarRegistroLibroView.getCmbAutores().removeAllItems();
-        List<Autor> autores = bibliotecaDAO.listarAutores();
+        List<Autor> autores = bibliotecaDAO.listarAutores();//Lista del DAO
 
-        for (Autor autor : autores) {
+        for (Autor autor : autores) {//For each para para ir metiendo en cada item
             registrarLibroView.getCmbAutor().addItem(autor.toString());
             actualizarRegistroLibroView.getCmbAutores().addItem(autor.toString());
         }
     }
 
     //LIBRO
-    public void registrarLibro() {
+    public void registrarLibro() {//Metodo para registrar el libro
+        //Obtengo los campos sin espacios
         String isbn = registrarLibroView.getTxtISBN().getText().trim();
         String titulo = registrarLibroView.getTxtTitulo().getText().trim();
-        String nombreAutorSeleccionado = (String) registrarLibroView.getCmbAutor().getSelectedItem();
+        String nombreAutorSeleccionado = (String) registrarLibroView.getCmbAutor().getSelectedItem();//Casting para convertir en string 
+        //el item del combo box autores
         Autor autor = bibliotecaDAO.buscarAutor(nombreAutorSeleccionado);
         String categoria = (String) registrarLibroView.getCmbCategoria().getSelectedItem();
-
-        if (isbn.isEmpty() || titulo.isEmpty()) {
+        //Control con mensajes por si acaso errores
+        if (isbn.isEmpty() || titulo.isEmpty()) {//Por si quiere registrar y no pone isbn ni titulo muestra un mensaje
             registrarLibroView.mostrarInformacion(mensajes.getString("mensaje.libro.camposObligatorios"));
             return;
         }
 
-        if (autor == null) {
+        if (autor == null) {//Autocompleta el autor creado por si no esta creado otro
             registrarLibroView.mostrarInformacion(mensajes.getString("mensaje.libro.seleccionarAutor"));
             return;
         }
 
-        if (bibliotecaDAO.buscarLibro(isbn) != null) {
+        if (bibliotecaDAO.buscarLibro(isbn) != null) {//Este mensaje por si el isbn ya existe, no puede crear
+            //con el mismo isbn pq es el codigo unico de libro
             registrarLibroView.mostrarInformacion(mensajes.getString("mensaje.libro.isbnExistente"));
             return;
         }
 
         int anio;
-
+        //try catch para validar errores en el año ingresado
         try {
-            anio = Integer.parseInt(registrarLibroView.getTxtAnio().getText().trim());
-        } catch (NumberFormatException ex) {
+            anio = Integer.parseInt(registrarLibroView.getTxtAnio().getText().trim());//Convierto a int
+        } catch (NumberFormatException ex) {//
             registrarLibroView.mostrarInformacion(mensajes.getString("mensaje.libro.anioInvalido"));
             return;
         }
-
+        
+        //Creo objeto libro con todo
         Libro libro = new Libro(isbn, titulo, autor, anio, categoria);
+        //Llamo al DAO del crear
         bibliotecaDAO.crearLibro(libro);
-
+       
         registrarLibroView.mostrarInformacion(mensajes.getString("mensaje.libro.registrado"));
     }
 
