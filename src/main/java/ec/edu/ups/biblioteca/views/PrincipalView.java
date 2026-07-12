@@ -5,8 +5,14 @@
 package ec.edu.ups.biblioteca.views;
 
 import ec.edu.ups.biblioteca.controllers.BibliotecaController;
-import ec.edu.ups.biblioteca.dao.BibliotecaDAO;
-import ec.edu.ups.biblioteca.dao.BibliotecaDAOMemoria;
+import ec.edu.ups.biblioteca.dao.AutorDAO;
+import ec.edu.ups.biblioteca.dao.AutorDAOMemoria;
+import ec.edu.ups.biblioteca.dao.LibroDAO;
+import ec.edu.ups.biblioteca.dao.LibroDAOMemoria;
+import ec.edu.ups.biblioteca.dao.PrestamoDAO;
+import ec.edu.ups.biblioteca.dao.PrestamoDAOMemoria;
+import ec.edu.ups.biblioteca.dao.UsuarioDAO;
+import ec.edu.ups.biblioteca.dao.UsuarioDAOMemoria;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -43,8 +49,11 @@ public class PrincipalView extends javax.swing.JFrame {
         listaUsuariosView = new ListaUsuariosView();
         listaPrestamosView = new ListaPrestamosView();
 
-        BibliotecaDAO bibliotecaDAO = new BibliotecaDAOMemoria();
-        bibliotecaController = new BibliotecaController(registrarAutorView, registrarLibroView, registrarUsuarioView, actualizarRegistrarLibroView, actualizarRegistrarUsuarioView, registrarPrestamoView, devolucionLibroView, listaLibrosView, listaUsuariosView, listaPrestamosView, bibliotecaDAO);
+        AutorDAO autorDAO = new AutorDAOMemoria();
+        LibroDAO libroDAO = new LibroDAOMemoria();
+        UsuarioDAO usuarioDAO = new UsuarioDAOMemoria();
+        PrestamoDAO prestamoDAO = new PrestamoDAOMemoria();
+        bibliotecaController = new BibliotecaController(registrarAutorView, registrarLibroView, registrarUsuarioView, actualizarRegistrarLibroView, actualizarRegistrarUsuarioView, registrarPrestamoView, devolucionLibroView, listaLibrosView, listaUsuariosView, listaPrestamosView, autorDAO, libroDAO, usuarioDAO, prestamoDAO);
 
         this.setJMenuBar(null);
 

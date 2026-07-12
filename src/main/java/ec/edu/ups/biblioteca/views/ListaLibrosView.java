@@ -70,7 +70,7 @@ public class ListaLibrosView extends javax.swing.JInternalFrame {
         this.btnEliminar = btnEliminar;
     }
 
-    public void configurarTabla() {
+     public void configurarTabla() {
         if (modelo == null) {
             modelo = new DefaultTableModel();
             tblLibros.setModel(modelo);
@@ -81,7 +81,8 @@ public class ListaLibrosView extends javax.swing.JInternalFrame {
             mensajes.getString("tabla.columna.titulo"),
             mensajes.getString("tabla.columna.autor"),
             mensajes.getString("tabla.columna.anio"),
-            mensajes.getString("tabla.columna.categoria")
+            mensajes.getString("tabla.columna.categoria"),
+            mensajes.getString("tabla.columna.disponible")
         };
 
         modelo.setColumnIdentifiers(columnas);
@@ -91,6 +92,7 @@ public class ListaLibrosView extends javax.swing.JInternalFrame {
         tblLibros.getColumnModel().getColumn(2).setHeaderValue(mensajes.getString("tabla.columna.autor"));
         tblLibros.getColumnModel().getColumn(3).setHeaderValue(mensajes.getString("tabla.columna.anio"));
         tblLibros.getColumnModel().getColumn(4).setHeaderValue(mensajes.getString("tabla.columna.categoria"));
+        tblLibros.getColumnModel().getColumn(5).setHeaderValue(mensajes.getString("tabla.columna.disponible"));
 
         tblLibros.getTableHeader().revalidate();
         tblLibros.getTableHeader().repaint();
@@ -101,12 +103,16 @@ public class ListaLibrosView extends javax.swing.JInternalFrame {
         limpiarTabla();
 
         for (Libro libro : libros) {
+            String disponible = libro.isDisponible()
+                    ? mensajes.getString("estado.si") : mensajes.getString("estado.no");
+
             Object[] fila = {
                 libro.getIsbn(),
                 libro.getTitulo(),
                 libro.getAutor().getNombre(),
                 libro.getAnio(),
-                libro.getCategoria()
+                libro.getCategoria(),
+                disponible
             };
             modelo.addRow(fila);
         }

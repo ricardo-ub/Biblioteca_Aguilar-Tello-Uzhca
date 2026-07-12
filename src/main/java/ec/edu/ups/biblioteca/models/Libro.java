@@ -17,16 +17,23 @@ public class Libro {
     private Autor autor;
     private int anio;
     private String categoria;
+    private boolean disponible;
 
     public Libro() {
+        this.disponible = true;
     }
 
     public Libro(String isbn, String titulo, Autor autor, int anio, String categoria) {
+        this(isbn, titulo, autor, anio, categoria, true);
+    }
+
+    public Libro(String isbn, String titulo, Autor autor, int anio, String categoria, boolean disponible) {
         this.isbn = isbn;
         this.titulo = titulo;
         this.autor = autor;
         this.anio = anio;
         this.categoria = categoria;
+        this.disponible = disponible;
     }
 
     public String getIsbn() {
@@ -67,6 +74,14 @@ public class Libro {
 
     public void setCategoria(String categoria) {
         this.categoria = categoria;
+    }
+
+    public boolean isDisponible() {
+        return disponible;
+    }
+
+    public void setDisponible(boolean disponible) {
+        this.disponible = disponible;
     }
 
     @Override
