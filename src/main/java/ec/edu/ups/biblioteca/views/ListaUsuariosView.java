@@ -147,7 +147,6 @@ public class ListaUsuariosView extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle("Gestionar Usuarios");
 
         jPanel16.setBackground(new java.awt.Color(35, 30, 25));
         jPanel16.setLayout(new java.awt.GridBagLayout());

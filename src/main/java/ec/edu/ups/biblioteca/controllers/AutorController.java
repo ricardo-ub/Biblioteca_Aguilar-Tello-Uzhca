@@ -5,6 +5,8 @@
 package ec.edu.ups.biblioteca.controllers;
 
 import ec.edu.ups.biblioteca.dao.AutorDAO;
+import ec.edu.ups.biblioteca.exceptions.BibliotecaExceptionPrincipal;
+import ec.edu.ups.biblioteca.exceptions.CampoObligatorioException;
 import ec.edu.ups.biblioteca.models.Autor;
 import ec.edu.ups.biblioteca.views.ActualizarRegistrarLibroView;
 import ec.edu.ups.biblioteca.views.RegistrarAutorView;
@@ -19,6 +21,7 @@ import java.util.ResourceBundle;
  * @author DELL
  */
 public class AutorController {
+
     private AutorDAO autorDAO;
     private RegistrarAutorView registrarAutorView;
     private RegistrarLibroView registrarLibroView;
@@ -48,14 +51,13 @@ public class AutorController {
         this.mensajes = mensajes;
     }
 
-    public void registrarAutor() {
+    public void registrarAutor() throws CampoObligatorioException {
         String nombre = registrarAutorView.getTxtNombre().getText().trim();
         String nacionalidad = registrarAutorView.getTxtNacionalidad().getText().trim();
         String correo = registrarAutorView.getTxtCorreo().getText().trim();
 
         if (nombre.isEmpty()) {
-            registrarAutorView.mostrarInformacion(mensajes.getString("mensaje.autor.nombreObligatorio"));
-            return;
+            throw new CampoObligatorioException(mensajes.getString("mensaje.autor.nombreObligatorio"));
         }
 
         if (autorDAO.buscarAutor(nombre) != null) {
@@ -75,9 +77,17 @@ public class AutorController {
         registrarAutorView.getBtnAceptar().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                registrarAutor();
-                cargarComboAutores();
-                refrescarListas.run();
+                try {
+                    registrarAutor();
+                    cargarComboAutores();
+                    refrescarListas.run();
+                } catch (BibliotecaExceptionPrincipal ex) {
+                    registrarAutorView.mostrarInformacion(ex.getMessage());
+
+                } finally {
+                    System.out.println("Registro de Autor finalizado.");
+                }
+
             }
         });
     }

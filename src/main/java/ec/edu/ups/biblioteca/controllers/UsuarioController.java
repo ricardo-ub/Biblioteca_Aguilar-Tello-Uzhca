@@ -6,6 +6,12 @@ package ec.edu.ups.biblioteca.controllers;
 
 import ec.edu.ups.biblioteca.dao.PrestamoDAO;
 import ec.edu.ups.biblioteca.dao.UsuarioDAO;
+import ec.edu.ups.biblioteca.exceptions.BibliotecaExceptionPrincipal;
+import ec.edu.ups.biblioteca.exceptions.BusquedaException;
+import ec.edu.ups.biblioteca.exceptions.CampoObligatorioException;
+import ec.edu.ups.biblioteca.exceptions.PrestamosException;
+import ec.edu.ups.biblioteca.exceptions.RegistroException;
+import ec.edu.ups.biblioteca.exceptions.SeleccionInvalidaException;
 import ec.edu.ups.biblioteca.models.Usuario;
 import ec.edu.ups.biblioteca.views.ActualizarRegistrarUsuarioView;
 import ec.edu.ups.biblioteca.views.ListaUsuariosView;
@@ -22,6 +28,7 @@ import javax.swing.JOptionPane;
  * @author DELL
  */
 public class UsuarioController {
+
     private UsuarioDAO usuarioDAO;
     private PrestamoDAO prestamoDAO;
     private RegistrarUsuarioView registrarUsuarioView;
@@ -59,19 +66,17 @@ public class UsuarioController {
     }
 
     //USUARIO
-    public void registrarUsuario() {
+    public void registrarUsuario() throws CampoObligatorioException, RegistroException {
         String cedula = registrarUsuarioView.getTxtCedula().getText().trim();
         String nombre = registrarUsuarioView.getTxtNombre().getText().trim();
         String correo = registrarUsuarioView.getTxtCorreo().getText().trim();
 
         if (cedula.isEmpty() || nombre.isEmpty()) {
-            registrarUsuarioView.mostrarInformacion(mensajes.getString("mensaje.usuario.camposObligatorios"));
-            return;
+            throw new CampoObligatorioException(mensajes.getString("mensaje.usuario.camposObligatorios"));
         }
 
         if (usuarioDAO.buscarUsuario(cedula) != null) {
-            registrarUsuarioView.mostrarInformacion(mensajes.getString("mensaje.usuario.cedulaExistente"));
-            return;
+            throw new RegistroException(mensajes.getString("mensaje.usuario.cedulaExistente"));
         }
 
         Usuario usuario = new Usuario(cedula, nombre, correo);
@@ -88,9 +93,15 @@ public class UsuarioController {
         registrarUsuarioView.getBtnRegistUsu().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                registrarUsuario();
-                cargarComboUsuarios();
-                refrescarListas.run();
+                try {
+                    registrarUsuario();
+                    cargarComboUsuarios();
+                    refrescarListas.run();
+                } catch (BibliotecaExceptionPrincipal ex) {
+                    registrarUsuarioView.mostrarInformacion(ex.getMessage());
+                } finally {
+                    System.out.println("Intento de registro de usuario finalizado.");
+                }
             }
         });
     }
@@ -105,32 +116,29 @@ public class UsuarioController {
         }
     }
 
-    public void buscarUsuarioActualizar() {
+    public void buscarUsuarioActualizar() throws BusquedaException {
         String cedula = actualizarRegistroUsuarioView.getTxtCedula().getText().trim();
         Usuario usuario = usuarioDAO.buscarUsuario(cedula);
 
         if (usuario != null) {
-            actualizarRegistroUsuarioView.getTxtNombre().setText(usuario.getNombre());
-            actualizarRegistroUsuarioView.getTxtCorreo().setText(usuario.getCorreo());
-        } else {
-            actualizarRegistroUsuarioView.mostrarInformacion(mensajes.getString("mensaje.usuario.noEncontrado"));
+            throw new BusquedaException(mensajes.getString("mensaje.usuario.noEncontrado"));
         }
+        actualizarRegistroUsuarioView.getTxtNombre().setText(usuario.getNombre());
+        actualizarRegistroUsuarioView.getTxtCorreo().setText(usuario.getCorreo());
     }
 
-    public void actualizarUsuario() {
+    public void actualizarUsuario() throws CampoObligatorioException, BusquedaException {
         String cedula = actualizarRegistroUsuarioView.getTxtCedula().getText().trim();
 
         if (usuarioDAO.buscarUsuario(cedula) == null) {
-            actualizarRegistroUsuarioView.mostrarInformacion(mensajes.getString("mensaje.usuario.buscarPrimero"));
-            return;
+            throw new BusquedaException(mensajes.getString("mensaje.usuario.buscarPrimero"));
         }
 
         String nombre = actualizarRegistroUsuarioView.getTxtNombre().getText().trim();
         String correo = actualizarRegistroUsuarioView.getTxtCorreo().getText().trim();
 
         if (nombre.isEmpty()) {
-            actualizarRegistroUsuarioView.mostrarInformacion(mensajes.getString("mensaje.usuario.nombreObligatorio"));
-            return;
+            throw new CampoObligatorioException(mensajes.getString("mensaje.usuario.nombreObligatorio"));
         }
 
         Usuario usuario = new Usuario(cedula, nombre, correo);
@@ -150,16 +158,28 @@ public class UsuarioController {
         actualizarRegistroUsuarioView.getBtnBuscar().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                buscarUsuarioActualizar();
+                try {
+                    buscarUsuarioActualizar();
+                } catch (BusquedaException ex) {
+                    actualizarRegistroUsuarioView.mostrarInformacion(ex.getMessage());
+                } finally {
+                    System.out.println("Búsqueda de usuario para actualizar finalizada.");
+                }
             }
         });
 
         actualizarRegistroUsuarioView.getBtnActualizar().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                actualizarUsuario();
-                cargarComboUsuarios();
-                refrescarListas.run();
+                try {
+                    actualizarUsuario();
+                    cargarComboUsuarios();
+                    refrescarListas.run();
+                } catch (BibliotecaExceptionPrincipal ex) {
+                    actualizarRegistroUsuarioView.mostrarInformacion(ex.getMessage());
+                } finally {
+                    System.out.println("Intento de actualización de usuario finalizado.");
+                }
             }
         });
     }
@@ -178,12 +198,11 @@ public class UsuarioController {
         listaUsuariosView.cargarDatos(usuarios);
     }
 
-    public void eliminarUsuarioSeleccionado() {
+    public void eliminarUsuarioSeleccionado() throws SeleccionInvalidaException, PrestamosException {
         int fila = listaUsuariosView.getTblUsuarios().getSelectedRow();
 
         if (fila == -1) {
-            listaUsuariosView.mostrarInformacion(mensajes.getString("mensaje.usuario.seleccionarTabla"));
-            return;
+            throw new SeleccionInvalidaException(mensajes.getString("mensaje.usuario.seleccionarTabla"));
         }
 
         String cedula = (String) listaUsuariosView.getTblUsuarios().getValueAt(fila, 0);
@@ -192,8 +211,7 @@ public class UsuarioController {
 
         if (opcion == JOptionPane.YES_OPTION) {
             if (usuario != null && prestamoDAO.tienePrestamoActivo(usuario)) {
-                listaUsuariosView.mostrarInformacion(mensajes.getString("mensaje.usuario.noEliminarPrestamo"));
-                return;
+                throw new PrestamosException(mensajes.getString("mensaje.usuario.noEliminarPrestamo"));
             }
 
             usuarioDAO.eliminarUsuario(cedula);
@@ -215,7 +233,13 @@ public class UsuarioController {
         listaUsuariosView.getBtnEliminar().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                eliminarUsuarioSeleccionado();
+                try {
+                    eliminarUsuarioSeleccionado();
+                } catch (BibliotecaExceptionPrincipal ex) {
+                    listaUsuariosView.mostrarInformacion(ex.getMessage());
+                } finally {
+                    System.out.println("Intento de eliminación de usuario finalizado.");
+                }
             }
         });
     }

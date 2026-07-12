@@ -7,6 +7,13 @@ package ec.edu.ups.biblioteca.controllers;
 import ec.edu.ups.biblioteca.dao.LibroDAO;
 import ec.edu.ups.biblioteca.dao.PrestamoDAO;
 import ec.edu.ups.biblioteca.dao.UsuarioDAO;
+import ec.edu.ups.biblioteca.exceptions.BibliotecaExceptionPrincipal;
+import ec.edu.ups.biblioteca.exceptions.BusquedaException;
+import ec.edu.ups.biblioteca.exceptions.CampoObligatorioException;
+import ec.edu.ups.biblioteca.exceptions.FechaInvaldiaException;
+import ec.edu.ups.biblioteca.exceptions.PrestamosException;
+import ec.edu.ups.biblioteca.exceptions.RegistroException;
+import ec.edu.ups.biblioteca.exceptions.SeleccionInvalidaException;
 import ec.edu.ups.biblioteca.models.Libro;
 import ec.edu.ups.biblioteca.models.Prestamo;
 import ec.edu.ups.biblioteca.models.Usuario;
@@ -28,6 +35,7 @@ import javax.swing.JOptionPane;
  * @author DELL
  */
 public class PrestamoController {
+
     //Tarifa de multa por cada dia de atraso en la devolucion
     private static final double TARIFA_MULTA_DIARIA = 0.50;
 
@@ -86,7 +94,7 @@ public class PrestamoController {
         return null;
     }
 
-    public void registrarPrestamo() {
+    public void registrarPrestamo() throws SeleccionInvalidaException, FechaInvaldiaException, PrestamosException {
         String nombreUsuarioSeleccionado = (String) registrarPrestamoView.getCmbUsuarios().getSelectedItem();
         String tituloLibroSeleccionado = (String) registrarPrestamoView.getCmbLibros().getSelectedItem();
 
@@ -94,26 +102,22 @@ public class PrestamoController {
         Libro libro = buscarLibroPorTitulo(tituloLibroSeleccionado);
 
         if (usuario == null || libro == null) {
-            registrarPrestamoView.mostrarInformacion(mensajes.getString("mensaje.prestamo.seleccionInvalida"));
-            return;
+            throw new SeleccionInvalidaException(mensajes.getString("mensaje.prestamo.seleccionInvalida"));
         }
 
         Date fechaPrestamo = (Date) registrarPrestamoView.getSpnFechaPrest().getValue();
         Date fechaDevolucion = (Date) registrarPrestamoView.getSpnFechaDev().getValue();
 
         if (fechaPrestamo == null || fechaDevolucion == null) {
-            registrarPrestamoView.mostrarInformacion(mensajes.getString("mensaje.prestamo.fechasObligatorias"));
-            return;
+            throw new FechaInvaldiaException(mensajes.getString("mensaje.prestamo.fechasObligatorias"));
         }
 
         if (!fechaDevolucion.after(fechaPrestamo)) {
-            registrarPrestamoView.mostrarInformacion(mensajes.getString("mensaje.prestamo.fechaInvalida"));
-            return;
+            throw new FechaInvaldiaException(mensajes.getString("mensaje.prestamo.fechaInvalida"));
         }
 
         if (!libro.isDisponible() || prestamoDAO.buscarPrestamo(libro.getIsbn()) != null) {
-            registrarPrestamoView.mostrarInformacion(mensajes.getString("mensaje.prestamo.libroPrestado"));
-            return;
+            throw new PrestamosException(mensajes.getString("mensaje.prestamo.libroPrestado"));
         }
 
         Prestamo prestamo = new Prestamo(usuario, libro, fechaPrestamo, fechaDevolucion, false);
@@ -128,25 +132,31 @@ public class PrestamoController {
         registrarPrestamoView.getBtnRegistrarPrest().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                registrarPrestamo();
-                refrescarListas.run();
+                try {
+                    registrarPrestamo();
+                    refrescarListas.run();
+                } catch (BibliotecaExceptionPrincipal ex) {
+                    registrarPrestamoView.mostrarInformacion(ex.getMessage());
+                } finally {
+                    System.out.println("Registro de Préstamo finalizado.");
+                }
             }
         });
     }
 
-    public void buscarPrestamoDevolucion() {
+    public void buscarPrestamoDevolucion() throws BusquedaException {
         String isbn = devolucionLibroView.getTxtISBN().getText().trim();
         Prestamo prestamo = prestamoDAO.buscarPrestamo(isbn);
 
         if (prestamo != null) {
-            devolucionLibroView.getTxtTitulo().setText(prestamo.getLibro().getTitulo());
-            devolucionLibroView.getTxtPrestado().setText(prestamo.getUsuario().getNombre());
-            devolucionLibroView.getSpnFechaVen().setValue(prestamo.getFechaDevolucion());
-        } else {
             devolucionLibroView.getTxtTitulo().setText("");
             devolucionLibroView.getTxtPrestado().setText("");
-            devolucionLibroView.mostrarInformacion(mensajes.getString("mensaje.prestamo.noActivo"));
+            throw new BusquedaException(mensajes.getString("mensaje.prestamo.noActivo"));
         }
+        devolucionLibroView.getTxtTitulo().setText(prestamo.getLibro().getTitulo());
+        devolucionLibroView.getTxtPrestado().setText(prestamo.getUsuario().getNombre());
+        devolucionLibroView.getSpnFechaVen().setValue(prestamo.getFechaDevolucion());
+
     }
 
     /**
@@ -161,14 +171,13 @@ public class PrestamoController {
         return TimeUnit.MILLISECONDS.toDays(diferenciaMs) + 1;
     }
 
-    public void devolverLibro() {
+    public void devolverLibro() throws BusquedaException {
         String isbn = devolucionLibroView.getTxtISBN().getText().trim();
         Prestamo prestamo = prestamoDAO.buscarPrestamo(isbn);
         int opcion = devolucionLibroView.confirmarEliminacion();
 
         if (prestamo == null) {
-            devolucionLibroView.mostrarInformacion(mensajes.getString("mensaje.prestamo.noActivo"));
-            return;
+            throw new BusquedaException(mensajes.getString("mensaje.prestamo.noActivo"));
         }
 
         if (opcion == JOptionPane.YES_OPTION) {
@@ -205,15 +214,28 @@ public class PrestamoController {
         devolucionLibroView.getBtnBuscar().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                buscarPrestamoDevolucion();
+                try {
+                    buscarPrestamoDevolucion();
+
+                } catch (BibliotecaExceptionPrincipal ex) {
+                    devolucionLibroView.mostrarInformacion(ex.getMessage());
+                } finally {
+                    System.out.println("Búsqueda de Préstamo Para Devolución Finalizada.");
+                }
             }
         });
 
         devolucionLibroView.getBtnDevolver().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                devolverLibro();
-                refrescarListas.run();
+                try {
+                    devolverLibro();
+                    refrescarListas.run();
+                } catch (BibliotecaExceptionPrincipal ex) {
+                    devolucionLibroView.mostrarInformacion(ex.getMessage());
+                } finally {
+                    System.out.println("Devolución de libro Finalizado.");
+                }
             }
         });
     }
@@ -223,12 +245,12 @@ public class PrestamoController {
         listaPrestamosView.cargarDatos(prestamos);
     }
 
-    public void eliminarPrestamoSeleccionado() {
+    public void eliminarPrestamoSeleccionado() throws SeleccionInvalidaException {
         int fila = listaPrestamosView.getTblPrestamos().getSelectedRow();
 
         if (fila == -1) {
-            listaPrestamosView.mostrarInformacion(mensajes.getString("mensaje.prestamo.seleccionarTabla"));
-            return;
+            throw new SeleccionInvalidaException(mensajes.getString("mensaje.prestamo.seleccionarTabla"));
+
         }
 
         String titulo = String.valueOf(listaPrestamosView.getTblPrestamos().getValueAt(fila, 0));
@@ -259,7 +281,14 @@ public class PrestamoController {
         listaPrestamosView.getBtnEliminar().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                eliminarPrestamoSeleccionado();
+                try {
+                    eliminarPrestamoSeleccionado();
+
+                } catch (BibliotecaExceptionPrincipal ex) {
+                    listaPrestamosView.mostrarInformacion(ex.getMessage());
+                } finally {
+                    System.out.println("Eliminación de Préstamo Finalizado.");
+                }
             }
         });
     }
