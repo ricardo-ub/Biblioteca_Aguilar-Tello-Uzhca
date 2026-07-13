@@ -4,6 +4,10 @@
  */
 package ec.edu.ups.biblioteca.views;
 
+import ec.edu.ups.biblioteca.dao.AutorDAOArchivo;
+import ec.edu.ups.biblioteca.dao.LibroDAOArchivo;
+import ec.edu.ups.biblioteca.dao.PrestamoDAOArchivo;
+import ec.edu.ups.biblioteca.dao.UsuarioDAOArchivo;
 import ec.edu.ups.biblioteca.controllers.BibliotecaController;
 import ec.edu.ups.biblioteca.dao.AutorDAO;
 import ec.edu.ups.biblioteca.dao.AutorDAOMemoria;
@@ -15,6 +19,7 @@ import ec.edu.ups.biblioteca.dao.UsuarioDAO;
 import ec.edu.ups.biblioteca.dao.UsuarioDAOMemoria;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -49,10 +54,27 @@ public class PrincipalView extends javax.swing.JFrame {
         listaUsuariosView = new ListaUsuariosView();
         listaPrestamosView = new ListaPrestamosView();
 
-        AutorDAO autorDAO = new AutorDAOMemoria();
-        LibroDAO libroDAO = new LibroDAOMemoria();
-        UsuarioDAO usuarioDAO = new UsuarioDAOMemoria();
-        PrestamoDAO prestamoDAO = new PrestamoDAOMemoria();
+        String[] opcionesPersistencia = {"Memoria", "Archivos"};
+
+        int opcionPersistencia = JOptionPane.showOptionDialog(this, "Seleccione el mecanismo de persistencia", "Persistencia", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, opcionesPersistencia, opcionesPersistencia[0]);
+
+        AutorDAO autorDAO;
+        UsuarioDAO usuarioDAO;
+        LibroDAO libroDAO;
+        PrestamoDAO prestamoDAO;
+
+        if (opcionPersistencia == 1) {
+            autorDAO = new AutorDAOArchivo();
+            usuarioDAO = new UsuarioDAOArchivo();
+            libroDAO = new LibroDAOArchivo(autorDAO);
+            prestamoDAO = new PrestamoDAOArchivo(usuarioDAO, libroDAO);
+        } else {
+            autorDAO = new AutorDAOMemoria();
+            usuarioDAO = new UsuarioDAOMemoria();
+            libroDAO = new LibroDAOMemoria();
+            prestamoDAO = new PrestamoDAOMemoria();
+        }
+
         bibliotecaController = new BibliotecaController(registrarAutorView, registrarLibroView, registrarUsuarioView, actualizarRegistrarLibroView, actualizarRegistrarUsuarioView, registrarPrestamoView, devolucionLibroView, listaLibrosView, listaUsuariosView, listaPrestamosView, autorDAO, libroDAO, usuarioDAO, prestamoDAO);
 
         this.setJMenuBar(null);

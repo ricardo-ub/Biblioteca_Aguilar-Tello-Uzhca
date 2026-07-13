@@ -25,4 +25,6 @@ public interface PrestamoDAO {
     boolean tienePrestamoActivo(Libro libro);
 
     boolean tienePrestamoActivo(Usuario usuario);
+    
+    void eliminarPrestamosPorLibro(String isbn);
 }

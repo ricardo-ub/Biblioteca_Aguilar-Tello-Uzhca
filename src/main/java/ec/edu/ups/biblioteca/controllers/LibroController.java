@@ -251,13 +251,9 @@ public class LibroController {
         int opcion = listaLibrosView.confirmarEliminacion();
 
         if (opcion == JOptionPane.YES_OPTION) {
-            if (libro != null && prestamoDAO.tienePrestamoActivo(libro)) {
-                throw new PrestamosException(mensajes.getString("mensaje.libro.noEliminarPrestamo"));
-            }
-
+            prestamoDAO.eliminarPrestamosPorLibro(isbn);
             libroDAO.eliminarLibro(isbn);
             listaLibrosView.mostrarInformacion(mensajes.getString("mensaje.libro.eliminado"));
-
             cargarComboLibros();
             refrescarListas.run();
         }

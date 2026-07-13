@@ -69,4 +69,15 @@ public class PrestamoDAOMemoria implements PrestamoDAO {
         }
         return false;
     }
+
+    @Override
+    public void eliminarPrestamosPorLibro(String isbn) {
+        for (int i = prestamos.size() - 1; i >= 0; i--) {
+            Prestamo prestamo = prestamos.get(i);
+
+            if (prestamo.getLibro() != null && prestamo.getLibro().getIsbn().equals(isbn)) {
+                prestamos.remove(i);
+            }
+        }
+    }
 }
