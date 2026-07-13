@@ -70,7 +70,7 @@ public class ListaLibrosView extends javax.swing.JInternalFrame {
         this.btnEliminar = btnEliminar;
     }
 
-     public void configurarTabla() {
+    public void configurarTabla() {
         if (modelo == null) {
             modelo = new DefaultTableModel();
             tblLibros.setModel(modelo);
@@ -103,17 +103,14 @@ public class ListaLibrosView extends javax.swing.JInternalFrame {
         limpiarTabla();
 
         for (Libro libro : libros) {
-            String disponible = libro.isDisponible()
-                    ? mensajes.getString("estado.si") : mensajes.getString("estado.no");
+            String disponible = libro.isDisponible() ? mensajes.getString("estado.si") : mensajes.getString("estado.no");
+            String categoria = "";
 
-            Object[] fila = {
-                libro.getIsbn(),
-                libro.getTitulo(),
-                libro.getAutor().getNombre(),
-                libro.getAnio(),
-                libro.getCategoria(),
-                disponible
-            };
+            if (libro.getCategoria() != null) {
+                categoria = mensajes.getString(libro.getCategoria().getClaveMensaje());
+            }
+
+            Object[] fila = {libro.getIsbn(), libro.getTitulo(), libro.getAutor().getNombre(), libro.getAnio(), categoria, disponible};
             modelo.addRow(fila);
         }
     }

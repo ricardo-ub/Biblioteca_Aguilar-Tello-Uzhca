@@ -122,8 +122,9 @@ public class PrestamoController {
 
         Prestamo prestamo = new Prestamo(usuario, libro, fechaPrestamo, fechaDevolucion, false);
         prestamoDAO.crearPrestamo(prestamo);
-        //El libro deja de estar disponible mientras dure el prestamo
+        
         libro.setDisponible(false);
+        libroDAO.actualizarLibro(libro);
 
         registrarPrestamoView.mostrarInformacion(mensajes.getString("mensaje.prestamo.registrado"));
     }
@@ -148,7 +149,7 @@ public class PrestamoController {
         String isbn = devolucionLibroView.getTxtISBN().getText().trim();
         Prestamo prestamo = prestamoDAO.buscarPrestamo(isbn);
 
-        if (prestamo != null) {
+        if (prestamo == null) {
             devolucionLibroView.getTxtTitulo().setText("");
             devolucionLibroView.getTxtPrestado().setText("");
             throw new BusquedaException(mensajes.getString("mensaje.prestamo.noActivo"));
@@ -184,8 +185,9 @@ public class PrestamoController {
             long diasAtraso = calcularDiasAtraso(prestamo.getFechaDevolucion(), new Date());
 
             prestamoDAO.devolverLibro(isbn);
-            //El libro vuelve a estar disponible
+            
             prestamo.getLibro().setDisponible(true);
+            libroDAO.actualizarLibro(prestamo.getLibro());
 
             if (diasAtraso > 0) {
                 double multa = diasAtraso * TARIFA_MULTA_DIARIA;
@@ -265,6 +267,7 @@ public class PrestamoController {
         if (opcion == JOptionPane.YES_OPTION) {
             prestamoDAO.devolverLibro(libro.getIsbn());
             libro.setDisponible(true);
+            libroDAO.actualizarLibro(libro);
             listaPrestamosView.mostrarInformacion(mensajes.getString("mensaje.prestamo.eliminado"));
             refrescarListas.run();
         }

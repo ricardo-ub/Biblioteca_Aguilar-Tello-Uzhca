@@ -25,6 +25,7 @@ import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
+import ec.edu.ups.biblioteca.enums.CategoriaLibro;
 
 /**
  *
@@ -78,7 +79,9 @@ public class LibroController {
         String titulo = registrarLibroView.getTxtTitulo().getText().trim();
         String nombreAutorSeleccionado = (String) registrarLibroView.getCmbAutor().getSelectedItem();
         Autor autor = autorDAO.buscarAutor(nombreAutorSeleccionado);
-        String categoria = (String) registrarLibroView.getCmbCategoria().getSelectedItem();
+        String categoriaSeleccionada = (String) registrarLibroView.getCmbCategoria().getSelectedItem();
+
+        CategoriaLibro categoria = obtenerCategoria(categoriaSeleccionada);
 
         if (isbn.isEmpty() || titulo.isEmpty()) {
             throw new CampoObligatorioException(mensajes.getString("mensaje.libro.camposObligatorios"));
@@ -99,7 +102,6 @@ public class LibroController {
             throw new AnioInvalidoException(mensajes.getString("mensaje.libro.anioInvalido"));
         }
 
-        //El libro nace siempre disponible
         Libro libro = new Libro(isbn, titulo, autor, anio, categoria, true);
         libroDAO.crearLibro(libro);
 
@@ -138,18 +140,21 @@ public class LibroController {
         String isbn = actualizarRegistroLibroView.getTxtISBN().getText().trim();
         Libro libro = libroDAO.buscarLibro(isbn);
 
-        if (libro != null) {
+        if (libro == null) {
             throw new BusquedaException(mensajes.getString("mensaje.libro.noEncontrado"));
         }
         actualizarRegistroLibroView.getTxtTitulo().setText(libro.getTitulo());
         actualizarRegistroLibroView.getCmbAutores().setSelectedItem(libro.getAutor().getNombre());
         actualizarRegistroLibroView.getTxtAnio().setText(String.valueOf(libro.getAnio()));
-        actualizarRegistroLibroView.getCmbCategoria().setSelectedItem(libro.getCategoria());
+        if (libro.getCategoria() != null) {
+            actualizarRegistroLibroView.getCmbCategoria().setSelectedItem(mensajes.getString(libro.getCategoria().getClaveMensaje()));
+        }
 
     }
 
     public void actualizarLibro() throws RegistroException, CampoObligatorioException, AnioInvalidoException {
         String isbn = actualizarRegistroLibroView.getTxtISBN().getText().trim();
+        Libro libroExistente = libroDAO.buscarLibro(isbn);
 
         if (libroDAO.buscarLibro(isbn) == null) {
             throw new RegistroException(mensajes.getString("mensaje.libro.buscarPrimero"));
@@ -158,7 +163,8 @@ public class LibroController {
         String titulo = actualizarRegistroLibroView.getTxtTitulo().getText().trim();
         String nombreAutorSeleccionado = (String) actualizarRegistroLibroView.getCmbAutores().getSelectedItem();
         Autor autor = autorDAO.buscarAutor(nombreAutorSeleccionado);
-        String categoria = (String) actualizarRegistroLibroView.getCmbCategoria().getSelectedItem();
+        String categoriaSeleccionada = (String) actualizarRegistroLibroView.getCmbCategoria().getSelectedItem();
+        CategoriaLibro categoria = obtenerCategoria(categoriaSeleccionada);
 
         if (titulo.isEmpty() || autor == null) {
             throw new CampoObligatorioException(mensajes.getString("mensaje.libro.completarActualizacion"));
@@ -171,7 +177,7 @@ public class LibroController {
             throw new AnioInvalidoException(mensajes.getString("mensaje.libro.anioInvalido"));
         }
 
-        Libro libro = new Libro(isbn, titulo, autor, anio, categoria);
+        Libro libro = new Libro(isbn, titulo, autor, anio, categoria, libroExistente.isDisponible());
         libroDAO.actualizarLibro(libro);
 
         actualizarRegistroLibroView.mostrarInformacion(mensajes.getString("mensaje.libro.actualizado"));
@@ -280,22 +286,28 @@ public class LibroController {
     }
 
     public void cargarComboCategorias() {
-        String[] categorias = {
-            mensajes.getString("categoria.novela"),
-            mensajes.getString("categoria.ciencia"),
-            mensajes.getString("categoria.historia"),
-            mensajes.getString("categoria.tecnologia"),
-            mensajes.getString("categoria.programacion"),
-            mensajes.getString("categoria.matematicas"),
-            mensajes.getString("categoria.infantil")
-        };
-
         registrarLibroView.getCmbCategoria().removeAllItems();
         actualizarRegistroLibroView.getCmbCategoria().removeAllItems();
 
-        for (String categoria : categorias) {
-            registrarLibroView.getCmbCategoria().addItem(categoria);
-            actualizarRegistroLibroView.getCmbCategoria().addItem(categoria);
+        for (CategoriaLibro categoria : CategoriaLibro.values()) {
+            String categoriaTraducida = mensajes.getString(categoria.getClaveMensaje());
+            registrarLibroView.getCmbCategoria().addItem(categoriaTraducida);
+            actualizarRegistroLibroView.getCmbCategoria().addItem(categoriaTraducida);
         }
+    }
+
+    private CategoriaLibro obtenerCategoria(String categoriaSeleccionada) {
+        if (categoriaSeleccionada == null) {
+            return null;
+        }
+
+        for (CategoriaLibro categoria : CategoriaLibro.values()) {
+            String categoriaTraducida = mensajes.getString(categoria.getClaveMensaje());
+            if (categoriaTraducida.equals(categoriaSeleccionada)) {
+                return categoria;
+            }
+        }
+
+        return null;
     }
 }

@@ -8,12 +8,12 @@ import ec.edu.ups.biblioteca.models.Autor;
 import java.util.ArrayList;
 import java.util.List;
 
-
 /**
  *
  * @author DELL
  */
-public class AutorDAOMemoria implements AutorDAO  {
+public class AutorDAOMemoria implements AutorDAO {
+
     private List<Autor> autores;
 
     public AutorDAOMemoria() {

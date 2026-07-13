@@ -43,6 +43,7 @@ public class LibroDAOMemoria implements LibroDAO {
             existente.setAutor(libro.getAutor());
             existente.setAnio(libro.getAnio());
             existente.setCategoria(libro.getCategoria());
+            existente.setDisponible(libro.isDisponible());
         }
     }
 

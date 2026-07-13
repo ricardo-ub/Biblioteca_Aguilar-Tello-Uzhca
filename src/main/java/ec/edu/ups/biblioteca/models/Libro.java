@@ -4,6 +4,7 @@
  */
 package ec.edu.ups.biblioteca.models;
 
+import ec.edu.ups.biblioteca.enums.CategoriaLibro;
 import java.util.Objects;
 
 /**
@@ -16,18 +17,18 @@ public class Libro {
     private String titulo;
     private Autor autor;
     private int anio;
-    private String categoria;
+    private CategoriaLibro categoria;
     private boolean disponible;
 
     public Libro() {
         this.disponible = true;
     }
 
-    public Libro(String isbn, String titulo, Autor autor, int anio, String categoria) {
+    public Libro(String isbn, String titulo, Autor autor, int anio, CategoriaLibro categoria) {
         this(isbn, titulo, autor, anio, categoria, true);
     }
 
-    public Libro(String isbn, String titulo, Autor autor, int anio, String categoria, boolean disponible) {
+    public Libro(String isbn, String titulo, Autor autor, int anio, CategoriaLibro categoria, boolean disponible) {
         this.isbn = isbn;
         this.titulo = titulo;
         this.autor = autor;
@@ -68,11 +69,11 @@ public class Libro {
         this.anio = anio;
     }
 
-    public String getCategoria() {
+    public CategoriaLibro getCategoria() {
         return categoria;
     }
 
-    public void setCategoria(String categoria) {
+    public void setCategoria(CategoriaLibro categoria) {
         this.categoria = categoria;
     }
 

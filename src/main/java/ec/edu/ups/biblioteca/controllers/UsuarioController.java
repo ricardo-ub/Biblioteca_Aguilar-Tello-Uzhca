@@ -120,7 +120,7 @@ public class UsuarioController {
         String cedula = actualizarRegistroUsuarioView.getTxtCedula().getText().trim();
         Usuario usuario = usuarioDAO.buscarUsuario(cedula);
 
-        if (usuario != null) {
+        if (usuario == null) {
             throw new BusquedaException(mensajes.getString("mensaje.usuario.noEncontrado"));
         }
         actualizarRegistroUsuarioView.getTxtNombre().setText(usuario.getNombre());
