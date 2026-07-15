@@ -9,9 +9,13 @@ import ec.edu.ups.biblioteca.dao.UsuarioDAO;
 import ec.edu.ups.biblioteca.exceptions.BibliotecaExceptionPrincipal;
 import ec.edu.ups.biblioteca.exceptions.BusquedaException;
 import ec.edu.ups.biblioteca.exceptions.CampoObligatorioException;
+import ec.edu.ups.biblioteca.exceptions.CedulaInvalidaException;
+import ec.edu.ups.biblioteca.exceptions.CorreoInvalidoException;
+import ec.edu.ups.biblioteca.exceptions.LongitudInvalidaException;
 import ec.edu.ups.biblioteca.exceptions.PrestamosException;
 import ec.edu.ups.biblioteca.exceptions.RegistroException;
 import ec.edu.ups.biblioteca.exceptions.SeleccionInvalidaException;
+import ec.edu.ups.biblioteca.exceptions.Validaciones;
 import ec.edu.ups.biblioteca.models.Usuario;
 import ec.edu.ups.biblioteca.views.ActualizarRegistrarUsuarioView;
 import ec.edu.ups.biblioteca.views.ListaUsuariosView;
@@ -66,14 +70,18 @@ public class UsuarioController {
     }
 
     //USUARIO
-    public void registrarUsuario() throws CampoObligatorioException, RegistroException {
+    public void registrarUsuario() throws CampoObligatorioException, RegistroException, CedulaInvalidaException, LongitudInvalidaException, CorreoInvalidoException {
         String cedula = registrarUsuarioView.getTxtCedula().getText().trim();
         String nombre = registrarUsuarioView.getTxtNombre().getText().trim();
         String correo = registrarUsuarioView.getTxtCorreo().getText().trim();
 
-        if (cedula.isEmpty() || nombre.isEmpty()) {
+        if (cedula.isEmpty() || nombre.isEmpty() || correo.isEmpty()) {
             throw new CampoObligatorioException(mensajes.getString("mensaje.usuario.camposObligatorios"));
         }
+
+        Validaciones.validarCedulaEcuatoriana(cedula, mensajes);
+        Validaciones.validarLongitud(nombre, 3, 60, mensajes.getString("campo.nombre"), mensajes);
+        Validaciones.validarCorreo(correo, mensajes);
 
         if (usuarioDAO.buscarUsuario(cedula) != null) {
             throw new RegistroException(mensajes.getString("mensaje.usuario.cedulaExistente"));
@@ -116,8 +124,11 @@ public class UsuarioController {
         }
     }
 
-    public void buscarUsuarioActualizar() throws BusquedaException {
+    public void buscarUsuarioActualizar() throws BusquedaException, CedulaInvalidaException {
         String cedula = actualizarRegistroUsuarioView.getTxtCedula().getText().trim();
+
+        Validaciones.validarCedulaEcuatoriana(cedula, mensajes);
+
         Usuario usuario = usuarioDAO.buscarUsuario(cedula);
 
         if (usuario == null) {
@@ -127,7 +138,7 @@ public class UsuarioController {
         actualizarRegistroUsuarioView.getTxtCorreo().setText(usuario.getCorreo());
     }
 
-    public void actualizarUsuario() throws CampoObligatorioException, BusquedaException {
+    public void actualizarUsuario() throws CampoObligatorioException, BusquedaException, LongitudInvalidaException, CorreoInvalidoException {
         String cedula = actualizarRegistroUsuarioView.getTxtCedula().getText().trim();
 
         if (usuarioDAO.buscarUsuario(cedula) == null) {
@@ -137,9 +148,12 @@ public class UsuarioController {
         String nombre = actualizarRegistroUsuarioView.getTxtNombre().getText().trim();
         String correo = actualizarRegistroUsuarioView.getTxtCorreo().getText().trim();
 
-        if (nombre.isEmpty()) {
-            throw new CampoObligatorioException(mensajes.getString("mensaje.usuario.nombreObligatorio"));
+        if (nombre.isEmpty() || correo.isEmpty()) {
+            throw new CampoObligatorioException(mensajes.getString("mensaje.usuario.camposObligatorios"));
         }
+
+        Validaciones.validarLongitud(nombre, 3, 60, mensajes.getString("campo.nombre"), mensajes);
+        Validaciones.validarCorreo(correo, mensajes);
 
         Usuario usuario = new Usuario(cedula, nombre, correo);
         usuarioDAO.actualizarUsuario(usuario);
@@ -160,7 +174,7 @@ public class UsuarioController {
             public void actionPerformed(ActionEvent e) {
                 try {
                     buscarUsuarioActualizar();
-                } catch (BusquedaException ex) {
+                } catch (BibliotecaExceptionPrincipal ex) {
                     actualizarRegistroUsuarioView.mostrarInformacion(ex.getMessage());
                 } finally {
                     System.out.println("Búsqueda de usuario para actualizar finalizada.");

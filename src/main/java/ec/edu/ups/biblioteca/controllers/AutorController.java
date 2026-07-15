@@ -7,6 +7,10 @@ package ec.edu.ups.biblioteca.controllers;
 import ec.edu.ups.biblioteca.dao.AutorDAO;
 import ec.edu.ups.biblioteca.exceptions.BibliotecaExceptionPrincipal;
 import ec.edu.ups.biblioteca.exceptions.CampoObligatorioException;
+import ec.edu.ups.biblioteca.exceptions.CorreoInvalidoException;
+import ec.edu.ups.biblioteca.exceptions.LongitudInvalidaException;
+import ec.edu.ups.biblioteca.exceptions.RegistroException;
+import ec.edu.ups.biblioteca.exceptions.Validaciones;
 import ec.edu.ups.biblioteca.models.Autor;
 import ec.edu.ups.biblioteca.views.ActualizarRegistrarLibroView;
 import ec.edu.ups.biblioteca.views.RegistrarAutorView;
@@ -51,22 +55,25 @@ public class AutorController {
         this.mensajes = mensajes;
     }
 
-    public void registrarAutor() throws CampoObligatorioException {
+    public void registrarAutor() throws CampoObligatorioException, RegistroException, LongitudInvalidaException, CorreoInvalidoException {
         String nombre = registrarAutorView.getTxtNombre().getText().trim();
         String nacionalidad = registrarAutorView.getTxtNacionalidad().getText().trim();
         String correo = registrarAutorView.getTxtCorreo().getText().trim();
 
-        if (nombre.isEmpty()) {
-            throw new CampoObligatorioException(mensajes.getString("mensaje.autor.nombreObligatorio"));
+        if (nombre.isEmpty() || nacionalidad.isEmpty() || correo.isEmpty()) {
+            throw new CampoObligatorioException(mensajes.getString("mensaje.autor.camposObligatorios"));
         }
 
+        Validaciones.validarLongitud(nombre, 3, 60, mensajes.getString("campo.nombre"), mensajes);
+        Validaciones.validarLongitud(nacionalidad, 3, 40, mensajes.getString("campo.nacionalidad"), mensajes);
+        Validaciones.validarCorreo(correo, mensajes);
+
         if (autorDAO.buscarAutor(nombre) != null) {
-            autorDAO.actualizarAutor(new Autor(nombre, nacionalidad, correo));
-            registrarAutorView.mostrarInformacion(mensajes.getString("mensaje.autor.actualizado"));
-        } else {
-            autorDAO.crearAutor(new Autor(nombre, nacionalidad, correo));
-            registrarAutorView.mostrarInformacion(mensajes.getString("mensaje.autor.registrado"));
+            throw new RegistroException(mensajes.getString("mensaje.autor.duplicado"));
         }
+
+        autorDAO.crearAutor(new Autor(nombre, nacionalidad, correo));
+        registrarAutorView.mostrarInformacion(mensajes.getString("mensaje.autor.registrado"));
 
         registrarAutorView.getTxtNombre().setText("");
         registrarAutorView.getTxtNacionalidad().setText("");

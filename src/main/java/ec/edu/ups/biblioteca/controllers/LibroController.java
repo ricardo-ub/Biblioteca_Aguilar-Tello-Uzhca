@@ -26,6 +26,10 @@ import java.util.List;
 import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
 import ec.edu.ups.biblioteca.enums.CategoriaLibro;
+import ec.edu.ups.biblioteca.exceptions.FormatoISBNInvalidoException;
+import ec.edu.ups.biblioteca.exceptions.LongitudInvalidaException;
+import ec.edu.ups.biblioteca.exceptions.Validaciones;
+import java.time.LocalDate;
 
 /**
  *
@@ -74,22 +78,30 @@ public class LibroController {
     }
 
     //LIBRO
-    public void registrarLibro() throws CampoObligatorioException, SeleccionInvalidaException, RegistroException, AnioInvalidoException {
+    public void registrarLibro() throws CampoObligatorioException, SeleccionInvalidaException, RegistroException,
+            AnioInvalidoException, LongitudInvalidaException, FormatoISBNInvalidoException {
         String isbn = registrarLibroView.getTxtISBN().getText().trim();
         String titulo = registrarLibroView.getTxtTitulo().getText().trim();
+        String anioTexto = registrarLibroView.getTxtAnio().getText().trim();
         String nombreAutorSeleccionado = (String) registrarLibroView.getCmbAutor().getSelectedItem();
         Autor autor = autorDAO.buscarAutor(nombreAutorSeleccionado);
         String categoriaSeleccionada = (String) registrarLibroView.getCmbCategoria().getSelectedItem();
 
-        CategoriaLibro categoria = obtenerCategoria(categoriaSeleccionada);
-
-        if (isbn.isEmpty() || titulo.isEmpty()) {
+        if (isbn.isEmpty() || titulo.isEmpty() || anioTexto.isEmpty()) {
             throw new CampoObligatorioException(mensajes.getString("mensaje.libro.camposObligatorios"));
         }
 
         if (autor == null) {
             throw new SeleccionInvalidaException(mensajes.getString("mensaje.libro.seleccionarAutor"));
         }
+
+        CategoriaLibro categoria = obtenerCategoria(categoriaSeleccionada);
+        if (categoria == null) {
+            throw new SeleccionInvalidaException(mensajes.getString("mensaje.libro.seleccionarCategoria"));
+        }
+
+        Validaciones.validarLongitud(titulo, 2, 100, mensajes.getString("campo.titulo"), mensajes);
+        Validaciones.validarIsbn(isbn, mensajes);
 
         if (libroDAO.buscarLibro(isbn) != null) {
             throw new RegistroException(mensajes.getString("mensaje.libro.isbnExistente"));
@@ -100,6 +112,11 @@ public class LibroController {
             anio = Integer.parseInt(registrarLibroView.getTxtAnio().getText().trim());
         } catch (NumberFormatException ex) {
             throw new AnioInvalidoException(mensajes.getString("mensaje.libro.anioInvalido"));
+        }
+
+        int anioActual = LocalDate.now().getYear();
+        if (anio < 1450 || anio > anioActual) {
+            throw new AnioInvalidoException(mensajes.getString("mensaje.libro.anioRango"));
         }
 
         Libro libro = new Libro(isbn, titulo, autor, anio, categoria, true);
@@ -152,29 +169,41 @@ public class LibroController {
 
     }
 
-    public void actualizarLibro() throws RegistroException, CampoObligatorioException, AnioInvalidoException {
+    public void actualizarLibro() throws RegistroException, CampoObligatorioException, AnioInvalidoException, SeleccionInvalidaException, LongitudInvalidaException {
         String isbn = actualizarRegistroLibroView.getTxtISBN().getText().trim();
         Libro libroExistente = libroDAO.buscarLibro(isbn);
 
-        if (libroDAO.buscarLibro(isbn) == null) {
+        if (libroExistente == null) {
             throw new RegistroException(mensajes.getString("mensaje.libro.buscarPrimero"));
         }
 
         String titulo = actualizarRegistroLibroView.getTxtTitulo().getText().trim();
+        String anioTexto = actualizarRegistroLibroView.getTxtAnio().getText().trim();
         String nombreAutorSeleccionado = (String) actualizarRegistroLibroView.getCmbAutores().getSelectedItem();
         Autor autor = autorDAO.buscarAutor(nombreAutorSeleccionado);
         String categoriaSeleccionada = (String) actualizarRegistroLibroView.getCmbCategoria().getSelectedItem();
         CategoriaLibro categoria = obtenerCategoria(categoriaSeleccionada);
 
-        if (titulo.isEmpty() || autor == null) {
+        if (titulo.isEmpty() || autor == null || anioTexto.isEmpty()) {
             throw new CampoObligatorioException(mensajes.getString("mensaje.libro.completarActualizacion"));
         }
 
+        if (categoria == null) {
+            throw new SeleccionInvalidaException(mensajes.getString("mensaje.libro.seleccionarCategoria"));
+        }
+
+        Validaciones.validarLongitud(titulo, 2, 100, mensajes.getString("campo.titulo"), mensajes);
+
         int anio;
         try {
-            anio = Integer.parseInt(actualizarRegistroLibroView.getTxtAnio().getText().trim());
+            anio = Integer.parseInt(anioTexto);
         } catch (NumberFormatException ex) {
             throw new AnioInvalidoException(mensajes.getString("mensaje.libro.anioInvalido"));
+        }
+
+        int anioActual = LocalDate.now().getYear();
+        if (anio < 1450 || anio > anioActual) {
+            throw new AnioInvalidoException(mensajes.getString("mensaje.libro.anioRango"));
         }
 
         Libro libro = new Libro(isbn, titulo, autor, anio, categoria, libroExistente.isDisponible());
