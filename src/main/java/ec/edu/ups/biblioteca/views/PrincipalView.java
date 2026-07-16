@@ -58,6 +58,10 @@ public class PrincipalView extends javax.swing.JFrame {
 
         int opcionPersistencia = JOptionPane.showOptionDialog(this, "Seleccione el mecanismo de persistencia", "Persistencia", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, opcionesPersistencia, opcionesPersistencia[0]);
 
+        if (opcionPersistencia == JOptionPane.CLOSED_OPTION) {
+            System.exit(0);
+        }
+        
         AutorDAO autorDAO;
         UsuarioDAO usuarioDAO;
         LibroDAO libroDAO;
