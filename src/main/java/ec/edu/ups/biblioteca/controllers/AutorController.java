@@ -87,12 +87,15 @@ public class AutorController {
                 try {
                     registrarAutor();
                     cargarComboAutores();
-                    refrescarListas.run();
+
+                    if (refrescarListas != null) {
+                        refrescarListas.run();
+                    }
+
+                    System.out.println("Autor registrado correctamente.");
+
                 } catch (BibliotecaExceptionPrincipal ex) {
                     registrarAutorView.mostrarInformacion(ex.getMessage());
-
-                } finally {
-                    System.out.println("Registro de Autor finalizado.");
                 }
 
             }

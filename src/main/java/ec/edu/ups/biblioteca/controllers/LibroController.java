@@ -122,6 +122,20 @@ public class LibroController {
         Libro libro = new Libro(isbn, titulo, autor, anio, categoria, true);
         libroDAO.crearLibro(libro);
 
+        registrarLibroView.getTxtISBN().setText("");
+        registrarLibroView.getTxtTitulo().setText("");
+        registrarLibroView.getTxtAnio().setText("");
+
+        if (registrarLibroView.getCmbAutor().getItemCount() > 0) {
+            registrarLibroView.getCmbAutor().setSelectedIndex(0);
+        }
+
+        if (registrarLibroView.getCmbCategoria().getItemCount() > 0) {
+            registrarLibroView.getCmbCategoria().setSelectedIndex(0);
+        }
+
+        registrarLibroView.getTxtISBN().requestFocusInWindow();
+
         registrarLibroView.mostrarInformacion(mensajes.getString("mensaje.libro.registrado"));
     }
 
@@ -269,22 +283,42 @@ public class LibroController {
     }
 
     public void eliminarLibroSeleccionado() throws SeleccionInvalidaException, PrestamosException {
+
         int fila = listaLibrosView.getTblLibros().getSelectedRow();
 
         if (fila == -1) {
-            throw new SeleccionInvalidaException(mensajes.getString("mensaje.libro.seleccionarTabla"));
+            throw new SeleccionInvalidaException(mensajes.getString("mensaje.libro.seleccionarTabla")
+            );
         }
 
-        String isbn = (String) listaLibrosView.getTblLibros().getValueAt(fila, 0);
+        String isbn = String.valueOf(listaLibrosView.getTblLibros().getValueAt(fila, 0));
+
         Libro libro = libroDAO.buscarLibro(isbn);
+
+        if (libro == null) {
+            throw new SeleccionInvalidaException(mensajes.getString("mensaje.libro.noEncontrado")
+            );
+        }
+
+        if (prestamoDAO.tienePrestamoActivo(libro)) {
+            throw new PrestamosException(mensajes.getString("mensaje.libro.prestamoActivo")
+            );
+        }
+
         int opcion = listaLibrosView.confirmarEliminacion();
 
         if (opcion == JOptionPane.YES_OPTION) {
             prestamoDAO.eliminarPrestamosPorLibro(isbn);
             libroDAO.eliminarLibro(isbn);
-            listaLibrosView.mostrarInformacion(mensajes.getString("mensaje.libro.eliminado"));
+
+            listaLibrosView.mostrarInformacion(mensajes.getString("mensaje.libro.eliminado")
+            );
+
             cargarComboLibros();
-            refrescarListas.run();
+
+            if (refrescarListas != null) {
+                refrescarListas.run();
+            }
         }
     }
 
