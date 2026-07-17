@@ -4,6 +4,8 @@
  */
 package ec.edu.ups.biblioteca.views;
 
+import ec.edu.ups.biblioteca.enums.Nacionalidad;
+import javax.swing.JComboBox;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -24,6 +26,7 @@ public class RegistrarAutorView extends javax.swing.JInternalFrame {
      */
     public RegistrarAutorView() {
         initComponents();
+        cargarNacionalidades();
         cambiarIdioma(new Locale("es", "EC"));
     }
 
@@ -50,12 +53,12 @@ public class RegistrarAutorView extends javax.swing.JInternalFrame {
         this.txtCorreo = txtCorreo;
     }
 
-    public JTextField getTxtNacionalidad() {
-        return txtNacionalidad;
+    public JComboBox<String> getCmbNacionalidad() {
+        return cmbNacionalidad;
     }
 
-    public void setTxtNacionalidad(JTextField txtNacionalidad) {
-        this.txtNacionalidad = txtNacionalidad;
+    public void setCmbNacionalidad(JComboBox<String> cmbNacionalidad) {
+        this.cmbNacionalidad = cmbNacionalidad;
     }
 
     public JButton getBtnAceptar() {
@@ -86,6 +89,14 @@ public class RegistrarAutorView extends javax.swing.JInternalFrame {
         JOptionPane.showMessageDialog(this, mensaje, mensajes.getString("dialogo.titulo.informacion"), JOptionPane.INFORMATION_MESSAGE);
     }
 
+    private void cargarNacionalidades() {
+        cmbNacionalidad.removeAllItems();
+
+        for (Nacionalidad nacionalidad : Nacionalidad.values()) {
+            cmbNacionalidad.addItem(nacionalidad.toString());
+        }
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -105,9 +116,9 @@ public class RegistrarAutorView extends javax.swing.JInternalFrame {
         lblNombre = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        txtNacionalidad = new javax.swing.JTextField();
         txtCorreo = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
+        cmbNacionalidad = new javax.swing.JComboBox<>();
 
         setClosable(true);
         setTitle("Registrar Autor");
@@ -163,11 +174,6 @@ public class RegistrarAutorView extends javax.swing.JInternalFrame {
         jLabel3.setForeground(new java.awt.Color(218, 204, 184));
         jLabel3.setText("Correo:");
 
-        txtNacionalidad.setBackground(new java.awt.Color(18, 19, 17));
-        txtNacionalidad.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
-        txtNacionalidad.setForeground(new java.awt.Color(218, 204, 184));
-        txtNacionalidad.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(80, 80, 80)));
-
         txtCorreo.setBackground(new java.awt.Color(18, 19, 17));
         txtCorreo.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
         txtCorreo.setForeground(new java.awt.Color(218, 204, 184));
@@ -178,29 +184,35 @@ public class RegistrarAutorView extends javax.swing.JInternalFrame {
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/biblioteca/images/Adobe Express - file.png"))); // NOI18N
         jLabel4.setText("dwdw");
 
+        cmbNacionalidad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
+        cmbNacionalidad.addActionListener(this::cmbNacionalidadActionPerformed);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblNombre)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3))
+                                .addGap(60, 60, 60)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                                    .addComponent(txtCorreo, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                                    .addComponent(cmbNacionalidad, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(84, 84, 84))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(btnAceptar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnCancelar))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblNombre)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
-                        .addGap(60, 60, 60)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNacionalidad, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                        .addComponent(btnCancelar)
+                        .addContainerGap())))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(68, 68, 68)
                 .addComponent(jLabel1)
@@ -213,22 +225,19 @@ public class RegistrarAutorView extends javax.swing.JInternalFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblNombre))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(txtNacionalidad))
-                        .addGap(21, 21, 21)
-                        .addComponent(jLabel3))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(22, 22, 22)
+                .addGap(33, 33, 33)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblNombre))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(cmbNacionalidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(19, 19, 19)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAceptar)
                     .addComponent(btnCancelar))
@@ -255,10 +264,15 @@ public class RegistrarAutorView extends javax.swing.JInternalFrame {
         dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
+    private void cmbNacionalidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbNacionalidadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbNacionalidadActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
     private javax.swing.JButton btnCancelar;
+    private javax.swing.JComboBox<String> cmbNacionalidad;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -267,7 +281,6 @@ public class RegistrarAutorView extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JTextField txtCorreo;
-    private javax.swing.JTextField txtNacionalidad;
     private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 

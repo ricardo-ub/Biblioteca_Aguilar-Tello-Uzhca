@@ -57,7 +57,7 @@ public class AutorController {
 
     public void registrarAutor() throws CampoObligatorioException, RegistroException, LongitudInvalidaException, CorreoInvalidoException {
         String nombre = registrarAutorView.getTxtNombre().getText().trim();
-        String nacionalidad = registrarAutorView.getTxtNacionalidad().getText().trim();
+        String nacionalidad = registrarAutorView.getCmbNacionalidad().getSelectedItem().toString();
         String correo = registrarAutorView.getTxtCorreo().getText().trim();
 
         if (nombre.isEmpty() || nacionalidad.isEmpty() || correo.isEmpty()) {
@@ -76,7 +76,7 @@ public class AutorController {
         registrarAutorView.mostrarInformacion(mensajes.getString("mensaje.autor.registrado"));
 
         registrarAutorView.getTxtNombre().setText("");
-        registrarAutorView.getTxtNacionalidad().setText("");
+        registrarAutorView.getCmbNacionalidad().setSelectedIndex(0);
         registrarAutorView.getTxtCorreo().setText("");
     }
 
